@@ -1,6 +1,6 @@
 # projects
 
--> [github](http://github.com/roobert/)
+* [code](http://github.com/roobert/)
 
 ## misc.
 
