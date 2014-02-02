@@ -1,5 +1,7 @@
 # projects
 
+[github](http://github.com/roobert/)
+
 ## misc.
 
 * [dotfiles](http://github.com/roobert/dotfiles) - my configs
