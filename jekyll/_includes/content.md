@@ -1,6 +1,6 @@
 # projects
 
-* [code](http://github.com/roobert/)
+[http://github.com/roobert/](http://github.com/roobert/)
 
 ## misc.
 
