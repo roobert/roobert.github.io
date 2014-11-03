@@ -3,8 +3,8 @@ title:       roobert
 email:       roobert@gmail.com
 author:      Rob Wilson
 description: ""
-baseurl:     "http://roobert.github.io/"
-url:         "http://github.com/roobert"
+baseurl:     "http://roobert.github.io"
+url:         "http://roobert.github.io"
 
 # Google analytics
 google_analytics:
