@@ -1,10 +1,10 @@
 # Site settings
-title:       roobert
+title:       
 email:       roobert@gmail.com
 author:      Rob Wilson
 description: ""
 baseurl:     ""
-url:         "http://roobert.github.io"
+url:         "http://github.com/roobert"
 
 # Google analytics
 google_analytics:
