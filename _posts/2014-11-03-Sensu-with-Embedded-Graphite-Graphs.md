@@ -44,7 +44,7 @@ Uchiwa decides what to display as an image depending on file extension type. Sim
 &uchiwa_force_display_as_image=.jpg
 {% endhighlight %}
 
-Now we can add this to the client config. It's necessary to encode the single quotes (%27) and since I'm using ansible to distribute the Sensu configuration, I've used `{{ ansible_hostname }}` in place of the `hostname` in the metric key.
+Now we can add this to the client config. It's necessary to encode the single quotes (%27) and since I'm using ansible to distribute the Sensu configuration, I've used `{{{{ ansible_hostname }}}}` in place of the `hostname` in the metric key.
 
 {% highlight json %}
 {% raw %}
