@@ -17,7 +17,7 @@ One of the things I thought would be useful would be having graphs embedded in t
 0. display any extra properties you add to the client config JSON or check config JSON in the UI
 0. render images
 
-## CPU and Memory Queries
+## Graphite Queries
 
 I want to be able to see CPU and Memory usage for each machine when I click on the machine view. My graphite queries look like:
 
@@ -43,6 +43,8 @@ Uchiwa decides what to display as an image depending on file extension type. Sim
 {% highlight json %}
 &uchiwa_force_display_as_image=.jpg
 {% endhighlight %}
+
+## Putting it Together..
 
 {% assign ansible_hostname = '{{ ansible_hostname }}' %}
 
