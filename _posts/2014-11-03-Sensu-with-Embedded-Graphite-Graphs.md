@@ -10,9 +10,14 @@ Earlier this year I saw a [great talk](with://www.youtube.com/watch?v=Q9BagdHGop
 
 Months later and I'm now experimenting with replacing the existing nagios monitoring system we use at [my new job](http://brandwatch.com) with Sensu.
 
-One of the things I thought would be useful would be having graphs embedded in the wonderful [Uchiwa](http://uchiwa.io) dashboard. It turns out I'm not alone. The author of Uchiwa ([Simon Palourde](http://github.com/palourde)) plans to add support for embedding graphite graphs into Uchiwa natively. Until then, it's still possible to get some lovely graph action going on by taking advantage of the fact Uchiwa will 1) display any extra properties you add to the client config JSON or check config JSON in the UI, and 2) will render images.
+## Uchiwa
 
-# CPU and Memory Queries
+One of the things I thought would be useful would be having graphs embedded in the wonderful [Uchiwa](http://uchiwa.io) dashboard. It turns out I'm not alone. The author of Uchiwa ([Simon Palourde](http://github.com/palourde)) plans to add support for embedding graphite graphs into Uchiwa natively. Until then, it's still possible to get some lovely graph action going on by taking advantage of the fact Uchiwa will:
+
+0. display any extra properties you add to the client config JSON or check config JSON in the UI
+0. render images
+
+## CPU and Memory Queries
 
 I want to be able to see CPU and Memory usage for each machine when I click on the machine view. My graphite queries look like:
 
