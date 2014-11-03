@@ -17,6 +17,12 @@ One of the things I thought would be useful would be having graphs embedded in t
 0. display any extra properties you add to the client config JSON or check config JSON in the UI
 0. render images
 
+Uchiwa decides what to display as an image depending on file extension type. Simply adding a fake argument to our graphite query tricks Uchiwa into displaying our image inline instead of a link to the graph:
+
+{% highlight json %}
+&uchiwa_force_display_as_image=.jpg
+{% endhighlight %}
+
 ## Graphite Queries
 
 I want to be able to see CPU and Memory usage for each machine when I click on the machine view. My graphite queries look like:
@@ -36,12 +42,6 @@ https://graphite.brandwatch.com/render \
   &target=collectd.<hostname>.memory.memory-cached.value \
   &target=collectd.<hostname>.memory.memory-free.value \
   &target=collectd.<hostname>.memory.memory-buffered.value
-{% endhighlight %}
-
-Uchiwa decides what to display as an image depending on file extension type. Simply adding a fake argument to our graphite query tricks Uchiwa into displaying our image inline instead of a link to the graph:
-
-{% highlight json %}
-&uchiwa_force_display_as_image=.jpg
 {% endhighlight %}
 
 ## Putting it Together..
