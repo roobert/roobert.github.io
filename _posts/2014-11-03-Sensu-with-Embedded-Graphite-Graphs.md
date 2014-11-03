@@ -54,7 +54,7 @@ Now we can add this to the client config. It's necessary to encode the single qu
    "client": {
       "name": "{{ sensu_client_hostname }}",
       "address": "{{ sensu_client_address }}",
-      "subscriptions": [ "{{ "\",\"".join(sensu_client_subscription_names) }}" ],
+      "subscriptions": subscriptions,
       "graphite_cpu": "https://graphite.brandwatch.com/render?from=-12hours&until=now&width=500&height=200&target=collectd.{{ ansible_hostname }}.aggregation-cpu-average.cpu-system.value&target=drawAsInfinite(events(%27{{ ansible_hostname }}%27,%27check-cpu%27,%27ok%27))&target=drawAsInfinite(events(%27{{ ansible_hostname }}%27,%27check-cpu%27,%27warning%27))&target=drawAsInfinite(events(%27{{ ansible_hostname }}%27,%27check-cpu%27,%27critical%27))&uchiwa_force_image=.jpg",
       "graphite_mem": "https://graphite.brandwatch.com/render?from=-12hours&until=now&width=500&height=200&target=collectd.{{ ansible_hostname }}.memory.memory-used.value&target=collectd.{{ ansible_hostname }}.memory.memory-cached.value&target=collectd.{{ ansible_hostname }}.memory.memory-free.value&target=collectd.{{ ansible_hostname }}.memory.memory-buffered.value&uchiwa_force_image=.jpg"
    }
