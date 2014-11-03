@@ -62,9 +62,11 @@ Now we can add this to the client config. It's necessary to encode the single qu
 {% endraw %}
 {% endhighlight %}
 
-The result:
+## The Result
 
 ..image..
+
+## Going Further..
 
 It's also possible to add properties to checks so we can embed graphs in the check ection view of the UI:
 
