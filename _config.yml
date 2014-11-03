@@ -1,2 +1,32 @@
-exclude:
-  - jekyll
+# Site settings
+title:       roobert
+email:       roobert@gmail.com
+author:      Rob Wilson
+description: ""
+baseurl:     ""
+url:         "http://roobert.github.io"
+
+# Google analytics
+google_analytics:
+
+# Optional features
+animated:           false
+show_related_posts: false
+show_post_footers:  false
+
+# Social icons
+show_social_icons: false
+github_username: roobert
+twitter_username:
+google_plus_id:
+linkedin_username:
+bitcoin_url:
+paypal_url:
+flattr_button:
+
+# Build settings
+markdown:     kramdown
+permalink:    pretty
+paginate:     3
+sass:
+  compressed: true
