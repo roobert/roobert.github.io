@@ -7,7 +7,7 @@ baseurl:     "http://roobert.github.io"
 url:         "http://roobert.github.io"
 
 # Google analytics
-google_analytics:
+google_analytics: UA-56391015-1
 
 # Optional features
 animated:           false
