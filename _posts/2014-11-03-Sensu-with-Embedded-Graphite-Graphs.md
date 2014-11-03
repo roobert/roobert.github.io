@@ -23,7 +23,7 @@ Uchiwa decides what to display as an image depending on file extension type. Sim
 &uchiwa_force_display_as_image=.jpg
 {% endhighlight %}
 
-## Graphite Queries
+## Graphite
 
 I want to be able to see CPU and Memory usage for each machine when I click on the machine view. My graphite queries look like:
 
