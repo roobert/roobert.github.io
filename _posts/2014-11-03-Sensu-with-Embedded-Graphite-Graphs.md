@@ -48,7 +48,7 @@ https://graphite.brandwatch.com/render \
 
 {% assign ansible_hostname = '{{ ansible_hostname }}' %}
 
-Now we can add this to the client config. It's necessary to encode the single quotes (%27) and since I'm using [ansible](http://ansible.com) to distribute the Sensu configuration, I've used `{{ ansible_hostname }}` in place of the `hostname` in each metric key.
+Add the queries to the client config. It's necessary to encode the single quotes (%27) and since I'm using [ansible](http://ansible.com) to distribute the Sensu configuration, I've used `{{ ansible_hostname }}` in place of the `hostname` in each metric key.
 
 {% highlight json %}
 {% raw %}
