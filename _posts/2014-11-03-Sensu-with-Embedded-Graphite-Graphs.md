@@ -66,7 +66,7 @@ Add the queries to the client config. It's necessary to encode the single quotes
 
 ## The Result
 
-..image..
+![sensu_embedded_graph0](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sensu_embedded_graph0.png)
 
 ## Going Further..
 
