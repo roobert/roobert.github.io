@@ -70,5 +70,5 @@ Add the queries to the client config. It's necessary to encode the single quotes
 
 ## Going Further..
 
-It's also possible to add properties to checks so we can embed graphs in the check section view of the UI.
+Checks can also have arbitrary properties so it's also possible to add checks to the check definitions and have them appear in the check view of Uchiwa.
 
