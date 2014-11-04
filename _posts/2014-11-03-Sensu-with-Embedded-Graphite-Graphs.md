@@ -6,7 +6,7 @@ summary:
 categories: sensu monitoring graphite graphing events
 ---
 
-Earlier this year I saw a [great talk](http://www.youtube.com/watch?v=Q9BagdHGopg) entitled "Please stop using Nagios (so it can die peacefully)". After I'd finished laughing and picked myself up off the floor, I deployed [Sensu](http://sensuapp.com) and immediately loved it.
+Earlier this year I saw a [great talk](http://www.youtube.com/watch?v=Q9BagdHGopg) entitled "<strong>Please stop using Nagios (so it can die peacefully)</strong>". After I'd finished laughing and picked myself up off the floor, I deployed [Sensu](http://sensuapp.com) and immediately loved it.
 
 Months later and I'm now experimenting with replacing the existing nagios monitoring system we use at [my new job](http://brandwatch.com) with Sensu.
 
