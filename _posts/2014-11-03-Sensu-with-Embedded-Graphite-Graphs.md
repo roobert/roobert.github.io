@@ -70,6 +70,5 @@ Add the queries to the client config. It's necessary to encode the single quotes
 
 ## Going Further..
 
-It's also possible to add properties to checks so we can embed graphs in the check ection view of the UI:
+It's also possible to add properties to checks so we can embed graphs in the check section view of the UI.
 
-..image..
