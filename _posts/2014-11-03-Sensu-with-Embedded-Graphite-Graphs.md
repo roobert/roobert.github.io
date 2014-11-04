@@ -12,7 +12,7 @@ Months later and I'm now experimenting with replacing the existing nagios monito
 
 ## Uchiwa
 
-One of the things I thought would be useful would be to have graphs embedded in the wonderful [Uchiwa](http://uchiwa.io) dashboard. It turns out I'm not alone because the author of Uchiwa, [Simon Palourde](http://github.com/palourde), has plans to add support for embedding graphite graphs into Uchiwa natively. Until then, it's still possible to get some lovely graph action going on by taking advantage of the fact Uchiwa will:
+One of the things I thought would be useful would be to have graphs embedded in the wonderful [Uchiwa](http://uchiwa.io) dashboard. It turns out I'm not alone because the author of Uchiwa ([Simon Palourde](http://github.com/palourde)) has plans to add support for embedding graphite graphs into Uchiwa natively. Until then, it's still possible to get some lovely graph action going on by taking advantage of the fact Uchiwa will:
 
 0. display any extra properties you add to the client config JSON or check config JSON in the UI
 0. render images
