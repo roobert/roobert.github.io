@@ -1,1 +1,3 @@
 _site
+.sass_cache
+_posts/*drafts*
