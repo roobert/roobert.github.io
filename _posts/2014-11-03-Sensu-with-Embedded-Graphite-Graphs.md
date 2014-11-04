@@ -12,12 +12,12 @@ Months later and I'm now experimenting with replacing the existing nagios monito
 
 ## Uchiwa
 
-One of the things I thought would be useful would be having graphs embedded in the wonderful [Uchiwa](http://uchiwa.io) dashboard. It turns out I'm not alone because the author of Uchiwa, ([Simon Palourde](http://github.com/palourde)), has plans to add support for embedding graphite graphs into Uchiwa natively. Until then, it's still possible to get some lovely graph action going on by taking advantage of the fact Uchiwa will:
+One of the things I thought would be useful would be to have graphs embedded in the wonderful [Uchiwa](http://uchiwa.io) dashboard. It turns out I'm not alone because the author of Uchiwa, ([Simon Palourde](http://github.com/palourde)), has plans to add support for embedding graphite graphs into Uchiwa natively. Until then, it's still possible to get some lovely graph action going on by taking advantage of the fact Uchiwa will:
 
 0. display any extra properties you add to the client config JSON or check config JSON in the UI
 0. render images
 
-Uchiwa decides what to display as an image depending on file extension type. Simply adding a fake argument to our graphite query tricks Uchiwa into displaying our image inline instead of a link to the graph:
+Uchiwa decides what to display as an image depending on file extension type. Adding a fake argument to our graphite query tricks Uchiwa into displaying the image returned by the query inline, instead of as a link to the graph:
 
 {% highlight json %}
 &uchiwa_force_display_as_image=.jpg
@@ -72,3 +72,4 @@ Add the queries to the client config. It's necessary to encode the single quotes
 
 Checks can also have arbitrary properties so it's also possible to add queries to the check definitions and have them appear in the check view of Uchiwa.
 
+Next up: adding events to graphite graphs with Sensu.
