@@ -3,7 +3,6 @@ layout:     post
 title:      Sensu - Embedded Graphite Graphs
 date:       2014-11-03 21:15
 summary:
-categories: sensu monitoring graphite graphing events
 ---
 
 Earlier this year I saw a [great talk](http://www.youtube.com/watch?v=Q9BagdHGopg) entitled <i>Please stop using Nagios (so it can die peacefully)</i>. After I'd finished laughing and picked myself up off the floor, I deployed [Sensu](http://sensuapp.com) and immediately loved it.
