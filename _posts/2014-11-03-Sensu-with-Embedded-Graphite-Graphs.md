@@ -36,7 +36,8 @@ https://graphite.brandwatch.com/render \
 
 https://graphite.brandwatch.com/render \
   ?from=-12hours \
-  &until=now&width=500 \
+  &until=now \
+  &width=500 \
   &height=200 \
   &target=collectd.<hostname>.memory.memory-used.value \
   &target=collectd.<hostname>.memory.memory-cached.value \
