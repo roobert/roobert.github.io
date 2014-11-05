@@ -29,7 +29,8 @@ I want to be able to see CPU and Memory usage for each machine when I click on t
 {% highlight json %}
 https://graphite.brandwatch.com/render \
   ?from=-12hours \
-  &until=now&width=500 \
+  &until=now \
+  &width=500 \
   &height=200 \
   &target=collectd.<hostname>.aggregation-cpu-average.cpu-system.value
 
