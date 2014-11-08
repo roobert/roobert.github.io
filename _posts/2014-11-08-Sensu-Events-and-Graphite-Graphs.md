@@ -86,6 +86,7 @@ Here's the result of the above query, displaying two events at about 6pm. Note t
 ![sensu events](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sensu_events4.png)
 
 Here are the same two events displayed on a graph with a much lower query window (1 hour):
+
 ![sensu events](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sensu_events3.png)
 
 Finally, update the Sensu `client.json` with the new query:
