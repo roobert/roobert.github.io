@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Sensu - Events and Graphite Graphs
-date:       2014-11-03 21:15
+date:       2014-11-08 11:05
 type:       post
 ---
 
