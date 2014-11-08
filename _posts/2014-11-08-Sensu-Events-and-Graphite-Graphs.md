@@ -67,7 +67,7 @@ sudo service sensu-server restart
 
 ### Events
 
-In my [last post](http://roobert.github.io/2014/11/03/Sensu-with-Embedded-Graphite-Graphs/), I talked about how to embed Graphite graphs in the Uchiwa UI and used a CPU Graphite query as an exaple. This is the same query except that I've added the `events` targets:
+In my [last post](http://roobert.github.io/2014/11/03/Sensu-with-Embedded-Graphite-Graphs/), I talked about how to embed Graphite graphs in the Uchiwa UI and used a CPU Graphite query as an example. This is the same query except that I've added the `events` targets:
 
 {% highlight bash %}
 curl "https://graphite.brandwatch.com/render \
