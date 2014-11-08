@@ -114,9 +114,9 @@ Result:
 
 ## Going Further..
 
-It's useful having CPU/Mem graphs visible in the `client` view of Uchiwa, but it's equally possible to include graphs in a check definition so they are visible in the `check` view of Uchiwa.
+It's useful having CPU/Mem graphs visible in the `client` view of Uchiwa, but it's equally possible to include graphs in a check definition so they are visible in the `check` view.
 
-Creating a target with 'keepalive' as one of the tags will allow you to see changes in the overall client availability.
+Creating an `events()` target with 'keepalive' as one of the tags will allow you to see changes in the overall client availability.
 
 ## Next..
 
