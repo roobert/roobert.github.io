@@ -5,7 +5,7 @@ date:       2014-11-08 11:05
 type:       post
 ---
 
-## Graphite
+## Graphite Events
 
 I learnt from jdixons [obfuscurity blog](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events) that Graphite has a little known feature called <strong><i>Events</i></strong> that can, unsurprisingly, be used to store events in Graphite.
 
@@ -15,7 +15,7 @@ In order to pipe Sensu events into Graphite, I wrote a simple handler plugin tha
 
 The following is a short write-up of how to get going with Sensu events and Graphite.
 
-### Graphite Events
+### Writing Events
 
 First, test to see if it's possible to write to the Graphite Events URI. Unlike [writing data to carbon](http://graphite.readthedocs.org/en/latest/feeding-carbon.html), the Events URI expects `json`:
 
@@ -25,6 +25,8 @@ curl --insecure \
   https://graphite.brandwatch.com:443/events/ \
   -d '{"what": "test", "tags" : "test"}'
 {% endhighlight %}
+
+### Reading Events
 
 The event should appear in the Graphite event list:
 
@@ -89,6 +91,8 @@ Here are the same two events displayed on a graph with a much lower query window
 
 ![sensu events](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sensu_events3.png)
 
+### Uchiwa
+
 Finally, update the Sensu `client.json` with the new query:
 
 {% highlight json %}
@@ -107,3 +111,13 @@ Finally, update the Sensu `client.json` with the new query:
 Result:
 
 ![graphite with events in uchiwa](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sensu_events1.png)
+
+## Going Further..
+
+It's useful having CPU/Mem graphs visible in the `client` view of Uchiwa, but it's equally possible to include graphs in a check definition so they are visible in the `check` view of Uchiwa.
+
+Creating a target with 'keepalive' as one of the tags will allow you to see changes in the overall client availability.
+
+## Next..
+
+Next up: embedding Logstash/Kibana data in Uchiwa.
