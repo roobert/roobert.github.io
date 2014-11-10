@@ -53,7 +53,7 @@ Now to get Sensu check events into Graphite.
 
 ### Handler
 
-[Install](http://sensuapp.org/docs/0.14/adding_a_handler) the [handler](https://github.com/roobert/sensu_handler_graphite_event) on your Sensu server, adjusting the `graphite_event.json` config if necessary:
+[Install](http://sensuapp.org/docs/0.14/adding_a_handler) the [handler](https://github.com/roobert/sensu_handler_graphite_event) (update: now available as part of the [sensu-community-plugins](https://github.com/sensu/sensu-community-plugins): [handler](https://github.com/sensu/sensu-community-plugins/blob/master/handlers/notification/graphite_event.rb) and [config](https://github.com/sensu/sensu-community-plugins/blob/master/handlers/notification/graphite_event.json)) on your Sensu server, adjusting the `graphite_event.json` config if necessary:
 {% highlight bash %}
 git clone \
   https://github.com/roobert/sensu_handler_graphite_event.git
