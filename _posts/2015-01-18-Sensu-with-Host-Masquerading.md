@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Sensu - Host Masquerading (or Nagios Active Checks)
+title:      Sensu - Host Masquerading
 date:       2015-01-08 21:15
 type:       post
 ---
