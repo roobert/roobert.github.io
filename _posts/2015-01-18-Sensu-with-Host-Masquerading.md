@@ -7,7 +7,7 @@ type:       post
 
 A key part of monitoring infrastructure involves having the ability to monitor things that we can't necessarily install a monitoring client on: switches and other network devices, external services and websites, etc..
 
-In Nagios it's pretty common to group active checks under virtual hosts that don't really exist, to group checks into logical groups. Sensu doesn't yet have this ability.
+In Nagios it's pretty common to group active checks under virtual hosts that don't really exist, to create logical sets of checks. Sensu doesn't yet have this ability.
 
 There has been some discussion about the possibility of [adding a masquerade feature](https://github.com/sensu/sensu/pull/531) and changing event data to [drop the client info requirement](https://github.com/sensu/sensu/issues/541) in order to be able to craft event data with a custom source address. In the latter issue [Kyle Anderson](https://github.com/solarkennedy) proposes a [solution](https://github.com/sensu/sensu/issues/541#issuecomment-52221429) which was at one point [implemented](https://github.com/portertech/sensu/commit/335f83aae646753a517dcba1a7dcbc22d7a47aa8) but then later [reverted](https://github.com/sensu/sensu/pull/794).
 
