@@ -79,9 +79,9 @@ A lot of people initially have trouble configuring RabbitMQ.
 3) configure SSL
 
 Enable RabbitMQ web UI:
-{% highlight %}
+{% highlight bash %}
 rabbitmq-plugins enable rabbitmq_management
-{% highlight %}
+{% endhighlight %}
 
 Browse to `http://&lt;server&gt;:15672`
 
@@ -89,7 +89,7 @@ Also from the CLI:
 {% highlight bash %}
 # list clients connected to rabbitmq
 rabbitmqctl list_connections -p /sensu
-{% highlight %}
+{% endhighlight %}
 
 ### TTL and Timeouts
 
@@ -110,7 +110,7 @@ $disable_puppet; sed -i 's/warn/debug/' /etc/defaults/sensu; /etc/init.d/sensu-c
 
 # re-enable puppet; run puppet to reset client config state
 $enable_puppet; $run_puppet
-{% highlight %}
+{% endhighlight %}
 
 
 ### Deploying with Ansible (symlinks)
@@ -125,7 +125,7 @@ dr-xr-xr-x 3 sensu   sensu     4096 Sep 14 12:54 ..
 lrwxrwxrwx 1 company company   32 Sep 14 17:04 app_a-1 -> /home/company/opt/app_a-1/checks
 lrwxrwxrwx 1 company company   41 Sep 14 17:05 app_b-1 -> /home/company/opt/app_b-1/checks
 lrwxrwxrwx 1 company company   45 Sep  5 18:37 app_b-2 -> /home/company/opt/app_b-2/checks
-{% highlight %}
+{% endhighlight %}
 
 Now when applications get removed from servers all that is left is a dangling symlink which puppet can then clean-up later.
 
@@ -198,13 +198,13 @@ function number_of_clients () {
 
 echo "number of clients: $(number_of_clients)"
 echo "number of checks:  $(number_of_checks)"
-{% highlight %}
+{% endhighlight %}
 
 {% highlight bash %}
 mbp0 /home/rw > ./tmp/sensu_overview.sh sensu.xxx.net
 number of clients: 429
 number of checks:  11481
-{% highlight %}
+{% endhighlight %}
 
 ## Other Contributions..
 
