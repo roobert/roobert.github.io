@@ -79,17 +79,17 @@ A lot of people initially have trouble configuring RabbitMQ.
 3) configure SSL
 
 Enable RabbitMQ web UI:
-```
+{% highlight %}
 rabbitmq-plugins enable rabbitmq_management
-```
+{% highlight %}
 
 Browse to `http://&lt;server&gt;:15672`
 
 Also from the CLI:
-```
+{% highlight bash %}
 # list clients connected to rabbitmq
 rabbitmqctl list_connections -p /sensu
-```
+{% highlight %}
 
 ### TTL and Timeouts
 
@@ -102,7 +102,7 @@ Timeouts should be configured to kill long running check scripts and help avoid 
 Common pattern for debugging sensu-{client,server,api}:
 
 
-```
+{% highlight bash %}
 # disable puppetruns; enable debugging, pipe logs through JQ
 $disable_puppet; sed -i 's/warn/debug/' /etc/defaults/sensu; /etc/init.d/sensu-client restart; tail -f /var/log/sensu/sensu-client | jq .
 
@@ -110,14 +110,14 @@ $disable_puppet; sed -i 's/warn/debug/' /etc/defaults/sensu; /etc/init.d/sensu-c
 
 # re-enable puppet; run puppet to reset client config state
 $enable_puppet; $run_puppet
-```
+{% highlight %}
 
 
 ### Deploying with Ansible (symlinks)
 
 At my current job we manage everything up to application level with Puppet, and then use Ansible to deploy the applications. This is mainly because Ansible is much friendlier for developers to use and means we can delegate writing application deployment out to teams. Our applications are deployed under a single unprivileged user account with write access to a subdirectory under `/etc/sensu`: `/etc/sensu/conf.d/checks/app`. I added a [patch to sensu](https://github.com/sensu/sensu-settings/commit/4162098e38ffe9909a84a6c3b70b5d6680201d2b) to allow Sensu to read configuration files from symlinked directories, in this way application checks can be deployed as follows:
 
-```
+{% highlight bash %}
 $ ls -l /etc/sensu/conf.d/checks/app
 total 8
 drwxrwxr-x 2 sensu   sensu     4096 Sep 14 17:08 .
@@ -125,7 +125,7 @@ dr-xr-xr-x 3 sensu   sensu     4096 Sep 14 12:54 ..
 lrwxrwxrwx 1 company company   32 Sep 14 17:04 app_a-1 -> /home/company/opt/app_a-1/checks
 lrwxrwxrwx 1 company company   41 Sep 14 17:05 app_b-1 -> /home/company/opt/app_b-1/checks
 lrwxrwxrwx 1 company company   45 Sep  5 18:37 app_b-2 -> /home/company/opt/app_b-2/checks
-```
+{% highlight %}
 
 Now when applications get removed from servers all that is left is a dangling symlink which puppet can then clean-up later.
 
@@ -167,7 +167,7 @@ Inevitably after deciding to use Sensu in production, you'll want to look at run
 
 ### How Many Checks? 
 
-```
+{% highlight bash %}
 mbp0 /home/rw > cat tmp/sensu_overview.sh
 #!/usr/bin/env bash
 #
@@ -198,13 +198,13 @@ function number_of_clients () {
 
 echo "number of clients: $(number_of_clients)"
 echo "number of checks:  $(number_of_checks)"
-```
+{% highlight %}
 
-```
+{% highlight bash %}
 mbp0 /home/rw > ./tmp/sensu_overview.sh sensu.xxx.net
 number of clients: 429
 number of checks:  11481
-```
+{% highlight %}
 
 ## Other Contributions..
 
