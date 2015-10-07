@@ -101,6 +101,7 @@ Timeouts should be configured to kill long running check scripts and help avoid 
 
 Common pattern for debugging sensu-{client,server,api}:
 
+
 ```
 # disable puppetruns; enable debugging, pipe logs through JQ
 $disable_puppet; sed -i 's/warn/debug/' /etc/defaults/sensu; /etc/init.d/sensu-client restart; tail -f /var/log/sensu/sensu-client | jq .
@@ -110,6 +111,7 @@ $disable_puppet; sed -i 's/warn/debug/' /etc/defaults/sensu; /etc/init.d/sensu-c
 # re-enable puppet; run puppet to reset client config state
 $enable_puppet; $run_puppet
 ```
+
 
 ### Deploying with Ansible (symlinks)
 
