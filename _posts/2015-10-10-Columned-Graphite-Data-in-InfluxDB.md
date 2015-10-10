@@ -87,7 +87,7 @@ time                   value
 
 But wait a minute, isn't this supposed to be a columnar database?
 
-Reading more of the docs shows I need to add a 'template' to graphite so that the graphite data can be converted into tagged data, my graphite config now looks like this:
+Reading more of the [docs](https://github.com/influxdb/influxdb/blob/3bea25b428d57173b6a39371910c1205d08d3069/services/graphite/README.md) shows I need to add a [*template*](https://github.com/influxdb/influxdb/blob/3bea25b428d57173b6a39371910c1205d08d3069/services/graphite/README.md#templates) to graphite so that the graphite data can be converted into tagged data, my graphite config now looks like this:
 
 {% highlight bash %}
 [[graphite]]
