@@ -137,7 +137,7 @@ time                   host   interface   value
 2015-10-10T16:32:14Z   mbp0   eth0        2.612265085e+10
 {% endhighlight %}
 
-This looks better but the query shows that each metric is being written to the database as its own measurement with a single column called `value`. The `host` and `interface` columns here are infact tags, rather than fields.
+This looks better but the query shows that each metric is being written to the database as its own measurement with a single column called `value`. The `host` and `interface` columns here are infact *tags*, rather than *fields*.
 
 Lets enable the `udp` listener and write some data to the database using InfluxDBs native [line protocol](https://influxdb.com/docs/v0.9/write_protocols/line.html).
 
