@@ -180,7 +180,7 @@ My [patch](https://github.com/influxdb/influxdb/commit/6bfb1ff11be733bd4aa70b35f
 
 From a clean system, to get columnar graphite data in InfluxDB, do the following:
 
-Install nightly (or > 0.9.5) InfluxDB build:
+Install nightly (or >= 0.9.5) InfluxDB build:
 
 {% highlight bash %}
 mbp0 /home/rw > wget https://s3.amazonaws.com/influxdb/influxdb_nightly_amd64.deb
