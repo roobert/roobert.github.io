@@ -285,7 +285,7 @@ h6,
     top: 0.1em;
 }
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 72em) {
   .site-header .site-title {
     float: left;
   }
@@ -345,7 +345,7 @@ h6,
   }
 }
 
-@media screen and (max-width: 48em) {
+@media screen and (max-width: 72em) {
   .h1,
   h1 {
     font-size: 2.827rem;
@@ -388,7 +388,7 @@ h6,
   }
 }
 
-@media screen and (min-width: 64em) {
+@media screen and (min-width: 88em) {
   .h1,
   h1 {
     font-size: 4.498rem;
