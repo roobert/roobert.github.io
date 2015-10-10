@@ -221,7 +221,7 @@ Change storage engine to _TSM1_:
 
 {% highlight bash %}
 [data]
-  engine ="tsm1"
+  engine = "tsm1"
 {% endhighlight %}
 
 Write some test data to InfluxDB:
