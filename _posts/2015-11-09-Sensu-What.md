@@ -15,7 +15,7 @@ After a couple of weeks running Sensu in parallel with Nagios I was convinced. I
 
 I've been inspired by some great talks by people who are far better at explaining things than me, here are some of them:
 
-Andy Sykes' talk called *[Stop using Nagios (so it can die peacefully)](https://www.youtube.com/watch?v=Q9BagdHGopg)* is a wonderful opinionated talk on what the future of monitoring could look like. Although this talk was only given 18 months ago, Sensu has evolved a lot since then and several of the problems that were brought up in the talk have been solved since then.
+Andy Sykes' talk called *[Stop using Nagios (so it can die peacefully)](https://www.youtube.com/watch?v=Q9BagdHGopg)* is a wonderful opinionated talk on what the future of monitoring could look like. Although this talk was only given 18 months ago, Sensu has evolved a lot since then and several of the problems that were brought up in the talk have now been solved.
 
 [Kyle Andersons](https://github.com/solarkennedy) is a great contributor to the Sensu community and his talk on Sensu entitled *Sensu @ Yelp* ([part 1](https://vimeo.com/92770954), [part 2](https://vimeo.com/92838680)) was the first Sensu talk I saw. It discusses how Sensu has been deployed at Yelp. The talk is a good starting point and explains Sensu and it's dependencies from the ground up all the way through to customizing it to fit your companies specific needs, it really opened my eyes to the flexibility of Sensu and what is possible.
 
@@ -35,7 +35,7 @@ Kyle Anderson has done a cool free introductory course to Sensu in the form of v
 
 * https://www.udemy.com/sensu-introduction/learn/
 
-The [renowned Sensu diagram](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sensu_wtf.png) from older versions of the docs and the [current Sensu infrastructure gif](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sensu_current.gif) are both relatively confusing in my opinion. I made the following diagram which I find helps to describe the Sensu event pipeline:
+The [renowned Sensu diagram](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sensu_wtf.png) from older versions of the docs and the [current Sensu infrastructure gif](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sensu_current.gif) are both confusing in my opinion. I made the following diagram which I find helps to describe the Sensu event pipeline:
 
 ![sensu event pipeline](https://github.com/roobert/roobert.github.io/blob/master/images/sensu_event_pipeline.png?raw=true)
 
