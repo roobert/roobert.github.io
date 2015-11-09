@@ -211,6 +211,6 @@ number of checks:  11481
 
 I wrote the initial implementation of the [result data storage](https://github.com/sensu/sensu/commit/8533719bdccb511e6a62f3fa8214b831627f5d69) which essentially allows green-light-esque dashboards, i.e: the ability to see metadata and `output` value from checks with status-0. This was the groundwork which allowed for `TTL` feature to be implemented.
 
-### Conclusion
+## Conclusion
 
 Sensu is great. It's a really flexible, easily customizable platform that can be integrated into just about anything. I've had fun contributing back to the community and look forward to seeing the new and interesting ways people come up with using Sensu.
