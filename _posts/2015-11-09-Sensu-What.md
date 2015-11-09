@@ -78,7 +78,7 @@ Enable RabbitMQ web UI:
 rabbitmq-plugins enable rabbitmq_management
 {% endhighlight %}
 
-Browse to `http://&lt;server&gt;:15672`
+Browse to `http://server:15672`
 
 Also from the CLI:
 {% highlight bash %}
