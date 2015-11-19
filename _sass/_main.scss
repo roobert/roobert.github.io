@@ -19,6 +19,7 @@ body {
 
 html, body {
   height: 125%;
+  color: #8a8a8a;
 }
 
 img {
@@ -63,13 +64,12 @@ body {
 }
 
 .site-header nav a {
-  color: #666;
+  color: #dadada;
 }
 
 .site-header nav a:hover {
-  color: #444;
   opacity: 1;
-  border-bottom: 2px solid #444;
+  border-bottom: 1px solid #e4e4e4;
 }
 
 .site-nav a + a {
@@ -170,7 +170,7 @@ body {
   font-weight: lighter;
   margin: 0;
   padding: .25em 0;
-  color: #7a7a7a;
+  color: #d0d0d0;
 }
 
 .pagination .button {
@@ -202,9 +202,12 @@ textarea.input {
 }
 
 p {
-  font-weight: 300;
+  font-weight: 100;
   line-height: 1.5;
-  color: #333;
+}
+
+header .site-title {
+  color: #dadada
 }
 
 abbr {
@@ -212,12 +215,16 @@ abbr {
   cursor: help;
 }
 
-pre, code {
-  font-family: Menlo, Monaco, "Courier New", monospace
+.post-header {
+  color: #444;
 }
 
-code {
-  color: #7a7a7a;
+.post-content h2, .post-content h3 {
+  color: #444;
+}
+
+pre, code {
+  font-family: Menlo, Monaco, "Courier New", monospace
 }
 
 pre {
