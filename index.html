@@ -6,7 +6,7 @@ layout: default
 
   <div class="posts">
     {% for post in paginator.posts %}
-      {% if post.draft == 'true' %}
+      {% if post.draft != 'true' %}
         <div class="post">
           <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">
             <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
