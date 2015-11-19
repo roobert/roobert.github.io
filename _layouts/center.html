@@ -5,13 +5,11 @@
   <div class="site-wrap center">
     {% include header.html %}
 
-    {% if post.draft == 'true' %}
     <div class="post p2 p-responsive wrap" role="main">
       <div class="measure">
         {{ content }}
       </div>
     </div>
-    {% endif %}
   </div>
 
   {% include footer.html %}
