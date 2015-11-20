@@ -239,6 +239,10 @@ pre {
   line-height: 1;
 }
 
+.highlight pre {
+  white-space: pre-wrap;
+}
+
 blockquote {
   padding: 1.33em;
   font-style: italic;
