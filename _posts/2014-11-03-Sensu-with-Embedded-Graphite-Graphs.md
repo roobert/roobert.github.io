@@ -18,7 +18,7 @@ One of the things I thought would be useful would be to have graphs embedded in 
 
 Uchiwa decides what to display as an image depending on file extension type. Adding a fake argument to our graphite query tricks Uchiwa into displaying the image returned by the query inline, instead of as a link to the graph:
 
-{% highlight json %}
+{% highlight bash %}
 &uchiwa_force_display_as_image=.jpg
 {% endhighlight %}
 
@@ -26,7 +26,7 @@ Uchiwa decides what to display as an image depending on file extension type. Add
 
 I want to be able to see CPU and Memory usage for each machine when I click on the machine view. My graphite queries look like:
 
-{% highlight json %}
+{% highlight bash %}
 https://graphite.brandwatch.com/render \
   ?from=-12hours \
   &until=now \
