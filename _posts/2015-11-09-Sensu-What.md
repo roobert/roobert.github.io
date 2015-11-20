@@ -121,9 +121,9 @@ $ ls -l /etc/sensu/conf.d/checks/app
 total 8
 drwxrwxr-x 2 sensu   sensu     4096 Sep 14 17:08 .
 dr-xr-xr-x 3 sensu   sensu     4096 Sep 14 12:54 ..
-lrwxrwxrwx 1 company company   32 Sep 14 17:04 app_a-1 -> /home/company/opt/app_a-1/checks
-lrwxrwxrwx 1 company company   41 Sep 14 17:05 app_b-1 -> /home/company/opt/app_b-1/checks
-lrwxrwxrwx 1 company company   45 Sep  5 18:37 app_b-2 -> /home/company/opt/app_b-2/checks
+lrwxrwxrwx 1 company company   32   Sep 14 17:04 app_a-1 -> /home/company/opt/app_a-1/checks
+lrwxrwxrwx 1 company company   41   Sep 14 17:05 app_b-1 -> /home/company/opt/app_b-1/checks
+lrwxrwxrwx 1 company company   45   Sep  5 18:37 app_b-2 -> /home/company/opt/app_b-2/checks
 {% endhighlight %}
 
 Now when applications get removed from servers all that is left is a dangling symlink which puppet can then clean-up later.
