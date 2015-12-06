@@ -3,7 +3,6 @@ layout:     post
 title:      LetsEncrypt NGiNX Quick Start
 date:       2015-12-06 14:52
 type:       post
-draft: true
 ---
 
 [NGiNX support](http://letsencrypt.readthedocs.org/en/latest/using.html#nginx) for the [Lets Encrypt](https://letsencrypt.org/) `letsencrypt-auto` tool is not yet stable, here are some instrucions on how to get up and running with LetsEncrypt when using NGiNX.
