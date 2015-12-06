@@ -15,7 +15,7 @@ Start a web server with a config like:
 server {
     listen      80;
     server_name www.dust.cx dust.cx;
-    location / { root /var/www/dust.cx; autoindex on;  }
+    location / { root /var/www/dust.cx; autoindex on; }
 }
 ```
 
