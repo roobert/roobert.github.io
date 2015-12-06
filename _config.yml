@@ -27,6 +27,6 @@ flattr_button:
 # Build settings
 markdown:     redcarpet
 permalink:    pretty
-paginate:     10
+paginate:     999
 sass:
   compressed: true
