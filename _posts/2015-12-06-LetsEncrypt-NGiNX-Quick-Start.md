@@ -8,12 +8,6 @@ draft: true
 
 [NGiNX support](http://letsencrypt.readthedocs.org/en/latest/using.html#nginx) for the [Lets Encrypt](https://letsencrypt.org/) `letsencrypt-auto` tool is not yet stable, here are some instrucions on how to get up and running with LetsEncrypt when using NGiNX.
 
-### Get LetsEncrypt Client
-
-```
-git clone https://github.com/letsencrypt/letsencrypt ~/git/letsencrypt 
-```
-
 ### NGiNX Static Content Server Config
 
 Start a web server with a config like:
@@ -31,6 +25,7 @@ server {
 Request certificate:
 
 ```bash
+git clone https://github.com/letsencrypt/letsencrypt ~/git/letsencrypt 
 ~/git/letsencrypt/letsencrypt-auto certonly --webroot -w /var/www/dust.cx -d dust.cx -d www.dust.cx
 ```
 
