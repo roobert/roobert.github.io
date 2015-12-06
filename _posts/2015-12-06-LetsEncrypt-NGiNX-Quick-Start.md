@@ -7,7 +7,7 @@ type:       post
 
 [NGiNX support](http://letsencrypt.readthedocs.org/en/latest/using.html#nginx) for the [Lets Encrypt](https://letsencrypt.org/) `letsencrypt-auto` tool is not yet stable, here are some instrucions on how to get up and running with LetsEncrypt when using NGiNX.
 
-### NGiNX Static Content Server Config
+### NGiNX Static Content Server
 
 Start a web server with a config like:
 
