@@ -6,6 +6,9 @@ description: ""
 baseurl:     ""
 url:         "http://roobert.github.io"
 
+gems:
+  - jekyll-paginate
+
 # Google analytics
 google_analytics: UA-56391015-1
 
@@ -25,7 +28,7 @@ paypal_url:
 flattr_button:
 
 # Build settings
-markdown:     redcarpet
+markdown:     kramdown
 permalink:    pretty
 paginate:     999
 sass:
