@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Sensu - What I've Learnt
+title:      Sensu - A Year in Practice
 date:       2015-11-09 19:46
 type:       post
 ---
