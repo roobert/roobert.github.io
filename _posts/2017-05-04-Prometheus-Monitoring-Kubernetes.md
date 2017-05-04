@@ -8,7 +8,7 @@ draft: true
 
 ## Introduction
 
-My first real introduction to [Prometheus](https://prometheus.io) was seeing some talks [1,2,3](https://www.youtube.com/watch?v=uV_sh7_lVw8) at [CloudNative/KubeCon Europe](https://www.cncf.io/event/cloudnativecon-europe-2017/) by [Brian Brazil](https://www.robustperception.io/blog/).
+My first real introduction to [Prometheus](https://prometheus.io) was seeing [Brian Brazil](https://www.robustperception.io/blog/) talk[1,2,3](https://www.youtube.com/watch?v=uV_sh7_lVw8) at [CloudNative/KubeCon Europe](https://www.cncf.io/event/cloudnativecon-europe-2017/).
 
 Although I'm a fan of Sensu, Brians talks made me want to look into Prometheus further, especially since I liked the idea of the built-in service discovery which fits well with what I've spent the majority of my time working with recently: Kubernetes.
 
