@@ -47,8 +47,33 @@ I'd also recommend following the Robust Perception blog since it's a goldmine fo
 * https://www.robustperception.io/which-targets-have-the-most-samples/
 * https://www.robustperception.io/alertmanager-notification-templating-with-slack/
 
+Prometheus will provide us with:
+
+* metric collection
+* an interface to our metrics
+* metric forwarder to long term storage
+* alerting
+
 ## Kubernetes
 
+The main aim here is to automatically collect metrics in a dynamic environment, in order to do this it's necessary to collect metrics from multiple sources, these are known as `targets`:
+
+* Prometheus itself - via prometheus static_configs/localhost
+* Server resource usage - node-exporter (https://github.com/prometheus/node_exporter)
+* Kubernetes resource usage - cAdvisor via Kubelet
+* Kubernetes resource state - kube-api via kube-state-metrics (https://github.com/kubernetes/kube-state-metrics) 
+
+## Grafana
+
+Grafana is a dashboarding UI.
+
+Grafana connects to Prometheus and allows us to create dashboards using PromQL.
+
+## InfluxDB
+
+Prometheus stores metrics so it can decide whether to send alerts or not but essentially should be considered an ephemeral metric data store.
+
+In order for our dashboards to be useful for longer than whatever the Prometheus (short) retention span is we need to store out metrics in a long-term solution.
 
 
 
@@ -57,6 +82,9 @@ I'd also recommend following the Robust Perception blog since it's a goldmine fo
 https://www.robustperception.io/using-the-remote-write-path/
 https://prometheus.io/docs/operating/configuration/#remote_read
 
+<diagram with external storage + read-writeback>
 
 
 https://www.cncf.io/wp-content/uploads/sites/2/2016/09/image00.png
+
+## Dead Mans Switch
