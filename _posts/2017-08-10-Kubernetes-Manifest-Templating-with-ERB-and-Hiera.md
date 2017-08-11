@@ -96,17 +96,58 @@ bw-prod-teamB0/monitoring/grafana/      # cpu: 2, mem: 4
 
 At this point there are 4 unique `monitoring` deployments. When dealing with many deployments and many teams/environments, maintenance quickly becomes a problem.
 
-The solution: templating, and versioning.
+## Solution
+
+Our focus is on having the ability to do two things:
+
+* Tune deployments based on deployment context (using logic and variables)
+* Deploy different versions of a deployment to different contexts (versioning)
 
 ## Versioning
 
-Our focus is on having the ability to do these two things:
+Let's say we want to have the following:
 
-0. Tune deployments based on deployment context
-0. Deploy different versions of a deployment to different contexts
+```
+bw-dev-teamA0/monitoring/prometheus/    #
+bw-dev-teamA0/monitoring/influxdb/      # version: 1.4
+bw-dev-teamA0/monitoring/grafana/       #
 
-<diagram showing how we'd like to deploy different stuff to different places>
+bw-stage-teamA0/monitoring/prometheus/  #
+bw-stage-teamA0/monitoring/influxdb/    # version: 1.3
+bw-stage-teamA0/monitoring/grafana/     #
 
+bw-prod-teamA0/monitoring/prometheus/   #
+bw-prod-teamA0/monitoring/influxdb/     # version: 1.3
+bw-prod-teamA0/monitoring/grafana/      #
+
+bw-dev-teamB0/monitoring/prometheus/    #
+bw-dev-teamB0/monitoring/influxdb/      # version: 1.4
+bw-dev-teamB0/monitoring/grafana/       #
+
+bw-stage-teamB0/monitoring/prometheus/  #
+bw-stage-teamB0/monitoring/influxdb/    # version: 1.3
+bw-stage-teamB0/monitoring/grafana/     #
+
+bw-prod-teamB0/monitoring/prometheus/   #
+bw-prod-teamB0/monitoring/influxdb/     # version: 1.3
+bw-prod-teamB0/monitoring/grafana/      #
+```
+
+We could achieve this quite simply with symlinking:
+
+```
+bw-dev-teamA0/monitoring/   -> /manifests/monitoring/0.0.2
+bw-stage-teamA0/monitoring/ -> /manifests/monitoring/0.0.1
+bw-prod-teamA0/monitoring/  -> /manifests/monitoring/0.0.1
+
+bw-dev-teamB0/monitoring/   -> /manifests/monitoring/0.0.2
+bw-stage-teamB0/monitoring/ -> /manifests/monitoring/0.0.1
+bw-prod-teamB0/monitoring/  -> /manifests/monitoring/0.0.1
+```
+
+In the above example, we've versioned our monitoring deployment and updated influxdb to version 1.4 in the 0.0.2 release.
+
+Although this solves the versioning problem, this doesn't help us with customizing the deployments, which is where templating comes in.
 
 ## Templating
 
