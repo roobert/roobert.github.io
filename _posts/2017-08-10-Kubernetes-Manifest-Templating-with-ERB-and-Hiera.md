@@ -6,8 +6,6 @@ type:       post
 draft: true
 ---
 
-## ???
-
 At my current workplace each team has a dev(n)-stage(n)-production(n) type deployment workflow. Application deployments are kept in git repositories and deployed by our [continuous delivery](https://en.wikipedia.org/wiki/Continuous_delivery) tooling.
 
 It's unusual for there to be major differences between applications deployed to each of these different contexts, usually it's just a matter of tuning resource limits or when testing, deploying a different version of the deployment.
@@ -227,8 +225,9 @@ It's also possible to use logic in templates like so:
 if else logic to test to see if something is dev environment..
 
 ```
-
 (diagram showing how templating works for our manifests)
+
+(diagram showing, input (template) -> hiera + scope -> output document)
 
 ## Why not helm?
 
