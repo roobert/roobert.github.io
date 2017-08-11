@@ -100,8 +100,8 @@ At this point there are 4 unique `monitoring` deployments. When dealing with man
 
 Our focus is on having the ability to do two things:
 
-* Tune deployments based on deployment context (using logic and variables)
 * Deploy different versions of a deployment to different contexts (versioning)
+* Tune deployments using logic and variables based on deployment context (templating)
 
 ## Versioning
 
@@ -147,24 +147,108 @@ bw-prod-teamB0/monitoring/  -> /manifests/monitoring/0.0.1
 
 In the above example, we've versioned our monitoring deployment and updated influxdb to version 1.4 in the 0.0.2 release.
 
+(clarify this - show transition from normal layout to versioned manifest dir layout)
+
 Although this solves the versioning problem, this doesn't help us with customizing the deployments, which is where templating comes in.
 
 ## Templating
 
-`erb-hiera` started life as a tool for this specific task but then became more generic when we wanted to use it in other areas (for our gclouder shit)
+_Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates) and [Hiera](https://docs.puppet.com/hiera/) is beyond the scope of this article._
+
+`erb-hiera` started life as a tool that was dedicated to generating Kubernetes manifests from our templates, it contained some logic which interpreted our directory structures and pulled out information from the directory structure to use as the lookup scope when searching hiera for data. This was fine, but soon we wanted to use `erb-hiera` in other places where we have similar use cases, e.g: our infrastructure as code repository.
+
+`erb-hiera` turned into a generic templating tool, here's an example of what a config to deploy various versions of a deployment to different contexts looks like:
+
+```
+- scope:
+    environment: dev
+    project: bw-dev-analytics0
+    team: analytics
+    class: analytics0
+    cluster: cluster0
+    deployment: monitoring
+    deployment_version: latest
+  dir:
+    input: conf/monitoring/latest/manifest
+    output: ../conf/bw-dev-analytics0/cluster0/monitoring/
+
+- scope:
+    environment: stage
+    project: bw-stage-analytics0
+    team: analytics
+    class: analytics0
+    cluster: cluster0
+    deployment: monitoring
+    deployment_version: latest
+  dir:
+    input: conf/monitoring/0.0.0/manifest
+    output: ../conf/bw-stage-analytics0/cluster0/monitoring/
+
+- scope:
+    environment: prod
+    project: bw-prod-analytics0
+    team: analytics
+    class: analytics0
+    cluster: cluster0
+    deployment: monitoring
+    deployment_version: latest
+  dir:
+    input: conf/monitoring/0.0.0/manifest
+    output: ../conf/bw-prod-analytics0/cluster0/monitoring/
+```
+
+_note that instead of having a complex and difficult to manage directory structure of symlinks, we define the input directory in each block, in this example the input deployments are a tree of versioned deployments as discussed in the Versioning section_
+
+Example hiera config:
+```
+:backends:
+  - yaml
+:yaml:
+  :datadir: "hiera"
+:hierarchy:
+  - "project/%{project}/deployment/%{deployment}/%{deployment_version}/environment/%{environment}"
+  - "project/%{project}/environment/%{environment}"
+  - "project/%{project}"
+  - "class/%{class}/deployment/%{deployment}/%{deployment_version}/environment/%{environment}"
+  - "class/%{class}/environment/%{environment}"
+  - "class/%{class}"
+  - "deployment/%{deployment}/%{deployment_version}/environment/%{environment}"
+  - "environment/%{environment}"
+  - "common"
+```
+
+Now we can set the versions like so:
+```
+
+```
+
+It's also possible to use logic in templates like so:
+```
+if else logic to test to see if something is dev environment..
+
+```
 
 <diagram showing how templating works for our manifests>
 
-show example of deploying a deployment across environments, then across environments AND teams.. then multiple versions of the same deployment..
-
-# Why not helm?
+## Why not helm?
 
 After trying Helm we decided that we'd like a simpler way to handle templating our manifests.
 
-# negatives..
+## Pros and Cons
+
+less deployments to manage
+everything in once place
+flexible
+easy to back out of (unlike helm)
+easy to track changes
 
 you end up with a large erb-hiera config
 
 template it!
 
 similar to r10k? is it? what does r10k do?
+
+## References
+
+* [ERB](http://www.stuartellis.name/articles/erb/#writing-templates)
+* [Hiera](https://docs.puppet.com/hiera/)
