@@ -251,3 +251,4 @@ similar to r10k? is it? what does r10k do?
 
 * [ERB](http://www.stuartellis.name/articles/erb/#writing-templates)
 * [Hiera](https://docs.puppet.com/hiera/)
+* [erb-hiera](https://github.com/roobert/erb-hiera)
