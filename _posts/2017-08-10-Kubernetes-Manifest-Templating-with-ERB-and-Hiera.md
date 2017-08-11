@@ -12,7 +12,7 @@ similar to r10k? is it? what does r10k do?
 
 At my current workplace each team has a dev(n)-stage(n)-production(n) deployment workflow. Application deployments are kept in git repositories and deployed by CD tooling. It's unusual for there to be major differences between applications deployed to each of these different contexts, usually it's just a matter of tuning resource limits or, when testing, deploying a different version of the deployment.
 
-<diagram of project matrix>
+[project matrix]: https://dust.cx/project-matrix.jpg "project matrix"
 
 Our focus is on having the ability to do these two things:
 
