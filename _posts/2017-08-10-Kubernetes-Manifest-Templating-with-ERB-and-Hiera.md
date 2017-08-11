@@ -228,7 +228,7 @@ if else logic to test to see if something is dev environment..
 
 ```
 
-<diagram showing how templating works for our manifests>
+(diagram showing how templating works for our manifests)
 
 ## Why not helm?
 
