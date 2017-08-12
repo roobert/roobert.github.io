@@ -131,27 +131,34 @@ bw-prod-teamB0/monitoring/influxdb/     # version: 1.3
 bw-prod-teamB0/monitoring/grafana/      #
 ```
 
-We could achieve this quite simply with symlinking:
+We can achieve this by creating directories for each set of versions of our deployments:
 
 ```
-bw-dev-teamA0/monitoring/   -> /manifests/monitoring/0.0.2
-bw-stage-teamA0/monitoring/ -> /manifests/monitoring/0.0.1
-bw-prod-teamA0/monitoring/  -> /manifests/monitoring/0.0.1
-
-bw-dev-teamB0/monitoring/   -> /manifests/monitoring/0.0.2
-bw-stage-teamB0/monitoring/ -> /manifests/monitoring/0.0.1
-bw-prod-teamB0/monitoring/  -> /manifests/monitoring/0.0.1
+/manifests/monitoring/0.1.0/ # contains influxdb version 1.3
+/manifests/monitoring/0.2.0/ # contains influxdb version 1.4
 ```
 
-In the above example, we've versioned our monitoring deployment and updated influxdb to version 1.4 in the 0.0.2 release.
+And then by quite simply symlinking the deployment to the version we wish to deploy:
 
-(clarify this - show transition from normal layout to versioned manifest dir layout)
+```
+bw-dev-teamA0/monitoring/   -> /manifests/monitoring/0.2.0
+bw-stage-teamA0/monitoring/ -> /manifests/monitoring/0.1.0
+bw-prod-teamA0/monitoring/  -> /manifests/monitoring/0.1.0
+
+bw-dev-teamB0/monitoring/   -> /manifests/monitoring/0.2.0
+bw-stage-teamB0/monitoring/ -> /manifests/monitoring/0.1.0
+bw-prod-teamB0/monitoring/  -> /manifests/monitoring/0.1.0
+```
 
 Although this solves the versioning problem, this doesn't help us with customizing the deployments, which is where templating comes in.
 
-## Templating
+## ERB and Hiera
 
-_Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates) and [Hiera](https://docs.puppet.com/hiera/) is beyond the scope of this article._
+_Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates) and [Hiera](https://docs.puppet.com/hiera/) is beyond the scope of this article but the following diagram should give some clue to how they work:_
+
+![erb-hiera](https://dust.cx/erb-hiera.png)
+
+## Templating
 
 `erb-hiera` started life as a tool that was dedicated to generating Kubernetes manifests from our templates, it contained some logic which interpreted our directory structures and pulled out information from the directory structure to use as the lookup scope when searching hiera for data. This was fine, but soon we wanted to use `erb-hiera` in other places where we have similar use cases, e.g: our infrastructure as code repository.
 
@@ -226,8 +233,6 @@ if else logic to test to see if something is dev environment..
 
 ```
 (diagram showing how templating works for our manifests)
-
-(diagram showing, input (template) -> hiera + scope -> output document)
 
 ## Why not helm?
 
