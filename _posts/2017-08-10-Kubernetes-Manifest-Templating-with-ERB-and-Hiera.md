@@ -47,23 +47,24 @@ bw-dev-teamA0/monitoring/prometheus/    #
 bw-dev-teamA0/monitoring/influxdb/      # unchanged
 bw-dev-teamA0/monitoring/grafana/       #  
 
-bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 2 
-bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 2 
-bw-stage-teamA0/monitoring/grafana/     # cpu: 1, mem: 2 
-bw-prod-teamA0/monitoring/prometheus/   # cpu: 1, mem: 2 
-bw-prod-teamA0/monitoring/influxdb/     # cpu: 1, mem: 2 
-bw-prod-teamA0/monitoring/grafana/      # cpu: 1, mem: 2 
+bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 256Mi 
+bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 256Mi 
+bw-stage-teamA0/monitoring/grafana/     # cpu: 1, mem: 256Mi 
+bw-prod-teamA0/monitoring/prometheus/   # cpu: 1, mem: 256Mi 
+bw-prod-teamA0/monitoring/influxdb/     # cpu: 1, mem: 256Mi 
+bw-prod-teamA0/monitoring/grafana/      # cpu: 1, mem: 256Mi 
 
 bw-dev-teamB0/monitoring/prometheus/    #  
 bw-dev-teamB0/monitoring/influxdb/      # unchanged
 bw-dev-teamB0/monitoring/grafana/       #  
 
-bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 2 
-bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 2 
-bw-stage-teamB0/monitoring/grafana/     # cpu: 1, mem: 2 
-bw-prod-teamB0/monitoring/prometheus/   # cpu: 2, mem: 4 
-bw-prod-teamB0/monitoring/influxdb/     # cpu: 2, mem: 4 
-bw-prod-teamB0/monitoring/grafana/      # cpu: 2, mem: 4 
+bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 256Mi 
+bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 256Mi 
+bw-stage-teamB0/monitoring/grafana/     # cpu: 1, mem: 256Mi 
+
+bw-prod-teamB0/monitoring/prometheus/   # cpu: 2, mem: 512Mi
+bw-prod-teamB0/monitoring/influxdb/     # cpu: 2, mem: 512Mi
+bw-prod-teamB0/monitoring/grafana/      # cpu: 2, mem: 512Mi
 ```
 
 Now lets say we want to test a newer version of influxdb in the teamA's dev environment:
@@ -73,23 +74,24 @@ bw-dev-teamA0/monitoring/prometheus/    #
 bw-dev-teamA0/monitoring/influxdb/      # version: 1.4
 ss-dev-teamA0/monitoring/grafana/       #  
 
-bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 2 
-bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 2 
-bw-stage-teamA0/monitoring/grafana/     # cpu: 1, mem: 2 
-bw-prod-teamA0/monitoring/prometheus/   # cpu: 1, mem: 2 
-bw-prod-teamA0/monitoring/influxdb/     # cpu: 1, mem: 2 
-bw-prod-teamA0/monitoring/grafana/      # cpu: 1, mem: 2 
+bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 256Mi 
+bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 256Mi 
+bw-stage-teamA0/monitoring/grafana/     # cpu: 1, mem: 256Mi 
+bw-prod-teamA0/monitoring/prometheus/   # cpu: 1, mem: 256Mi 
+bw-prod-teamA0/monitoring/influxdb/     # cpu: 1, mem: 256Mi 
+bw-prod-teamA0/monitoring/grafana/      # cpu: 1, mem: 256Mi 
 
 bw-dev-teamB0/monitoring/prometheus/    #  
 bw-dev-teamB0/monitoring/influxdb/      # unchanged
 bw-dev-teamB0/monitoring/grafana/       #  
 
-bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 2 
-bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 2 
-bw-stage-teamB0/monitoring/grafana/     # cpu: 1, mem: 2 
-bw-prod-teamB0/monitoring/prometheus/   # cpu: 2, mem: 4 
-bw-prod-teamB0/monitoring/influxdb/     # cpu: 2, mem: 4 
-bw-prod-teamB0/monitoring/grafana/      # cpu: 2, mem: 4 
+bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 256Mi
+bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 256Mi 
+bw-stage-teamB0/monitoring/grafana/     # cpu: 1, mem: 256Mi 
+
+bw-prod-teamB0/monitoring/prometheus/   # cpu: 2, mem: 512Mi
+bw-prod-teamB0/monitoring/influxdb/     # cpu: 2, mem: 512Mi
+bw-prod-teamB0/monitoring/grafana/      # cpu: 2, mem: 512Mi
 ```
 
 At this point there are 5 unique `monitoring` deployments. When dealing with many deployments and many teams/environments, maintenance quickly becomes a problem.
@@ -119,7 +121,7 @@ bw-prod-teamA0/monitoring/influxdb/     # version: 1.3
 bw-prod-teamA0/monitoring/grafana/      #
 
 bw-dev-teamB0/monitoring/prometheus/    #
-bw-dev-teamB0/monitoring/influxdb/      # version: 1.4
+bw-dev-teamB0/monitoring/influxdb/      # version: 1.3
 bw-dev-teamB0/monitoring/grafana/       #
 
 bw-stage-teamB0/monitoring/prometheus/  #
@@ -142,11 +144,11 @@ We can achieve this by creating directories for each set of versions of our depl
 And then by quite simply symlinking the deployment to the version we wish to deploy:
 
 ```
-bw-dev-teamA0/monitoring/   -> /manifests/monitoring/latest
+bw-dev-teamA0/monitoring/   -> /manifests/monitoring/latest  # deployment version 0.2.0
 bw-stage-teamA0/monitoring/ -> /manifests/monitoring/0.1.0
 bw-prod-teamA0/monitoring/  -> /manifests/monitoring/0.1.0
 
-bw-dev-teamB0/monitoring/   -> /manifests/monitoring/latest
+bw-dev-teamB0/monitoring/   -> /manifests/monitoring/0.1.0
 bw-stage-teamB0/monitoring/ -> /manifests/monitoring/0.1.0
 bw-prod-teamB0/monitoring/  -> /manifests/monitoring/0.1.0
 ```
@@ -169,24 +171,45 @@ _Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates
 ```
 - scope:
     environment: dev
-    project: bw-dev-analytics0
+    project: bw-dev-teamA0
   dir:
     input: /manifests/monitoring/latest/manifest
-    output: /output/bw-dev-analytics0/cluster0/monitoring/
+    output: /output/bw-dev-teamA0/cluster0/monitoring/
 
 - scope:
     environment: stage
-    project: bw-stage-analytics0
+    project: bw-stage-teamA0
   dir:
     input: /manifests/monitoring/0.1.0/manifest
-    output: /output/bw-stage-analytics0/cluster0/monitoring/
+    output: /output/bw-stage-teamA0/cluster0/monitoring/
 
 - scope:
     environment: prod
-    project: bw-prod-analytics0
+    project: bw-prod-teamA0
   dir:
     input: /manifests/monitoring/0.1.0/manifest
-    output: /output/bw-prod-analytics0/cluster0/monitoring/
+    output: /output/bw-prod-teamA0/cluster0/monitoring/
+
+- scope:
+    environment: dev
+    project: bw-dev-teamB0
+  dir:
+    input: /manifests/monitoring/0.1.0/manifest
+    output: /output/bw-dev-teamA0/cluster0/monitoring/
+
+- scope:
+    environment: stage
+    project: bw-stage-teamB0
+  dir:
+    input: /manifests/monitoring/0.1.0/manifest
+    output: /output/bw-stage-teamB0/cluster0/monitoring/
+
+- scope:
+    environment: prod
+    project: bw-prod-teamB0
+  dir:
+    input: /manifests/monitoring/0.1.0/manifest
+    output: /output/bw-prod-teamB0/cluster0/monitoring/
 ```
 
 _note that instead of having a complex and difficult to manage directory structure of symlinks, we define the input directory in each block, in this example the input deployments are a tree of versioned deployments as discussed in the Versioning section_
@@ -207,37 +230,56 @@ Now we can configure some default resource limits for each environment, we assum
 
 `deployment/monitoring/environment/stage.yaml`:
 ```
-limits:
-  cpu: 1
-  mem: 2
+limits::cpu: 1
+limits::mem: 256Mi
 ```
 
 `deployment/monitoring/environment/prod.yaml`:
 ```
-limits:
-  cpu: 1
-  mem: 2
+limits::cpu: 1
+limits::mem: 256Mi
 ```
 
 Then override team B's production environment to increase the resource limits, since we know it needs more resources than other environments:
 `project/%{project}/deployment/monitoring.yaml`:
 ```
-limits:
-  cpu: 2
-  mem: 4
+limits::cpu: 2
+limits::mem: 512Mi
 ```
 
-## Going further
+One more change is necessary in order for this configuration to work, we need to wrap the limits config in a condition since we don't want to apply any limits for the dev environment:
+```
+<%- if hiera("environment") =~ /stage|production/ -%>
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: limits
+spec:
+  limits:
+  - default:
+      cpu: <%= hiera("limits::cpu") %>
+      memory: <%= hiera("limits::mem") %>
+...
+<% else %>
+# no limits set for this environment
+<% end %>
+```
+
+The result is that with a simple erb-hiera config, hiera config, hiera lookup tree, and versioned manifests, we end up with our original desired configuration, less duplicated code, and more flexibility.
+
+## Best Practice
+
+This example has included versioning manifests (which you may or may not want to use), performing hiera lookups to retrieve values from hiera given a scope, and conditional logic in the templates.
+
+In our first example, we created a new version of our monitoring deployment which included a newer version of influxdb, this is probably overkill and we only really create new versions of our deployments when we're breaking backwards compatibility or performing major changes to the deployments. Usually something like tuning the deployed version of a component would be done per-environment using a hiera lookup, if you're familiar with [Puppet](https://docs.puppet.com/puppet/) then this pattern will be familiar to you.
 
 ## TODO
 
-(show how you can use logic, i.e: to not include a manifest or some shit)
-
-show complete example that matches our first example (i.e: changing influxdb version without using versioned manifests)
-
-pros and cons section
-
-why not helm section
+* pros and cons section
+* why not helm section
+* change hand drawn diagram to draw.io diagram
+* consider best practices section
+* any other sections?
 
 ## Why not helm?
 
