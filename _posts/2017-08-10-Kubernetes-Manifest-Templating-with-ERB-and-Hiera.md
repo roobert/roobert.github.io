@@ -58,9 +58,9 @@ bw-dev-teamB0/monitoring/prometheus/    #
 bw-dev-teamB0/monitoring/influxdb/      # unchanged
 bw-dev-teamB0/monitoring/grafana/       #  
 
-bw-stage-teamB0/monitoring/prometheus/  # cpu: 2, mem: 4 
-bw-stage-teamB0/monitoring/influxdb/    # cpu: 2, mem: 4 
-bw-stage-teamB0/monitoring/grafana/     # cpu: 2, mem: 4 
+bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 2 
+bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 2 
+bw-stage-teamB0/monitoring/grafana/     # cpu: 1, mem: 2 
 bw-prod-teamB0/monitoring/prometheus/   # cpu: 2, mem: 4 
 bw-prod-teamB0/monitoring/influxdb/     # cpu: 2, mem: 4 
 bw-prod-teamB0/monitoring/grafana/      # cpu: 2, mem: 4 
@@ -84,15 +84,15 @@ bw-dev-teamB0/monitoring/prometheus/    #
 bw-dev-teamB0/monitoring/influxdb/      # unchanged
 bw-dev-teamB0/monitoring/grafana/       #  
 
-bw-stage-teamB0/monitoring/prometheus/  # cpu: 2, mem: 4 
-bw-stage-teamB0/monitoring/influxdb/    # cpu: 2, mem: 4 
-bw-stage-teamB0/monitoring/grafana/     # cpu: 2, mem: 4 
+bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 2 
+bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 2 
+bw-stage-teamB0/monitoring/grafana/     # cpu: 1, mem: 2 
 bw-prod-teamB0/monitoring/prometheus/   # cpu: 2, mem: 4 
 bw-prod-teamB0/monitoring/influxdb/     # cpu: 2, mem: 4 
 bw-prod-teamB0/monitoring/grafana/      # cpu: 2, mem: 4 
 ```
 
-At this point there are 4 unique `monitoring` deployments. When dealing with many deployments and many teams/environments, maintenance quickly becomes a problem.
+At this point there are 5 unique `monitoring` deployments. When dealing with many deployments and many teams/environments, maintenance quickly becomes a problem.
 
 ## Solution
 
@@ -134,18 +134,19 @@ bw-prod-teamB0/monitoring/grafana/      #
 We can achieve this by creating directories for each set of versions of our deployments:
 
 ```
-/manifests/monitoring/0.1.0/ # contains influxdb version 1.3
-/manifests/monitoring/0.2.0/ # contains influxdb version 1.4
+/manifests/monitoring/0.1.0/           # contains influxdb version 1.3
+/manifests/monitoring/0.2.0/           # contains influxdb version 1.4
+/manifests/monitoring/latest -> 0.2.0  # symlink to latest version (used by dev environments)
 ```
 
 And then by quite simply symlinking the deployment to the version we wish to deploy:
 
 ```
-bw-dev-teamA0/monitoring/   -> /manifests/monitoring/0.2.0
+bw-dev-teamA0/monitoring/   -> /manifests/monitoring/latest
 bw-stage-teamA0/monitoring/ -> /manifests/monitoring/0.1.0
 bw-prod-teamA0/monitoring/  -> /manifests/monitoring/0.1.0
 
-bw-dev-teamB0/monitoring/   -> /manifests/monitoring/0.2.0
+bw-dev-teamB0/monitoring/   -> /manifests/monitoring/latest
 bw-stage-teamB0/monitoring/ -> /manifests/monitoring/0.1.0
 bw-prod-teamB0/monitoring/  -> /manifests/monitoring/0.1.0
 ```
@@ -154,9 +155,10 @@ Although this solves the versioning problem, this doesn't help us with customizi
 
 ## ERB and Hiera
 
-_Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates) and [Hiera](https://docs.puppet.com/hiera/) is beyond the scope of this article but the following diagram should give some clue to how they work:_
 
 ![erb-hiera](https://dust.cx/erb-hiera.png)
+
+_Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates) and [Hiera](https://docs.puppet.com/hiera/) is beyond the scope of this article but this diagram should give some clue as to how they work._
 
 ## Templating
 
@@ -168,38 +170,23 @@ _Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates
 - scope:
     environment: dev
     project: bw-dev-analytics0
-    team: analytics
-    class: analytics0
-    cluster: cluster0
-    deployment: monitoring
-    deployment_version: latest
   dir:
-    input: conf/monitoring/latest/manifest
-    output: ../conf/bw-dev-analytics0/cluster0/monitoring/
+    input: /manifests/monitoring/latest/manifest
+    output: /output/bw-dev-analytics0/cluster0/monitoring/
 
 - scope:
     environment: stage
     project: bw-stage-analytics0
-    team: analytics
-    class: analytics0
-    cluster: cluster0
-    deployment: monitoring
-    deployment_version: latest
   dir:
-    input: conf/monitoring/0.0.0/manifest
-    output: ../conf/bw-stage-analytics0/cluster0/monitoring/
+    input: /manifests/monitoring/0.1.0/manifest
+    output: /output/bw-stage-analytics0/cluster0/monitoring/
 
 - scope:
     environment: prod
     project: bw-prod-analytics0
-    team: analytics
-    class: analytics0
-    cluster: cluster0
-    deployment: monitoring
-    deployment_version: latest
   dir:
-    input: conf/monitoring/0.0.0/manifest
-    output: ../conf/bw-prod-analytics0/cluster0/monitoring/
+    input: /manifests/monitoring/0.1.0/manifest
+    output: /output/bw-prod-analytics0/cluster0/monitoring/
 ```
 
 _note that instead of having a complex and difficult to manage directory structure of symlinks, we define the input directory in each block, in this example the input deployments are a tree of versioned deployments as discussed in the Versioning section_
@@ -211,28 +198,46 @@ Example hiera config:
 :yaml:
   :datadir: "hiera"
 :hierarchy:
-  - "project/%{project}/deployment/%{deployment}/%{deployment_version}/environment/%{environment}"
-  - "project/%{project}/environment/%{environment}"
-  - "project/%{project}"
-  - "class/%{class}/deployment/%{deployment}/%{deployment_version}/environment/%{environment}"
-  - "class/%{class}/environment/%{environment}"
-  - "class/%{class}"
-  - "deployment/%{deployment}/%{deployment_version}/environment/%{environment}"
-  - "environment/%{environment}"
+  - "project/%{project}/deployment/%{deployment}"
+  - "deployment/%{deployment}/environment/%{environment}"
   - "common"
 ```
 
-Now we can set the versions like so:
+Now we can configure some default resource limits for each environment, we assume stage and prod require roughly the same amount of resources by default:
+
+`deployment/monitoring/environment/stage.yaml`:
+```
+limits:
+  cpu: 1
+  mem: 2
 ```
 
+`deployment/monitoring/environment/prod.yaml`:
+```
+limits:
+  cpu: 1
+  mem: 2
 ```
 
-It's also possible to use logic in templates like so:
+Then override team B's production environment to increase the resource limits, since we know it needs more resources than other environments:
+`project/%{project}/deployment/monitoring.yaml`:
 ```
-if else logic to test to see if something is dev environment..
+limits:
+  cpu: 2
+  mem: 4
+```
 
-```
-(diagram showing how templating works for our manifests)
+## Going further
+
+## TODO
+
+(show how you can use logic, i.e: to not include a manifest or some shit)
+
+show complete example that matches our first example (i.e: changing influxdb version without using versioned manifests)
+
+pros and cons section
+
+why not helm section
 
 ## Why not helm?
 
