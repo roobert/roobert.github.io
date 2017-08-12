@@ -284,7 +284,16 @@ In our first example, we created a new version of our monitoring deployment whic
 
 ## Why not helm?
 
-After trying Helm we decided that we'd like a simpler way to handle templating our manifests.
+Before creating `erb-hiera` and settling on this approach for managing our deployments we tried helm. We converted a lot of our manifests to helm format (charts) and started using some of the community supplied charts.
+
+Helm is a nice system but there were several reasons we chose not to use it in the end, these include:
+
+* by default the naming of every deployed resource is prefixed with the chart name, this often means resource names are truncated after hitting the name length limit which subsequently means resource names become pretty useless.
+* in order to make simple changes to helm charts it's necessary to modify several files at once ...?
+* there's an intermediate container which controls the versioning of deployed charts ...
+
+Using erb-hiera is simpler, we can see diffs, 
+
 
 ## Pros and Cons
 
