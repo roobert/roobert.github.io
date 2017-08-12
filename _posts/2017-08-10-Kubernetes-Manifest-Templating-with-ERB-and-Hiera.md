@@ -280,6 +280,7 @@ In our first example, we created a new version of our monitoring deployment whic
 * change hand drawn diagram to draw.io diagram
 * consider best practices section
 * any other sections?
+* sub headings to break content up?
 
 ## Why not helm?
 
