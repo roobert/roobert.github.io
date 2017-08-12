@@ -195,7 +195,7 @@ _Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates
     project: bw-dev-teamB0
   dir:
     input: /manifests/monitoring/0.1.0/manifest
-    output: /output/bw-dev-teamA0/cluster0/monitoring/
+    output: /output/bw-dev-teamB0/cluster0/monitoring/
 
 - scope:
     environment: stage
