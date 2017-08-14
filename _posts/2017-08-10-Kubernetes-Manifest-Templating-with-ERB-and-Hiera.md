@@ -15,6 +15,7 @@ Our project matrix looks like this:
 <div style="text-align:center">
 <img src="https://dust.cx/project-matrix.png" alt="project matrix">
 </div>
+<br/><br/>
 
 _[GCP](http://cloud.google.com/) projects must have globally unique names so ours are prefixed with `bw-`_
 
