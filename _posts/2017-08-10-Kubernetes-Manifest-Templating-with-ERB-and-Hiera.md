@@ -12,7 +12,7 @@ It's unusual for there to be major differences between applications deployed to 
 
 Our project matrix looks like this:
 
-![project matrix](https://dust.cx/project-matrix.jpg)
+![project matrix](https://dust.cx/project-matrix.png)
 
 _[GCP](http://cloud.google.com/) projects must have globally unique names so ours are prefixed with `bw-`_
 
@@ -43,24 +43,24 @@ bw-prod-teamB0/monitoring/
 Lets say we want to apply resource limits for the stage and prod environments and we know that teamB processes more events than teamA:
 
 ```
-bw-dev-teamA0/monitoring/prometheus/    # 
+bw-dev-teamA0/monitoring/prometheus/    #
 bw-dev-teamA0/monitoring/influxdb/      # unchanged
-bw-dev-teamA0/monitoring/grafana/       #  
+bw-dev-teamA0/monitoring/grafana/       # 
 
-bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 256Mi 
-bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 256Mi 
-bw-stage-teamA0/monitoring/grafana/     # cpu: 1, mem: 256Mi 
-bw-prod-teamA0/monitoring/prometheus/   # cpu: 1, mem: 256Mi 
-bw-prod-teamA0/monitoring/influxdb/     # cpu: 1, mem: 256Mi 
-bw-prod-teamA0/monitoring/grafana/      # cpu: 1, mem: 256Mi 
+bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 256Mi
+bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 256Mi
+bw-stage-teamA0/monitoring/grafana/     # cpu: 1, mem: 256Mi
+bw-prod-teamA0/monitoring/prometheus/   # cpu: 1, mem: 256Mi
+bw-prod-teamA0/monitoring/influxdb/     # cpu: 1, mem: 256Mi
+bw-prod-teamA0/monitoring/grafana/      # cpu: 1, mem: 256Mi
 
-bw-dev-teamB0/monitoring/prometheus/    #  
+bw-dev-teamB0/monitoring/prometheus/    # 
 bw-dev-teamB0/monitoring/influxdb/      # unchanged
-bw-dev-teamB0/monitoring/grafana/       #  
+bw-dev-teamB0/monitoring/grafana/       # 
 
-bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 256Mi 
-bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 256Mi 
-bw-stage-teamB0/monitoring/grafana/     # cpu: 1, mem: 256Mi 
+bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 256Mi
+bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 256Mi
+bw-stage-teamB0/monitoring/grafana/     # cpu: 1, mem: 256Mi
 
 bw-prod-teamB0/monitoring/prometheus/   # cpu: 2, mem: 512Mi
 bw-prod-teamB0/monitoring/influxdb/     # cpu: 2, mem: 512Mi
@@ -72,22 +72,22 @@ Now lets say we want to test a newer version of influxdb in the teamA's dev envi
 ```
 bw-dev-teamA0/monitoring/prometheus/    #
 bw-dev-teamA0/monitoring/influxdb/      # version: 1.4
-ss-dev-teamA0/monitoring/grafana/       #  
+ss-dev-teamA0/monitoring/grafana/       # 
 
-bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 256Mi 
-bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 256Mi 
-bw-stage-teamA0/monitoring/grafana/     # cpu: 1, mem: 256Mi 
-bw-prod-teamA0/monitoring/prometheus/   # cpu: 1, mem: 256Mi 
-bw-prod-teamA0/monitoring/influxdb/     # cpu: 1, mem: 256Mi 
-bw-prod-teamA0/monitoring/grafana/      # cpu: 1, mem: 256Mi 
+bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 256Mi
+bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 256Mi
+bw-stage-teamA0/monitoring/grafana/     # cpu: 1, mem: 256Mi
+bw-prod-teamA0/monitoring/prometheus/   # cpu: 1, mem: 256Mi
+bw-prod-teamA0/monitoring/influxdb/     # cpu: 1, mem: 256Mi
+bw-prod-teamA0/monitoring/grafana/      # cpu: 1, mem: 256Mi
 
-bw-dev-teamB0/monitoring/prometheus/    #  
+bw-dev-teamB0/monitoring/prometheus/    # 
 bw-dev-teamB0/monitoring/influxdb/      # unchanged
-bw-dev-teamB0/monitoring/grafana/       #  
+bw-dev-teamB0/monitoring/grafana/       # 
 
 bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 256Mi
-bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 256Mi 
-bw-stage-teamB0/monitoring/grafana/     # cpu: 1, mem: 256Mi 
+bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 256Mi
+bw-stage-teamB0/monitoring/grafana/     # cpu: 1, mem: 256Mi
 
 bw-prod-teamB0/monitoring/prometheus/   # cpu: 2, mem: 512Mi
 bw-prod-teamB0/monitoring/influxdb/     # cpu: 2, mem: 512Mi
@@ -275,39 +275,24 @@ In our first example, we created a new version of our monitoring deployment whic
 
 ## TODO
 
-* pros and cons section
-* why not helm section
 * change hand drawn diagram to draw.io diagram
 * consider best practices section
 * any other sections?
 * sub headings to break content up?
 
-## Why not helm?
+## Why Not Helm?
 
-Before creating `erb-hiera` and settling on this approach for managing our deployments we tried helm. We converted a lot of our manifests to helm format (charts) and started using some of the community supplied charts.
+Helm can be used in various different ways, it can do as much or as little as you want it to. It can act in a similar way to `erb-hiera` by being used simply to generate manifests from templates, or act as a fully fledged release manager where it deploys a pod into a kubernetes cluster which can track release state for the deployed helm charts.
 
-Helm is a nice system but there were several reasons we chose not to use it in the end, these include:
+So why `erb-hiera`? Because it's simple, and our teams are used to the combination of `ERB` templating language and Hiera due to their familiarity with Puppet. We can use the same tool across multiple code bases which manage our infrastructure and applications.
 
-* by default the naming of every deployed resource is prefixed with the chart name, this often means resource names are truncated after hitting the name length limit which subsequently means resource names become pretty useless.
-* in order to make simple changes to helm charts it's necessary to modify several files at once ...?
-* there's an intermediate container which controls the versioning of deployed charts ...
+_If you like Hiera but prefer Go templates, perhaps a Hiera plugin for Helm would be a good option._
 
-Using erb-hiera is simpler, we can see diffs, 
+`erb-hiera` can be used to manage all of your Kubernetes manifests but it's also entirely possible to use helm in parallel.
 
+## Conclusion
 
-## Pros and Cons
-
-less deployments to manage
-everything in once place
-flexible
-easy to back out of (unlike helm)
-easy to track changes
-
-you end up with a large erb-hiera config
-
-template it!
-
-similar to r10k? is it? what does r10k do?
+`erb-hiera` is a simple tool which does just one thing: document generation from templates. This article has shown one possible use case where using a templating tool can be combined with versioning to provide powerful and flexible Kubernetes manifest management.
 
 ## References
 
