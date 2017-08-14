@@ -269,16 +269,9 @@ The result is that with a simple erb-hiera config, hiera config, hiera lookup tr
 
 ## Best Practice
 
-This example has included versioning manifests (which you may or may not want to use), performing hiera lookups to retrieve values from hiera given a scope, and conditional logic in the templates.
+This example has included versioning manifests (which you may or may not be considered a good idea), performing hiera lookups to retrieve values from hiera given a scope, and conditional logic in the templates.
 
-In our first example, we created a new version of our monitoring deployment which included a newer version of influxdb, this is probably overkill and we only really create new versions of our deployments when we're breaking backwards compatibility or performing major changes to the deployments. Usually something like tuning the deployed version of a component would be done per-environment using a hiera lookup, if you're familiar with [Puppet](https://docs.puppet.com/puppet/) then this pattern will be familiar to you.
-
-## TODO
-
-* change hand drawn diagram to draw.io diagram
-* consider best practices section
-* any other sections?
-* sub headings to break content up?
+The first example describes version of our monitoring deployment which included a newer version of influxdb, this is probably overkill and we only really create new versions of our deployments when we're breaking backwards compatibility or performing major changes to the deployments. Usually something like tuning the deployed version of a component would be done per-environment using a hiera lookup, if you're familiar with [Puppet](https://docs.puppet.com/puppet/) then this pattern will be familiar to you.
 
 ## Why Not Helm?
 
