@@ -6,11 +6,13 @@ type:       post
 draft: true
 ---
 
-At my current workplace each team has a dev(n)-stage(n)-production(n) type deployment workflow. Application deployments are kept in git repositories and deployed by our [continuous delivery](https://en.wikipedia.org/wiki/Continuous_delivery) tooling.
+## Problem
+
+At my current job each team has a dev(n)-stage(n)-production(n) type deployment workflow. Application deployments are kept in git repositories and deployed by our [continuous delivery](https://en.wikipedia.org/wiki/Continuous_delivery) tooling.
 
 It's unusual for there to be major differences between applications deployed to each of these different contexts, usually it's just a matter of tuning resource limits or when testing, deploying a different version of the deployment.
 
-Our project matrix looks like this:
+The project matrix looks like this:
 
 <div style="text-align:center">
 <img src="https://dust.cx/project-matrix.png" alt="project matrix">
@@ -19,7 +21,7 @@ Our project matrix looks like this:
 
 _[GCP](http://cloud.google.com/) projects must have globally unique names so ours are prefixed with `bw-`_
 
-Our directory structure is composed of a Names, Deployments, and Components:
+The directory structure is composed of a Names, Deployments, and Components:
 
 * Name is the GCP Project name
 * A Deployment is a logical collection of software
@@ -33,7 +35,7 @@ monitoring/influxdb/<manifests>
 monitoring/grafana/<manifests>
 ```
 
-To deploy this monitoring stack to each context we can simply copy the `monitoring` deployment to the relevant location in our directory tree:
+The monitoring stack can be deployed to each context by simply copying the `monitoring` deployment to the relevant location in our directory tree:
 ```
 bw-dev-teamA0/monitoring/
 bw-stage-teamA0/monitoring/
@@ -43,12 +45,12 @@ bw-stage-teamB0/monitoring/
 bw-prod-teamB0/monitoring/
 ```
 
-Lets say we want to apply resource limits for the stage and prod environments and we know that teamB processes more events than teamA:
+In order to apply resource limits for the stage and prod environments where teamB processes more events than teamA:
 
 ```
 bw-dev-teamA0/monitoring/prometheus/    #
 bw-dev-teamA0/monitoring/influxdb/      # unchanged
-bw-dev-teamA0/monitoring/grafana/       # 
+bw-dev-teamA0/monitoring/grafana/       #
 
 bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 256Mi
 bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 256Mi
@@ -57,9 +59,9 @@ bw-prod-teamA0/monitoring/prometheus/   # cpu: 1, mem: 256Mi
 bw-prod-teamA0/monitoring/influxdb/     # cpu: 1, mem: 256Mi
 bw-prod-teamA0/monitoring/grafana/      # cpu: 1, mem: 256Mi
 
-bw-dev-teamB0/monitoring/prometheus/    # 
+bw-dev-teamB0/monitoring/prometheus/    #
 bw-dev-teamB0/monitoring/influxdb/      # unchanged
-bw-dev-teamB0/monitoring/grafana/       # 
+bw-dev-teamB0/monitoring/grafana/       #
 
 bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 256Mi
 bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 256Mi
@@ -70,12 +72,12 @@ bw-prod-teamB0/monitoring/influxdb/     # cpu: 2, mem: 512Mi
 bw-prod-teamB0/monitoring/grafana/      # cpu: 2, mem: 512Mi
 ```
 
-Now lets say we want to test a newer version of influxdb in the teamA's dev environment:
+To also test a newer version of influxdb in teamA's dev environment:
 
 ```
 bw-dev-teamA0/monitoring/prometheus/    #
 bw-dev-teamA0/monitoring/influxdb/      # version: 1.4
-ss-dev-teamA0/monitoring/grafana/       # 
+ss-dev-teamA0/monitoring/grafana/       #
 
 bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 256Mi
 bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 256Mi
@@ -84,9 +86,9 @@ bw-prod-teamA0/monitoring/prometheus/   # cpu: 1, mem: 256Mi
 bw-prod-teamA0/monitoring/influxdb/     # cpu: 1, mem: 256Mi
 bw-prod-teamA0/monitoring/grafana/      # cpu: 1, mem: 256Mi
 
-bw-dev-teamB0/monitoring/prometheus/    # 
+bw-dev-teamB0/monitoring/prometheus/    #
 bw-dev-teamB0/monitoring/influxdb/      # unchanged
-bw-dev-teamB0/monitoring/grafana/       # 
+bw-dev-teamB0/monitoring/grafana/       #
 
 bw-stage-teamB0/monitoring/prometheus/  # cpu: 1, mem: 256Mi
 bw-stage-teamB0/monitoring/influxdb/    # cpu: 1, mem: 256Mi
@@ -97,16 +99,19 @@ bw-prod-teamB0/monitoring/influxdb/     # cpu: 2, mem: 512Mi
 bw-prod-teamB0/monitoring/grafana/      # cpu: 2, mem: 512Mi
 ```
 
-At this point there are 5 unique `monitoring` deployments. When dealing with many deployments and many teams/environments, maintenance quickly becomes a problem.
+The point of this example is to show how quickly maintenance can become a problem when dealing with many deployments across multiple teams/environments.
+
+For instance, this example shows that 5 unique sets of manifests would need to be maintained for this single deployment.
+
 
 ## Solution
 
-Our focus is on having the ability to do two things:
+### Requirements
 
 * Deploy different versions of a deployment to different contexts (versioning)
 * Tune deployments using logic and variables based on deployment context (templating)
 
-## Versioning
+### Versioning
 
 Let's say we want to have the following:
 
@@ -158,14 +163,14 @@ bw-prod-teamB0/monitoring/  -> /manifests/monitoring/0.1.0
 
 Although this solves the versioning problem, this doesn't help us with customizing the deployments, which is where templating comes in.
 
-## ERB and Hiera
+### ERB and Hiera
 
 
 ![erb-hiera](https://dust.cx/erb-hiera.png)
 
 _Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates) and [Hiera](https://docs.puppet.com/hiera/) is beyond the scope of this article but this diagram should give some clue as to how they work._
 
-## Templating
+### Templating
 
 `erb-hiera` started life as a tool that was dedicated to generating Kubernetes manifests from our templates, it contained some logic which interpreted our directory structures and pulled out information from the directory structure to use as the lookup scope when searching hiera for data. This was fine, but soon we wanted to use `erb-hiera` in other places where we have similar use cases, e.g: our infrastructure as code repository.
 
