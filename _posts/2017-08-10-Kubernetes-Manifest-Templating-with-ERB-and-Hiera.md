@@ -141,7 +141,7 @@ bw-prod-teamB0/monitoring/influxdb/     # version: 1.3
 bw-prod-teamB0/monitoring/grafana/      #
 ```
 
-We can achieve this by creating directories for each set of versions of our deployments:
+This can be achieved by creating directories for each version of the deployment:
 
 ```
 /manifests/monitoring/0.1.0/           # contains influxdb version 1.3
@@ -149,7 +149,7 @@ We can achieve this by creating directories for each set of versions of our depl
 /manifests/monitoring/latest -> 0.2.0  # symlink to latest version (used by dev environments)
 ```
 
-And then by quite simply symlinking the deployment to the version we wish to deploy:
+And then by quite simply symlinking the deployment to the version to deploy:
 
 ```
 bw-dev-teamA0/monitoring/   -> /manifests/monitoring/latest  # deployment version 0.2.0
@@ -161,7 +161,7 @@ bw-stage-teamB0/monitoring/ -> /manifests/monitoring/0.1.0
 bw-prod-teamB0/monitoring/  -> /manifests/monitoring/0.1.0
 ```
 
-Although this solves the versioning problem, this doesn't help us with customizing the deployments, which is where templating comes in.
+Although this solves the versioning problem, this doesn't help with customizing the deployments, which is where templating comes in.
 
 ### ERB and Hiera
 
@@ -172,9 +172,7 @@ _Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates
 
 ### Templating
 
-`erb-hiera` started life as a tool that was dedicated to generating Kubernetes manifests from our templates, it contained some logic which interpreted our directory structures and pulled out information from the directory structure to use as the lookup scope when searching hiera for data. This was fine, but soon we wanted to use `erb-hiera` in other places where we have similar use cases, e.g: our infrastructure as code repository.
-
-`erb-hiera` turned into a generic templating tool, here's an example of what a config to deploy various versions of a deployment to different contexts looks like:
+`erb-hiera` is a generic templating tool, here's an example of what a config to deploy various versions of a deployment to different contexts looks like:
 
 ```
 - scope:
@@ -220,7 +218,7 @@ _Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates
     output: /output/bw-prod-teamB0/cluster0/monitoring/
 ```
 
-_note that instead of having a complex and difficult to manage directory structure of symlinks, we define the input directory in each block, in this example the input deployments are a tree of versioned deployments as discussed in the Versioning section_
+_note that instead of having a complex and difficult to manage directory structure of symlinks the input directory is defined in each block - in this example the input directories are a versioned deployments, as discussed in the Versioning section_
 
 Example hiera config:
 ```
@@ -234,7 +232,7 @@ Example hiera config:
   - "common"
 ```
 
-Now we can configure some default resource limits for each environment, we assume stage and prod require roughly the same amount of resources by default:
+Now it is possible to configure some default resource limits for each environment, here it is assumed stage and prod require roughly the same amount of resources by default:
 
 `deployment/monitoring/environment/stage.yaml`:
 ```
@@ -248,14 +246,14 @@ limits::cpu: 1
 limits::mem: 256Mi
 ```
 
-Then override team B's production environment to increase the resource limits, since we know it needs more resources than other environments:
+Then override team B's production environment to increase the resource limits, since it needs more resources than the other environments:
 `project/%{project}/deployment/monitoring.yaml`:
 ```
 limits::cpu: 2
 limits::mem: 512Mi
 ```
 
-One more change is necessary in order for this configuration to work, we need to wrap the limits config in a condition since we don't want to apply any limits for the dev environment:
+One more change is required in order for this configuration to work, it's necessary to to wrap the limits config in a condition so that no limits are applied to the dev environment:
 ```
 <%- if hiera("environment") =~ /stage|production/ -%>
 apiVersion: v1
@@ -273,13 +271,13 @@ spec:
 <% end %>
 ```
 
-The result is that with a simple erb-hiera config, hiera config, hiera lookup tree, and versioned manifests, we end up with our original desired configuration, less duplicated code, and more flexibility.
+The result is that with a simple erb-hiera config, hiera config, hiera lookup tree, and versioned manifests, the desired configuration is reached. There is less code duplication, and more flexibility in manifest creation.
 
 ## Best Practice
 
-This example has included versioning manifests (which you may or may not be considered a good idea), performing hiera lookups to retrieve values from hiera given a scope, and conditional logic in the templates.
+This example has included versioning manifests (which may or may not be considered a good idea), performing hiera lookups to retrieve values from hiera given a scope, and conditional logic in the templates.
 
-The first example describes version of our monitoring deployment which included a newer version of influxdb, this is probably overkill and we only really create new versions of our deployments when we're breaking backwards compatibility or performing major changes to the deployments. Usually something like tuning the deployed version of a component would be done per-environment using a hiera lookup, if you're familiar with [Puppet](https://docs.puppet.com/puppet/) then this pattern will be familiar to you.
+The first example describes a version of our monitoring deployment which included a newer version of influxdb, this is probably overkill and we only really create new versions of our deployments when we're breaking backwards compatibility or performing major changes to the deployments. Usually something like tuning the deployed version of a component would be done per-environment using a hiera lookup, if you're familiar with [Puppet](https://docs.puppet.com/puppet/) then this pattern will be familiar to you.
 
 ## Why Not Helm?
 
