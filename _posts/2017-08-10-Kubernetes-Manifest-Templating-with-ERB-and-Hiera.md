@@ -77,7 +77,7 @@ To also test a newer version of influxdb in teamA's dev environment:
 ```
 bw-dev-teamA0/monitoring/prometheus/    #
 bw-dev-teamA0/monitoring/influxdb/      # version: 1.4
-ss-dev-teamA0/monitoring/grafana/       #
+bw-dev-teamA0/monitoring/grafana/       #
 
 bw-stage-teamA0/monitoring/prometheus/  # cpu: 1, mem: 256Mi
 bw-stage-teamA0/monitoring/influxdb/    # cpu: 1, mem: 256Mi
