@@ -285,8 +285,6 @@ _If you like Hiera but prefer Go templates, perhaps developing a Hiera plugin fo
 
 ## Conclusion
 
-This example has included versioning manifests in a directory structure (which may or may not be considered a good idea), performing hiera lookups to retrieve values from hiera given a scope, and conditional logic in the templates.
-
 `erb-hiera` is a simple tool which does just one thing: document generation from templates. This article has shown one possible use case where using a templating tool can be combined with versioning to provide powerful and flexible Kubernetes manifest management.
 
 ## References
