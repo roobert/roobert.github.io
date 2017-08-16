@@ -1,9 +1,8 @@
 ---
 layout:     post
 title:      Kubernetes Manifest Templating with ERB and Hiera
-date:       2017-08-10 14:52
+date:       2017-08-16 14:52
 type:       post
-draft: true
 ---
 
 ## Problem
@@ -218,7 +217,7 @@ _Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates
     output: /output/bw-prod-teamB0/cluster0/monitoring/
 ```
 
-_Note that instead of having a complex and difficult to manage directory structure of symlinks the input directory is defined in each block - in this example the input directories are a versioned deployments, as discussed in the Versioning section_
+_Note that instead of having a complex and difficult to manage directory structure of symlinks the input directory is defined in each block - in this example the input directories are versioned, as discussed in the Versioning section_
 
 Example hiera config:
 ```
@@ -232,7 +231,7 @@ Example hiera config:
   - "common"
 ```
 
-Now it is possible to configure some default resource limits for each environment, here it is assumed stage and prod require roughly the same amount of resources by default:
+Now it is possible to configure some default resource limits for each environment. It is assumed stage and prod require roughly the same amount of resources by default:
 
 `deployment/monitoring/environment/stage.yaml`:
 ```
@@ -253,7 +252,7 @@ limits::cpu: 2
 limits::mem: 512Mi
 ```
 
-One more change is required in order for this configuration to work, it is necessary to to wrap the limits config in a condition so that no limits are applied to the dev environment:
+One more change is required in order for this configuration to work. It is necessary to to wrap the limits config in a condition so that no limits are applied to the dev environment:
 ```
 <%- if hiera("environment") =~ /stage|production/ -%>
 apiVersion: v1
