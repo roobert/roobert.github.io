@@ -270,7 +270,7 @@ spec:
 <% end %>
 ```
 
-The result is that with a simple erb-hiera config, hiera config, hiera lookup tree, and versioned manifests, the desired configuration is reached. There is less code duplication, and more flexibility in manifest creation.
+The result is that with a simple erb-hiera config, hiera config, hiera lookup tree, and versioned manifests, the desired configuration described earlier is reached with less code duplication.
 
 ## Why Not Helm?
 
