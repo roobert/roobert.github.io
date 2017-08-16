@@ -10,7 +10,7 @@ draft: true
 
 At my current job each team has a dev(n)-stage(n)-production(n) type deployment workflow. Application deployments are kept in git repositories and deployed by our [continuous delivery](https://en.wikipedia.org/wiki/Continuous_delivery) tooling.
 
-It's unusual for there to be major differences between applications deployed to each of these different contexts, usually it's just a matter of tuning resource limits or when testing, deploying a different version of the deployment.
+It is unusual for there to be major differences between applications deployed to each of these different contexts, usually it is just a matter of tuning resource limits or when testing, deploying a different version of the deployment.
 
 The project matrix looks like this:
 
@@ -21,7 +21,7 @@ The project matrix looks like this:
 
 _[GCP](http://cloud.google.com/) projects must have globally unique names so ours are prefixed with `bw-`_
 
-The directory structure is composed of a Names, Deployments, and Components:
+The directory structure is composed of Names, Deployments, and Components:
 
 * Name is the GCP Project name
 * A Deployment is a logical collection of software
@@ -218,7 +218,7 @@ _Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates
     output: /output/bw-prod-teamB0/cluster0/monitoring/
 ```
 
-_note that instead of having a complex and difficult to manage directory structure of symlinks the input directory is defined in each block - in this example the input directories are a versioned deployments, as discussed in the Versioning section_
+_Note that instead of having a complex and difficult to manage directory structure of symlinks the input directory is defined in each block - in this example the input directories are a versioned deployments, as discussed in the Versioning section_
 
 Example hiera config:
 ```
@@ -253,7 +253,7 @@ limits::cpu: 2
 limits::mem: 512Mi
 ```
 
-One more change is required in order for this configuration to work, it's necessary to to wrap the limits config in a condition so that no limits are applied to the dev environment:
+One more change is required in order for this configuration to work, it is necessary to to wrap the limits config in a condition so that no limits are applied to the dev environment:
 ```
 <%- if hiera("environment") =~ /stage|production/ -%>
 apiVersion: v1
@@ -273,23 +273,19 @@ spec:
 
 The result is that with a simple erb-hiera config, hiera config, hiera lookup tree, and versioned manifests, the desired configuration is reached. There is less code duplication, and more flexibility in manifest creation.
 
-## Best Practice
-
-This example has included versioning manifests (which may or may not be considered a good idea), performing hiera lookups to retrieve values from hiera given a scope, and conditional logic in the templates.
-
-The first example describes a version of our monitoring deployment which included a newer version of influxdb, this is probably overkill and we only really create new versions of our deployments when we're breaking backwards compatibility or performing major changes to the deployments. Usually something like tuning the deployed version of a component would be done per-environment using a hiera lookup, if you're familiar with [Puppet](https://docs.puppet.com/puppet/) then this pattern will be familiar to you.
-
 ## Why Not Helm?
 
-Helm can be used in various different ways, it can do as much or as little as you want it to. It can act in a similar way to `erb-hiera` by being used simply to generate manifests from templates, or act as a fully fledged release manager where it deploys a pod into a kubernetes cluster which can track release state for the deployed helm charts.
+Helm can be used in various different ways, it can do as much or as little as required. It can act in a similar way to `erb-hiera` by being used simply to generate manifests from templates, or act as a fully fledged release manager where it deploys a pod into a kubernetes cluster which can track release state for the deployed helm charts.
 
-So why `erb-hiera`? Because it's simple, and our teams are used to the combination of `ERB` templating language and Hiera due to their familiarity with Puppet. We can use the same tool across multiple code bases which manage our infrastructure and applications.
+So why `erb-hiera`? Because it is simple, and our teams are used to the combination of `ERB` templating language and Hiera due to their familiarity with Puppet. We can use the same tool across multiple code bases which manage our infrastructure and applications.
 
-_If you like Hiera but prefer Go templates, perhaps a Hiera plugin for Helm would be a good option._
+_If you like Hiera but prefer Go templates, perhaps developing a Hiera plugin for Helm would be a good option?_
 
-`erb-hiera` can be used to manage all of your Kubernetes manifests but it's also entirely possible to use helm in parallel.
+`erb-hiera` can be used to manage all Kubernetes manifests but it is also entirely possible to use helm in parallel. At the moment we have a combination of native kubernetes manifests, helm charts, and template generated documents from `erb-hiera`.
 
 ## Conclusion
+
+This example has included versioning manifests in a directory structure (which may or may not be considered a good idea), performing hiera lookups to retrieve values from hiera given a scope, and conditional logic in the templates.
 
 `erb-hiera` is a simple tool which does just one thing: document generation from templates. This article has shown one possible use case where using a templating tool can be combined with versioning to provide powerful and flexible Kubernetes manifest management.
 
