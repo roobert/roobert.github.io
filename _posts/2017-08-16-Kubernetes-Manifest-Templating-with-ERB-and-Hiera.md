@@ -252,7 +252,7 @@ limits::cpu: 2
 limits::mem: 512Mi
 ```
 
-One more change is required in order for this configuration to work. It is necessary to to wrap the limits config in a condition so that no limits are applied to the dev environment:
+One more change is required in order for this configuration to work. It is necessary to wrap the limits config in a condition so that no limits are applied to the dev environment:
 ```
 <%- if hiera("environment") =~ /stage|production/ -%>
 apiVersion: v1
