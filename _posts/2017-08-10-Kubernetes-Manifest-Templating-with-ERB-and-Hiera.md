@@ -172,7 +172,7 @@ _Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates
 
 ### Templating
 
-`erb-hiera` is a generic templating tool, here's an example of what a config to deploy various versions of a deployment to different contexts looks like:
+[`erb-hiera`](https://github.com/roobert/erb-hiera) is a generic templating tool, here's an example of what a config to deploy various versions of a deployment to different contexts looks like:
 
 ```
 - scope:
