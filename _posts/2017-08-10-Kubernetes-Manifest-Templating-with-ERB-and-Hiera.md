@@ -10,7 +10,7 @@ draft: true
 
 At my current job each team has a dev(n)-stage(n)-production(n) type deployment workflow. Application deployments are kept in git repositories and deployed by our [continuous delivery](https://en.wikipedia.org/wiki/Continuous_delivery) tooling.
 
-It is unusual for there to be major differences between applications deployed to each of these different contexts, usually it is just a matter of tuning resource limits or when testing, deploying a different version of the deployment.
+It is unusual for there to be major differences between applications deployed to each of these different contexts. Usually it is just a matter of tuning resource limits or when testing, deploying a different version of the deployment.
 
 The project matrix looks like this:
 
@@ -19,7 +19,7 @@ The project matrix looks like this:
 </div>
 <br/><br/>
 
-_[GCP](http://cloud.google.com/) projects must have globally unique names so ours are prefixed with `bw-`_
+_[GCP](http://cloud.google.com/) projects must have globally unique names, so ours are prefixed with "`bw-`"_
 
 The directory structure is composed of Names, Deployments, and Components:
 
@@ -101,7 +101,7 @@ bw-prod-teamB0/monitoring/grafana/      # cpu: 2, mem: 512Mi
 
 The point of this example is to show how quickly maintenance can become a problem when dealing with many deployments across multiple teams/environments.
 
-For instance, this example shows that 5 unique sets of manifests would need to be maintained for this single deployment.
+For instance, this example shows that five unique sets of manifests would need to be maintained for this single deployment.
 
 
 ## Solution
