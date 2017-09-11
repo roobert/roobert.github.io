@@ -1,12 +1,12 @@
 ---
 layout:     post
-title:      Monitoring SSL Certificate Expiry
+title:      Monitoring SSL Certificate Expiry in GCP and Kubernetes
 date:       2017-09-11 16:49
 type:       post
 draft:      true
 ---
 
-Monitoring SSL Certificate Expiry in GCP and Kubernetes
+*diagram showing all the copmonents we're going to use*
 
 ## Problem
 
@@ -20,6 +20,9 @@ Certificates end up in up-to two places:
 * As a GCP compute SSL Certificate
 
 In our infrastructure we use a LetsEncrypt controllers to renew certificates defined in our Kubernetes manifests. Once a certificate exists as a Kubernetes Secret, it can be referenced by other resources such as load balancers. We use two different load balancer implementations in GCP: NGiNX ingress controller, and the default GKE ingress controller.
+
+*diagram showing*:
+*read from mainfest, add to store*
 
 The NGiNX ingress controller works by mounting the Kubernetes Secret into the controller as a file.
 
