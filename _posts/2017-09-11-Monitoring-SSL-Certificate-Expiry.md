@@ -10,7 +10,7 @@ Monitoring SSL Certificate Expiry in GCP and Kubernetes
 
 ## Problem
 
-In our GCP projects we have lots of SSL certificates, some of them are legacy certificates that are manually renewed and then updated, and some are managed by letsencrypt. All of them need to be monitored so we can be certain that none have accidentally expired without being noticed.
+Our GCP projects we have lots of SSL certificates, some of them are legacy certificates that are manually renewed and then updated, and some are managed by letsencrypt. All of them need to be monitored so we can be certain that none have accidentally expired without being noticed.
 
 ## Certificate Renewal
 
@@ -112,11 +112,11 @@ Once these controllers have been deployed, Prometheus should start scraping them
 
 ### Visibility
 
-Each of our projects has a grafana instance automatically deployed to it and preloaded with some useful dashboards, one of queries Prometheus for data about the SSL certs. When a certificate has less than 7 days until it runs out it turns orange, when it's expired, if it expires then it turns red.
+Each of our projects has a Grafana instance automatically deployed to it and preloaded with some useful dashboards, one of queries Prometheus for data about the SSL certs. When a certificate has less than 7 days until it runs out it turns orange, when it's expired, if it expires then it turns red.
 
-<p><img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/grafana-ssl-certs.png" alt="grafana ssl cert expiry dashboard" /></p>
+<p><img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/grafana-ssl-certs.png" alt="Grafana SSL cert expiry dashboard" /></p>
 
-Here's the grafana JSON for the dashboard:
+Here's the Grafana JSON for the dashboard:
 
 ```
 {
