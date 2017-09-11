@@ -40,7 +40,7 @@ In order to ensure that our certificates are being renewed properly, we want to 
 
 To do the first two parts of this process we'll use a couple of controllers I've written:
 
-<docker urls>
+*docker urls*
 
 https://github.com/roobert/prometheus-gcp-ssl-certs
 https://github.com/roobert/prometheus-gke-letsencrypt-certs
