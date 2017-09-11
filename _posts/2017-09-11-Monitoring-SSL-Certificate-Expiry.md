@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Monitoring SSL Certificate Expiry
-date:       2017-08-16 14:52
+date:       2017-09-11 16:49
 type:       post
 draft:      true
 ---
