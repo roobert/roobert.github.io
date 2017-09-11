@@ -112,10 +112,11 @@ Once these controllers have been deployed, Prometheus should start scraping them
 
 ### Visibility
 
+Each of our projects has a grafana instance automatically deployed to it and preloaded with some useful dashboards, one of queries Prometheus for data about the SSL certs. When a certificate has less than 7 days until it runs out it turns orange, when it's expired, if it expires then it turns red.
+
 <p><img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/grafana-ssl-certs.png" alt="grafana ssl cert expiry dashboard" /></p>
 
-
-* Grafana - provide visiblity of certificates and their expiry dates
+Here's the grafana JSON for the dashboard:
 
 ```
 {
@@ -335,7 +336,7 @@ Once these controllers have been deployed, Prometheus should start scraping them
     ]
   },
   "timezone": "",
-  "title": "GCP SSL 2",
+  "title": "SSL Certificate Expiry",
   "version": 8
 }
 ```
