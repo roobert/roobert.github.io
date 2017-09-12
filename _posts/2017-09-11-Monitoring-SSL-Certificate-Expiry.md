@@ -6,7 +6,8 @@ type:       post
 draft:      true
 ---
 
-*diagram showing all the components we're going to use*
+
+<p><img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/ssl-cert-monitoring.png" alt="SSL cert monitoring diagram" /></p>
 
 ## Problem
 
@@ -103,7 +104,7 @@ The following commands will show certificates:
 * Kubernetes Secrets (`kubectl get secret`)
 * GCP compute ssl-certificates (`gcloud compute ssl-certificates`)
 
-## Monitoring
+## Exposing Certificate Expiry
 
 In order to ensure that our certificates are being renewed properly, we want to check the certificates which are being served up by the load balancers. To check the certificates we need to do the following:
 
@@ -172,16 +173,15 @@ spec:
           - containerPort: 9292
 ```
 
-Once these controllers have been deployed, Prometheus should start scraping them for metrics.
+These controllers each scrape a different API and then expose a list of CNs with their Valid To value in seconds, using these values we can calculate how long left until the certificate expires (`time() - $valid_to`).
 
+Once these controllers have been deployed, and if, like ours, Prometheus has been configured to look for the `prometheus_io_*` annotations, then prometheus should start scraping these controllers and the metrics should be visible in the Prometheus UI:
 
+- screenshot of prometheus UI
 
+## Visibility
 
-### Exposing Certificate Expiry
-
-* use controllers to expose metrics from the APIS
-
-### Visibility
+Now that certificate metrics are being updated, the first useful thing we can do is make them visible.
 
 Each of our projects has a Grafana instance automatically deployed to it and preloaded with some useful dashboards, one of queries Prometheus for data about the SSL certs. When a certificate has less than 7 days until it runs out it turns orange, when it's expired, if it expires then it turns red.
 
@@ -416,6 +416,12 @@ Here's the Grafana JSON for the dashboard:
 
 pre-req: writing kubernetes events to elasticsearch
 
+Now lets configure some alerts using alertmanager:
+
+```
+*alert manager code*
+```
+
 make sure that these are good, within the last 5 minutes..
 
 * elastalert: ensure the letsencrypt/renewal controllers are running (i.e: not stalled)
@@ -424,6 +430,12 @@ make sure that these are good, within the last 5 minutes..
 * prometheus: ensure the controllers are up      (responding) (aka: not 500'ing due to)
 * prometheus: ensure the controllers are responding? (aka: not 500'ing due to)
 * prometheus: ensure the expiry dates haven't been hit (ok)
+
+
+## Conclusion
+
+Whether your needs are as complex as ours, with multiple ingress controllers and whether you use GCP or not, 
+
 
 
 
