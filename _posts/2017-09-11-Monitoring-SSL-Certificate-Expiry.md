@@ -6,7 +6,7 @@ type:       post
 draft:      true
 ---
 
-*diagram showing all the copmonents we're going to use*
+*diagram showing all the components we're going to use*
 
 ## Problem
 
