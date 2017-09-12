@@ -10,21 +10,90 @@ draft:      true
 
 ## Problem
 
-At my current job we use Google Cloud Platform. Each team has a set of GCP projects, and with-in the projects there can be multiple clusters. The majority of services that our teams write expose some kind of HTTP API or web interface, so what does this mean? A lot of SSL certificates since naturally everything we expose to the internet is encrypted with SSL.
+At my current job we use Google Cloud Platform. Each team has a set of GCP projects and within the projects there can be multiple clusters. The majority of services that our teams write expose some kind of HTTP API or web interface, so what does this mean? A lot of SSL certificates since naturally everything we expose to the internet is encrypted with SSL.
 
-Each of our GCP projects is built using our CI/CD tooling, all GCP resources are defined in git, and all of our Kubernetes application manifests are exist in git. We have a standard set of stacks which we deploy to each cluster using our /*templating*/. One of the stacks is Prometheus, Influxdb, and Grafana. In this article I'll explain how we leverage this stack to automatically monitor SSL certificates in use by GCP and Kubernetes.
-
-Please note that 
-
-## Our Implementation
-
-To enable teams to expose services with minimal effort, we rely on deploying Kubernetes LetsEncrypt controllers to each of our clusters. The LetsEncrypt controller automatically provisions certificates for Kubernetes resources that require them, indicated by annotations on the resources, e.g:
-
-*show some code here, or just talk without specifics*
-
-
+Each of our GCP projects is built using our CI/CD tooling, all GCP resources are defined in git, and all of our Kubernetes application manifests are also defined in git. We have a standard set of stacks which we deploy to each cluster using our *templating*. One of the stacks is Prometheus, Influxdb, and Grafana. In this article I'll explain how we leverage this stack to automatically monitor SSL certificates in use by GCP and Kubernetes.
 
 ## Certificate Renewal
+
+To enable teams to expose services with minimal effort, we rely on deploying a Kubernetes LetsEncrypt controller to each of our clusters. The LetsEncrypt controller automatically provisions certificates for Kubernetes resources that require them, indicated by annotations on the resources, e.g:
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+  annotations:
+    acme/certificate: frontend.analytics-prod.gcp0.example.com
+    acme/secretName: frontend-analytics-certificate
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    app: frontend
+```
+
+This certificate can now be consumed by an NGiNX ingress controller like so:
+
+
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: frontend
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+    - secretName: frontend-analytics-certificate
+      hosts:
+        - frontend.analytics-prod.gcp0.example.com
+
+  rules:
+    - host: frontend.analytics-prod.gcp0.example.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: frontend
+              servicePort: 3000
+```
+
+When using GCP to load balance traffic, simply create a service with `type: LoadBalancer`, this will create a load balancer in GCP and make a copy of the secret created by LetsEncrypt in GCP as an SSL Certificate resource which the GCP load balancer can then refer to:
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+  annotations:
+    acme/certificate: frontend.analytics-prod.gcp0.example.com
+    acme/secretName: frontend-analytics-certificate
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    app: frontend
+```
+
+
+Of course, this isn't the only method for deploying ssl certificates for services in GCP and/or Kubernetes. In our case we also have many legacy certificates that are manually renewed by humans, stored encrypted in our repositories, and deployed as secrets to Kubernetes or SSL Certificate resources to GCP.
+
+Regardless of how the certificates end up in either GCP or Kubernetes, we can monitor them with Prometheus.
+
+In either case, certificates end up in up-to two places:
+
+* The Kubernetes Secret store
+* As a GCP compute SSL Certificate
+
 
 of them are legacy certificates that are manually renewed and then updated, and some are managed by letsencrypt. All of them need to be monitored so we can be certain that none have accidentally expired without being noticed.
 
