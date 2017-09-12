@@ -89,27 +89,14 @@ Of course, this isn't the only method for deploying ssl certificates for service
 
 Regardless of how the certificates end up in either GCP or Kubernetes, we can monitor them with Prometheus.
 
-In either case, certificates end up in up-to two places:
+Whether manually renewed or managed by LetsEncrypt, our certificates end up in up-to two places:
 
 * The Kubernetes Secret store
 * As a GCP compute SSL Certificate
-
-
-Some of them are legacy certificates that are manually renewed and then updated, and some are managed by letsencrypt. All of them need to be monitored so we can be certain that none have accidentally expired without being noticed.
-
-Certificates end up in up-to two places:
-
-* The Kubernetes Secret store
-* As a GCP compute SSL Certificate
-
-In our infrastructure we use a LetsEncrypt controllers to renew certificates defined in our Kubernetes manifests. Once a certificate exists as a Kubernetes Secret, it can be referenced by other resources such as load balancers. We use two different load balancer implementations in GCP: NGiNX ingress controller, and the default GKE ingress controller.
-
-*diagram showing*:
-*read from mainfest, add to store*
 
 The NGiNX ingress controller works by mounting the Kubernetes Secret into the controller as a file.
 
-The GKE ingress controller makes a copy of the secret as a Compute SSL Certificate. This means that certificates used in the default GKE Kubernetes load balancers are stored in two separate locations: the Kubernetes cluster, as a secret, and in GCP, as a Certificate resource.
+As mentioned earlier, the GKE ingress controller makes a copy of the secret as a Compute SSL Certificate. This means that certificates used in the default GKE Kubernetes load balancers are stored in two separate locations: the Kubernetes cluster, as a secret, and in GCP, as a Certificate resource.
 
 The following commands will show certificates:
 
@@ -126,10 +113,8 @@ In order to ensure that our certificates are being renewed properly, we want to 
 
 To do the first two parts of this process we'll use a couple of controllers I've written:
 
-*docker urls*
-
-https://github.com/roobert/prometheus-gcp-ssl-certs
-https://github.com/roobert/prometheus-gke-letsencrypt-certs
+* https://hub.docker.com/r/roobert/prometheus-gcp-ssl-certs/ (source: https://github.com/roobert/prometheus-gcp-ssl-certs)
+* https://hub.docker.com/r/roobert/prometheus-gke-letsencrypt-certs/ (source: https://github.com/roobert/prometheus-gke-letsencrypt-certs)
 
 ```
 apiVersion: extensions/v1beta1
