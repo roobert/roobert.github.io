@@ -113,8 +113,8 @@ In order to ensure that our certificates are being renewed properly, we want to 
 
 To do the first two parts of this process we'll use a couple of controllers I've written:
 
-* https://hub.docker.com/r/roobert/prometheus-gcp-ssl-certs/ (source: https://github.com/roobert/prometheus-gcp-ssl-certs)
-* https://hub.docker.com/r/roobert/prometheus-gke-letsencrypt-certs/ (source: https://github.com/roobert/prometheus-gke-letsencrypt-certs)
+* prometheus-gcp-ssl-certs [docker](https://hub.docker.com/r/roobert/prometheus-gcp-ssl-certs/) / [source](https://github.com/roobert/prometheus-gcp-ssl-certs)
+* prometheus-gke-letsencrypt-certs [docker](https://hub.docker.com/r/roobert/prometheus-gke-letsencrypt-certs/) / [source](https://github.com/roobert/prometheus-gke-letsencrypt-certs)
 
 ```
 apiVersion: extensions/v1beta1
