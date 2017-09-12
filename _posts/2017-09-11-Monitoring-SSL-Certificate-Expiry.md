@@ -12,7 +12,7 @@ draft:      true
 
 At my current job we use Google Cloud Platform. Each team has a set of GCP projects and within the projects there can be multiple clusters. The majority of services that our teams write expose some kind of HTTP API or web interface, so what does this mean? A lot of SSL certificates since naturally everything we expose to the internet is encrypted with SSL.
 
-Each of our GCP projects is built using our CI/CD tooling, all GCP resources are defined in git, and all of our Kubernetes application manifests are also defined in git. We have a standard set of stacks which we deploy to each cluster using our *templating*. One of the stacks is Prometheus, Influxdb, and Grafana. In this article I'll explain how we leverage this stack to automatically monitor SSL certificates in use by GCP and Kubernetes.
+Each of our GCP projects is built using our CI/CD tooling. All GCP resources and all of our Kubernetes application manifests are defined in git. We have a standard set of stacks which we deploy to each cluster using our [templating](http://roobert.github.io/2017/08/16/Kubernetes-Manifest-Templating-with-ERB-and-Hiera/). One of the stacks is Prometheus, Influxdb, and Grafana. In this article I'll explain how we leverage this stack to automatically monitor SSL certificates in use by GCP and Kubernetes.
 
 ## Certificate Renewal
 
@@ -95,7 +95,7 @@ In either case, certificates end up in up-to two places:
 * As a GCP compute SSL Certificate
 
 
-of them are legacy certificates that are manually renewed and then updated, and some are managed by letsencrypt. All of them need to be monitored so we can be certain that none have accidentally expired without being noticed.
+Some of them are legacy certificates that are manually renewed and then updated, and some are managed by letsencrypt. All of them need to be monitored so we can be certain that none have accidentally expired without being noticed.
 
 Certificates end up in up-to two places:
 
