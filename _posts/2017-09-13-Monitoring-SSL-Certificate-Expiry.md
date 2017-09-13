@@ -13,7 +13,7 @@ draft:      true
 
 At my current job, we use Google Cloud Platform. Each team has a set of GCP Projects; each project can have multiple clusters. The majority of services that our teams write expose some kind of HTTP API or web interface - so what does this mean? All HTTP endpoints we expose are encrypted with SSL[1], so we have a *lot* of SSL certificates in a lot of different places.
 
-Each of our GCP projects is built using our CI/CD tooling. All GCP resources and all of our Kubernetes application manifests are defined in git. We have a standard set of stacks that we deploy to each cluster using our [templating](http://roobert.github.io/2017/08/16/Kubernetes-Manifest-Templating-with-ERB-and-Hiera/). One of the stacks is Prometheus, Influxdb, and Grafana. In this article, I'll explain how we leverage (part of) this stack to automatically monitor SSL certificates in use by our Kubernetes load balancers.
+Each of our GCP projects is built using our CI/CD tooling. All GCP resources and all of our Kubernetes application manifests are defined in git. We have a standard set of stacks that we deploy to each cluster using our [templating](http://roobert.github.io/2017/08/16/Kubernetes-Manifest-Templating-with-ERB-and-Hiera/). One of the stacks is Prometheus, Influxdb, and Grafana. In this article, I'll explain how we leverage (part of) this stack to automatically monitor SSL certificates in use by our load balancers across all of our GCP projects.
 
 ## Certificate Renewal
 
