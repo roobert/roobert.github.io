@@ -215,6 +215,8 @@ ALERT GCPSSLCertExpired
   }
 ```
 
+*Caution: Due to the nature of LetsEncrypt certificate renewals only happening on the last day they are valid, the window of opportunity for receiving an alert is extremely slim.*
+
 ## Conclusion
 
 In this article, I've outlined our basic SSL monitoring strategy and included the code for two Prometheus exporters which can expose the metrics necessary to configure your own graphs and alerts. I hope this has been helpful.
