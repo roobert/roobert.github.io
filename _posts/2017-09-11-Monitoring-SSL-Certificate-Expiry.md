@@ -167,7 +167,7 @@ Each of our projects has a Grafana instance automatically deployed to it and pre
 
 <p><img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/grafana-ssl-certs.png" alt="Grafana SSL cert expiry dashboard" /></p>
 
-Here's the Grafana JSON for the dashboard: [gist](https://gist.github.com/roobert/e114b4420f2be3988d61876f47cc35ae)
+Here's the Grafana JSON for the dashboard: [gist:roobert/e114b4420f2be3988d61876f47cc35ae](https://gist.github.com/roobert/e114b4420f2be3988d61876f47cc35ae)
 
 ### Alerting
 
