@@ -3,7 +3,6 @@ layout:     post
 title:      Monitoring SSL Certificate Expiry in GCP and Kubernetes
 date:       2017-09-13 16:04
 type:       post
-draft:      true
 ---
 
 
