@@ -218,7 +218,7 @@ ALERT GCPSSLCertExpired
 
 ## Conclusion
 
-In this article I've outlined our basic SSL monitoring strategy and included the code for two Prometheusexporters which can expose the metrics necessary to configure your own graphs and alerts. I hope this has been helpful.
+In this article I've outlined our basic SSL monitoring strategy and included the code for two Prometheus exporters which can expose the metrics necessary to configure your own graphs and alerts. I hope this has been helpful.
 
 
 
