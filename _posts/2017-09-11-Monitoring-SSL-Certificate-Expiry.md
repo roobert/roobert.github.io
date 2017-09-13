@@ -179,21 +179,41 @@ Now lets configure some alerts using alertmanager:
 ALERT GKELetsEncryptCertExpiry
   IF gke_letsencrypt_cert_expiry - time() < 86400
   LABELS {
+    severity="warning"
+  }
+  ANNOTATIONS {
+    SUMMARY = "{{$labels.instance}}: SSL cert expiry",
+    DESCRIPTION = "{{$labels.instance}}: GKE LetsEncrypt cert expires in less than 1 day"
+  }
+
+ALERT GKELetsEncryptCertExpired
+  IF gke_letsencrypt_cert_expiry - time() =< 0
+  LABELS {
     severity="critical"
   }
   ANNOTATIONS {
-    SUMMARY = "{{$labels.instance}}: SSL expiry",
-    DESCRIPTION = "{{$labels.instance}}: GKE LetsEncrypt cert expires in less than 1 day"
+    SUMMARY = "{{$labels.instance}}: SSL cert expired",
+    DESCRIPTION = "{{$labels.instance}}: GKE LetsEncrypt cert has expired"
   }
 
 ALERT GCPSSLCertExpiry
   IF gcp_ssl_cert_expiry - time() < 86400
   LABELS {
+    severity="warning"
+  }
+  ANNOTATIONS {
+    SUMMARY = "{{$labels.instance}}: SSL cert expiry",
+    DESCRIPTION = "{{$labels.instance}}: GCP SSL cert expires in less than 1 day"
+  }
+
+ALERT GCPSSLCertExpired
+  IF gcp_ssl_cert_expiry - time() =< 0
+  LABELS {
     severity="critical"
   }
   ANNOTATIONS {
-    SUMMARY = "{{$labels.instance}}: SSL expiry",
-    DESCRIPTION = "{{$labels.instance}}: GCP SSL cert expires in less than 1 day"
+    SUMMARY = "{{$labels.instance}}: SSL cert expired",
+    DESCRIPTION = "{{$labels.instance}}: GCP SSL cert has expired"
   }
 ```
 
