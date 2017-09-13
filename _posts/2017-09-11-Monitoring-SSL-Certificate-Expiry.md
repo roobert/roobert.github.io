@@ -96,6 +96,7 @@ To do the first two parts of this process we'll use a couple of controllers I've
 * prometheus-gcp-ssl-certs - [docker](https://hub.docker.com/r/roobert/prometheus-gcp-ssl-certs/) / [source](https://github.com/roobert/prometheus-gcp-ssl-certs)
 * prometheus-gke-letsencrypt-certs - [docker](https://hub.docker.com/r/roobert/prometheus-gke-letsencrypt-certs/) / [source](https://github.com/roobert/prometheus-gke-letsencrypt-certs)
 
+Kubernetes manifests:
 ```
 apiVersion: extensions/v1beta1
 kind: Deployment
