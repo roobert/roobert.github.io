@@ -26,8 +26,8 @@ metadata:
   labels:
     app: frontend
   annotations:
-    acme/certificate: frontend.analytics-prod.gcp0.example.com
-    acme/secretName: frontend-analytics-certificate
+    acme/certificate: frontend.prod.gcp0.example.com
+    acme/secretName: frontend-certificate
 spec:
   type: ClusterIP
   ports:
@@ -48,12 +48,12 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   tls:
-    - secretName: frontend-analytics-certificate
+    - secretName: frontend-certificate
       hosts:
-        - frontend.analytics-prod.gcp0.example.com
+        - frontend.prod.gcp0.example.com
 
   rules:
-    - host: frontend.analytics-prod.gcp0.example.com
+    - host: frontend.prod.gcp0.example.com
       http:
         paths:
           - path: /
