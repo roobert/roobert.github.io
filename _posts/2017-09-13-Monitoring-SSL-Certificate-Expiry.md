@@ -215,7 +215,7 @@ ALERT GCPSSLCertExpired
   }
 ```
 
-*Caution: Due to the nature of LetsEncrypt certificate renewals only happening on the last day they are valid, the window of opportunity for receiving an alert is extremely slim.*
+*Caution: Due to the nature of LetsEncrypt certificate renewals only happening on the last day that they are valid, the window of opportunity for receiving an alert is extremely slim.*
 
 ## Conclusion
 
