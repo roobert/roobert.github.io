@@ -399,23 +399,27 @@ pre-req: writing kubernetes events to elasticsearch
 Now lets configure some alerts using alertmanager:
 
 ```
-*alert manager code*
+ALERT GKELetsEncryptCertExpiry
+  IF gke_letsencrypt_cert_expiry - time() < 86400
+  LABELS {
+    severity="critical"
+  }
+  ANNOTATIONS {
+    SUMMARY = "{{$labels.instance}}: SSL expiry",
+    DESCRIPTION = "{{$labels.instance}}: GKE LetsEncrypt cert expires in less than 1 day"
+  }
+
+ALERT GCPSSLCertExpiry
+  IF gcp_ssl_cert_expiry - time() < 86400
+  LABELS {
+    severity="critical"
+  }
+  ANNOTATIONS {
+    SUMMARY = "{{$labels.instance}}: SSL expiry",
+    DESCRIPTION = "{{$labels.instance}}: GCP SSL cert expires in less than 1 day"
+  }
 ```
-
-make sure that these are good, within the last 5 minutes..
-
-* elastalert: ensure the letsencrypt/renewal controllers are running (i.e: not stalled)
-
-* prometheus: ensure the controllers are running (started)
-* prometheus: ensure the controllers are up      (responding) (aka: not 500'ing due to)
-* prometheus: ensure the controllers are responding? (aka: not 500'ing due to)
-* prometheus: ensure the expiry dates haven't been hit (ok)
-
 
 ## Conclusion
 
 Whether your needs are as complex as ours, with multiple ingress controllers and whether you use GCP or not, 
-
-
-
-
