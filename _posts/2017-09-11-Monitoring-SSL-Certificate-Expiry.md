@@ -221,6 +221,8 @@ ALERT GCPSSLCertExpired
 In this article I've outlined our basic SSL monitoring strategy and included the code for two Prometheus exporters which can expose the metrics necessary to configure your own graphs and alerts. I hope this has been helpful.
 
 
-
+<br>
+<br>
+<br>
 
 [1] Technically TLS but commonly referred to as SSL
