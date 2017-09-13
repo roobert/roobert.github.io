@@ -22,19 +22,19 @@ To enable teams to expose services with minimal effort, we rely on deploying a K
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: app0
   labels:
-    app: frontend
+    app: app0
   annotations:
-    acme/certificate: frontend.prod.gcp0.example.com
-    acme/secretName: frontend-certificate
+    acme/certificate: app0.prod.gcp0.example.com
+    acme/secretName: app0-certificate
 spec:
   type: ClusterIP
   ports:
     - port: 3000
       targetPort: 3000
   selector:
-    app: frontend
+    app: app0
 ```
 
 This certificate can now be consumed by an NGiNX ingress controller, like so:
@@ -43,22 +43,22 @@ This certificate can now be consumed by an NGiNX ingress controller, like so:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: frontend
+  name: app0
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
   tls:
-    - secretName: frontend-certificate
+    - secretName: app0-certificate
       hosts:
-        - frontend.prod.gcp0.example.com
+        - app0.prod.gcp0.example.com
 
   rules:
-    - host: frontend.prod.gcp0.example.com
+    - host: app0.prod.gcp0.example.com
       http:
         paths:
           - path: /
             backend:
-              serviceName: frontend
+              serviceName: app0
               servicePort: 3000
 ```
 
