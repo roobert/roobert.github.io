@@ -40,7 +40,6 @@ spec:
 
 This certificate can now be consumed by an NGiNX ingress controller like so:
 
-
 ```
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -64,27 +63,7 @@ spec:
               servicePort: 3000
 ```
 
-When using GCP to load balance traffic, simply create a service with `type: LoadBalancer`, this will create a load balancer in GCP and make a copy of the secret created by LetsEncrypt in GCP as an SSL Certificate resource which the GCP load balancer can then refer to:
-
-```
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend
-  labels:
-    app: frontend
-  annotations:
-    acme/certificate: frontend.analytics-prod.gcp0.example.com
-    acme/secretName: frontend-analytics-certificate
-spec:
-  type: LoadBalancer
-  ports:
-    - port: 3000
-      targetPort: 3000
-  selector:
-    app: frontend
-```
-
+Switching the `ingress.class` annotation to have the value of `gce` will mean Google Compute Engine will handle this configuration and a copy of the secret will be made in GCP as a Compute SSL Certificate resource which the GCP load balancer can then use to serve HTTPS.
 
 Of course, this isn't the only method for deploying ssl certificates for services in GCP and/or Kubernetes. In our case we also have many legacy certificates that are manually renewed by humans, stored encrypted in our repositories, and deployed as secrets to Kubernetes or SSL Certificate resources to GCP.
 
