@@ -178,6 +178,7 @@ Now lets configure some alerts using alertmanager:
 ```
 ALERT GKELetsEncryptCertExpiry
   IF gke_letsencrypt_cert_expiry - time() < 86400
+  IF gcp_letsencrypt_cert_expiry - time() < 86400 AND gcp_letsencrypt_cert_expiry - time() > 0
   LABELS {
     severity="warning"
   }
@@ -197,7 +198,7 @@ ALERT GKELetsEncryptCertExpired
   }
 
 ALERT GCPSSLCertExpiry
-  IF gcp_ssl_cert_expiry - time() < 86400
+  IF gcp_ssl_cert_expiry - time() < 86400 AND gcp_ssl_cert_expiry - time() > 0
   LABELS {
     severity="warning"
   }
