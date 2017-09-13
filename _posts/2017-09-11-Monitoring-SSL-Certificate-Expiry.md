@@ -76,7 +76,7 @@ Whether manually renewed or managed by LetsEncrypt, our certificates end up in u
 
 The NGiNX ingress controller works by mounting the Kubernetes Secret into the controller as a file.
 
-As mentioned earlier, the GKE ingress controller makes a copy of the secret as a Compute SSL Certificate. This means that certificates used in the default GKE Kubernetes load balancers are stored in two separate locations: the Kubernetes cluster, as a secret, and in GCP, as a Certificate resource.
+As mentioned earlier, the GCE ingress controller makes a copy of the secret as a Compute SSL Certificate. This means that certificates used in the default Kubernetes load balancers are stored in two separate locations: the Kubernetes cluster, as a secret, and in GCP, as a Certificate resource.
 
 The following commands will show certificates:
 
