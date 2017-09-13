@@ -225,7 +225,10 @@ abbr {
 
 pre, code {
   font-family: Menlo, Monaco, "Courier New", monospace;
-  background: #f8f8f8;
+}
+
+code {
+  background: #fafafa;
 }
 
 pre {
