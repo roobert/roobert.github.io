@@ -13,7 +13,7 @@ draft:      true
 
 At my current job we use Google Cloud Platform. Each team has a set of GCP projects and within the projects there can be multiple clusters. The majority of services that our teams write expose some kind of HTTP API or web interface, so what does this mean? A lot of SSL certificates since naturally everything we expose to the internet is encrypted with SSL.
 
-Each of our GCP projects is built using our CI/CD tooling. All GCP resources and all of our Kubernetes application manifests are defined in git. We have a standard set of stacks which we deploy to each cluster using our [templating](http://roobert.github.io/2017/08/16/Kubernetes-Manifest-Templating-with-ERB-and-Hiera/). One of the stacks is Prometheus, Influxdb, and Grafana. In this article I'll explain how we leverage this stack to automatically monitor SSL certificates in use by GCP and Kubernetes.
+Each of our GCP projects is built using our CI/CD tooling. All GCP resources and all of our Kubernetes application manifests are defined in git. We have a standard set of stacks which we deploy to each cluster using our [templating](http://roobert.github.io/2017/08/16/Kubernetes-Manifest-Templating-with-ERB-and-Hiera/). One of the stacks is Prometheus, Influxdb, and Grafana. In this article I'll explain how we leverage (part of) this stack to automatically monitor SSL certificates in use by GCP and Kubernetes.
 
 ## Certificate Renewal
 
@@ -155,9 +155,9 @@ spec:
 
 These controllers each scrape a different API and then expose a list of CNs with their Valid To value in seconds, using these values we can calculate how long left until the certificate expires (`time() - $valid_to`).
 
-Once these controllers have been deployed, and if, like ours, Prometheus has been configured to look for the `prometheus_io_*` annotations, then prometheus should start scraping these controllers and the metrics should be visible in the Prometheus UI:
+Once these controllers have been deployed, and if, like ours, Prometheus has been configured to look for the `prometheus_io_*` annotations, then prometheus should start scraping these controllers and the metrics should be visible in the Prometheus UI, search for `gke_letsencrypt_cert_expiration` or `gcp_ssl_cert_expiration`, here's one example:
 
-- screenshot of prometheus UI
+<p><img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/prometheus-query-ssl.png" alt="Prometheus Query - SSL" /></p>
 
 ## Visibility
 
