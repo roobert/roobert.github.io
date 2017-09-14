@@ -215,7 +215,7 @@ ALERT GCPSSLCertExpired
   }
 ```
 
-*Caution: Due to the nature of LetsEncrypt certificate renewals only happening on the last day that they are valid, the window of opportunity for receiving an alert is extremely slim.*
+*Caution: The window of opportunity for receiving warnings before cert expiry is extremely slim because The LetsEncrypt controller [renewal window](https://github.com/tazjin/kubernetes-letsencrypt#certificate-renewals) happens within 1-2 days of expiry.*
 
 ## Conclusion
 
