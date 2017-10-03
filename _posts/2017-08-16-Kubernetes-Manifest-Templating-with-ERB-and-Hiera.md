@@ -14,7 +14,7 @@ It is unusual for there to be major differences between applications deployed to
 The project matrix looks like this:
 
 <div style="text-align:center">
-<img src="https://dust.cx/project-matrix.png" alt="project matrix">
+<img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/project-matrix.png" alt="project matrix">
 </div>
 <br/><br/>
 
@@ -165,7 +165,7 @@ Although this solves the versioning problem, this doesn't help with customizing 
 ### ERB and Hiera
 
 
-![erb-hiera](https://dust.cx/erb-hiera.png)
+![erb-hiera](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/erb-hiera.png)
 
 _Understanding [ERB](http://www.stuartellis.name/articles/erb/#writing-templates) and [Hiera](https://docs.puppet.com/hiera/) is beyond the scope of this article but this diagram should give some clue as to how they work._
 
