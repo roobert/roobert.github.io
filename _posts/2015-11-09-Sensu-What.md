@@ -7,7 +7,7 @@ type:       post
 
 ## What!
 
-I first tried Sensu at my last job roughly 2 years ago and loved it. After years of Nagios (yes, every distribution of) and the occasional flirtation with Zabbix (I want something different but oh god no), Sensu came along and offered a fresh perspective.
+I first tried Sensu at my last job roughly 2 years ago and really enjoyed it. After years of various distributions of Nagios and occasionally trying alternatives such as Zabbix, Sensu came along and offered a fresh perspective.
 
 After a couple of weeks running Sensu in parallel with Nagios I was convinced. It wasn't until starting my current job that I really got my hands dirty with Sensu, this blog post is about what I've learnt over the last year.
 
