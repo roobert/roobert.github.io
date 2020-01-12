@@ -50,7 +50,7 @@ logcli --addr=https://metrics.example.com:3100 query 'count_over_time({level="WA
 
 ## Deployment
 
-It's possible to use the included Terraform to deploy the function: https://github.com/roobert/cloudwatch-loki-shipper/blob/master/terraform/cloudwatch-loki-shipper.tf
+It's possible to use the included Terraform to deploy the function: [https://github.com/roobert/cloudwatch-loki-shipper/blob/master/terraform/cloudwatch-loki-shipper.tf](https://github.com/roobert/cloudwatch-loki-shipper/blob/master/terraform/cloudwatch-loki-shipper.tf)
 
 ## References
 
