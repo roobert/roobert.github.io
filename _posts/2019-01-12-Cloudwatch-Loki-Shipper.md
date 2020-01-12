@@ -54,4 +54,4 @@ It's possible to use the included Terraform to deploy the function: https://gith
 
 ## References
 
-Inspired by this: https://github.com/ClaudioWaldvogel/cloudwatch-loki-shipper/
+Inspired by: https://github.com/ClaudioWaldvogel/cloudwatch-loki-shipper/
