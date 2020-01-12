@@ -1,4 +1,5 @@
 ---
+draft:      true
 layout:     post
 title:      LetsEncrypt NGiNX Quick Start
 date:       2015-12-06 14:52
