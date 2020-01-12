@@ -1,0 +1,57 @@
+---
+layout:     post
+title:      Lambda Log Shipper for Cloudwatch and Grafana Loki
+date:       2019-12-01 16:04
+type:       post
+---
+
+Grafana has recently released Grafana Loki, a _horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus_. This is great for container based systems where scraping application logs from log files is possible, however, in AWS the standard for many services is to write logs to Cloudwatch. In order to get logs from Cloudwatch into Loki I've written a Lambda function which can be found here: https://github.com/roobert/cloudwatch-loki-shipper
+
+A Cloudwatch subscription filter is used to trigger the lambda on new events, logs are processed and then pushed to the Loki API.
+
+The lambda function can operate in two ways, either it can pass through raw log messages as-is, which can look something like this:
+
+Non-formatted JSON log:
+<p><img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/loki01.png" alt="unformatted application logs" /></p>
+
+Optionally, it can be configured to do some intermediate processing using the following environment variables:
+```
+LOG_LABELS             = "classname,logger_name"
+LOG_TEMPLATE           = "level=$level | $message"
+LOG_TEMPLATE_VARIABLES = "level,message"
+LOG_IGNORE_NON_JSON    = "true"
+```
+
+This config will tell the lambda to load incoming message as a JSON object, it'll then do the following:
+
+* Lookup values for each key in LOG_LABELS and for each key that exists, set the corresponding value as a label for the log entry
+* Format the message using the template defined with LOG_TEMPLATE_VARIABLES. Corresponding variable names are specified with LOG_TEMPLATE_VARIABLES for the variable substitution
+* Drop any messages that are not in JSON format. This is useful when badly behaved applications can output non-JSON log messages
+
+Log templating can be used to customize the log string into any format. By default when viewing logs Grafana will attempt to establish the log level by looking for either `level=<log level>` or `"level":"<log level>"` in the log string, or by checking the log label `level`. It will then colour the log line depending on corresponding log level. Unfortunately at the moment there is a [bug](https://github.com/grafana/grafana/issues/21112) in Grafana that prevents the log label being used to colour the log lines and so it's necessary to keep the level key/value in the log line. I've settled on the format `level=<log level> | <log message>` as shown in the previously mentioned environment variables. The result is as follows:
+<p><img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/loki02.png" alt="formatted applications logs" /></p>
+
+## Misc.
+
+Query logs from the Loki API using LogQL:
+```
+logcli --addr=https://metrics.example.com:3100 \
+  query --tail --no-labels '{logGroup="/app/events-router/events-router"}' \
+  | cut -d\  -f2- | jq -rc '"\(.["@timestamp"]) \(.level) \(.message)"'
+```
+
+
+An example query that could be used for alerting:
+```
+logcli --addr=https://metrics.example.com:3100 query 'count_over_time({level="WARN"}[5m])'
+```
+
+  _LogQL docs: https://github.com/grafana/loki/blob/master/docs/logql.md_
+
+## Deployment
+
+It's possible to use the included Terraform to deploy the function: https://github.com/roobert/cloudwatch-loki-shipper/blob/master/terraform/cloudwatch-loki-shipper.tf
+
+## References
+
+Inspired by this: https://github.com/ClaudioWaldvogel/cloudwatch-loki-shipper/
