@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Lambda Log Shipper for Cloudwatch and Grafana Loki
-date:       2019-12-01 16:04
+date:       2019-01-12 16:04
 type:       post
 ---
 
