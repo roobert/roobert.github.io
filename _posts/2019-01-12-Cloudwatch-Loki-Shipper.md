@@ -5,7 +5,7 @@ date:       2019-01-12 16:04
 type:       post
 ---
 
-Grafana has recently released Grafana Loki, a _horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus_. This is great for container based systems where scraping application logs from log files is possible, however, in AWS the standard for many services is to write logs to Cloudwatch. In order to get logs from Cloudwatch into Loki I've written a Lambda function which can be found here: https://github.com/roobert/cloudwatch-loki-shipper
+Grafana has recently released Grafana Loki, a _horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus_. This is great for container based systems where scraping application logs from log files is possible, however, in AWS the standard for many services is to write logs to Cloudwatch. In order to get logs from Cloudwatch into Loki I've written a Lambda function which can be found here: [https://github.com/roobert/cloudwatch-loki-shipper](https://github.com/roobert/cloudwatch-loki-shipper)
 
 A Cloudwatch subscription filter is used to trigger the lambda on new events, logs are processed and then pushed to the Loki API.
 
@@ -46,7 +46,7 @@ An example query that could be used for alerting:
 logcli --addr=https://metrics.example.com:3100 query 'count_over_time({level="WARN"}[5m])'
 ```
 
-  _LogQL docs: https://github.com/grafana/loki/blob/master/docs/logql.md_
+  _LogQL docs: [https://github.com/grafana/loki/blob/master/docs/logql.md](https://github.com/grafana/loki/blob/master/docs/logql.md)_
 
 ## Deployment
 
@@ -54,4 +54,4 @@ It's possible to use the included Terraform to deploy the function: https://gith
 
 ## References
 
-Inspired by: https://github.com/ClaudioWaldvogel/cloudwatch-loki-shipper/
+Inspired by: [https://github.com/ClaudioWaldvogel/cloudwatch-loki-shipper/](https://github.com/ClaudioWaldvogel/cloudwatch-loki-shipper/)
