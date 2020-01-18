@@ -11,9 +11,9 @@ Grafana has recently released Grafana Loki, a _horizontally-scalable, highly-ava
 
 ## Cloudwatch-Loki-Shipper
 
-A Cloudwatch subscription filter is used to trigger the lambda on new events, logs are processed and then pushed to the Loki API.
+A Cloudwatch subscription filter is used to trigger the Lambda on new events, logs are processed and then pushed to the Loki API.
 
-The lambda function can operate in two ways, either it can pass through raw log messages as-is, which can look something like this:
+The Lambda function can operate in two ways, either it can pass through raw log messages as-is, which can look something like this:
 
 Non-formatted JSON log:
 <p><img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/loki01.png" alt="unformatted application logs" /></p>
@@ -26,7 +26,7 @@ LOG_TEMPLATE_VARIABLES = "level,message"
 LOG_IGNORE_NON_JSON    = "true"
 ```
 
-This config will tell the lambda to load incoming message as a JSON object, it'll then do the following:
+This config will tell the Lambda to load incoming message as a JSON object, it'll then do the following:
 
 * Lookup values for each key in LOG_LABELS and for each key that exists, set the corresponding value as a label for the log entry
 * Format the message using the template defined with LOG_TEMPLATE_VARIABLES. Corresponding variable names are specified with LOG_TEMPLATE_VARIABLES for the variable substitution
