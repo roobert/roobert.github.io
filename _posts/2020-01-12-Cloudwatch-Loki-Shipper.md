@@ -57,7 +57,7 @@ An example query that could be used for alerting:
 logcli --addr=http://metrics.example.com:3100 query 'count_over_time({level="WARN"}[5m])'
 ```
 
-A check script for alerting can be found here: https://github.com/roobert/sensu-plugins-loki/
+A check script for alerting can be found here: [https://github.com/roobert/sensu-plugins-loki/](https://github.com/roobert/sensu-plugins-loki/])
 
 Example deployment:
 ```
