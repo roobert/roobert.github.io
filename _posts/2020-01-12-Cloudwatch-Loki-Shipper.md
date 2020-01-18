@@ -47,6 +47,26 @@ An example query that could be used for alerting:
 logcli --addr=https://metrics.example.com:3100 query 'count_over_time({level="WARN"}[5m])'
 ```
 
+A checks script for alerting: https://github.com/roobert/sensu-plugins-loki/
+
+Example deployment:
+```
+wget https://github.com/grafana/loki/releases/download/v1.2.0/logcli-linux-amd64.zip
+unzip logcli-linux-amd64.zip
+mv -v logcli-linux-amd64 /usr/local/bin/logcli
+
+sensuctl asset create debian-sensu-plugins-loki \
+  --url https://github.com/roobert/sensu-plugins-loki/releases/download/0.0.14/sensu-plugins-loki_0.0.14_debian_linux_amd64.tar.gz \
+  --sha512 32ce56dd3742a52a70b71f8aa822cbefa5dfbb960c042bd155cc001321476e0cd0ec112420ec1638d66e7c8c5b5f3ff7cd2cb1219afaedcdfac2874f12016965
+
+sensuctl check create events-router-logs-error \
+  --command "check-loki-logcli.rb --addr=https://metrics.example.com:3100 --query 'count_over_time({logGroup=\"/app\", level=\"ERROR\"}[1m])'" \
+  --interval 60 \
+  --subscriptions sensu \
+  --handlers slack \
+  --runtime-assets debian-sensu-plugins-loki,debian-sensu-ruby-runtime
+```
+
   _LogQL docs: [https://github.com/grafana/loki/blob/master/docs/logql.md](https://github.com/grafana/loki/blob/master/docs/logql.md)_
 
 ## Deployment
