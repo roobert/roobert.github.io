@@ -19,7 +19,7 @@ Non-formatted JSON log:
 <p><img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/loki01.png" alt="unformatted application logs" /></p>
 
 Optionally, it can be configured to do some intermediate processing using the following environment variables:
-```
+```bash
 LOG_LABELS             = "classname,logger_name"
 LOG_TEMPLATE           = "level=$level | $message"
 LOG_TEMPLATE_VARIABLES = "level,message"
@@ -42,7 +42,7 @@ It's possible to use the included Terraform to deploy the function: [https://git
 ## Querying Loki using LogCLI
 
 Query logs from the Loki API using LogQL:
-```
+```bash
 logcli --addr=http://metrics.example.com:3100 \
   query --tail --no-labels '{logGroup="/app/events-router/events-router"}' \
   | cut -d\  -f2- | jq -rc '"\(.["@timestamp"]) \(.level) \(.message)"'
@@ -53,14 +53,14 @@ logcli --addr=http://metrics.example.com:3100 \
 ## Alerting
 
 An example query that could be used for alerting:
-```
+```bash
 logcli --addr=http://metrics.example.com:3100 query 'count_over_time({level="WARN"}[5m])'
 ```
 
 A check script for alerting can be found here: [https://github.com/roobert/sensu-plugins-loki/](https://github.com/roobert/sensu-plugins-loki/])
 
 Example deployment:
-```
+```bash
 wget https://github.com/grafana/loki/releases/download/v1.2.0/logcli-linux-amd64.zip
 unzip logcli-linux-amd64.zip
 mv -v logcli-linux-amd64 /usr/local/bin/logcli
