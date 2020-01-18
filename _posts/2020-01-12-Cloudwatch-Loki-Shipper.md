@@ -77,6 +77,10 @@ sensuctl check create events-router-logs-error \
   --runtime-assets debian-sensu-plugins-loki,debian-sensu-ruby-runtime
 ```
 
+## Conclusion
+
+Loki providers a nice lightweight alternative to a full ELK stack and is great if full text search is not a requirement. Simpler to deploy and manage, yet still flexible enough to be used to gain visibility of issues and as a source for alerting.
+
 ## References
 
 Inspired by: [https://github.com/ClaudioWaldvogel/cloudwatch-loki-shipper/](https://github.com/ClaudioWaldvogel/cloudwatch-loki-shipper/)
