@@ -1,5 +1,4 @@
 ---
-draft:      true
 layout:     post
 title:      Lambda Log Shipper for Cloudwatch and Grafana Loki
 date:       2019-01-12 16:04
@@ -58,7 +57,7 @@ An example query that could be used for alerting:
 logcli --addr=http://metrics.example.com:3100 query 'count_over_time({level="WARN"}[5m])'
 ```
 
-A checks script for alerting: https://github.com/roobert/sensu-plugins-loki/
+A check script for alerting can be found here: https://github.com/roobert/sensu-plugins-loki/
 
 Example deployment:
 ```
