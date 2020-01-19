@@ -7,7 +7,7 @@ type:       post
 
 ## Abstract
 
-Grafana has recently released Grafana Loki, a _horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus_. This is great for container based systems where scraping application logs from log files is possible, however, in AWS the standard for many services is to write logs to Cloudwatch. In order to get logs from Cloudwatch into Loki I've written a Lambda function which can be found here: [https://github.com/roobert/cloudwatch-loki-shipper](https://github.com/roobert/cloudwatch-loki-shipper)
+Grafana has recently released [Grafana Loki](https://grafana.com/oss/loki/), a _horizontally-scalable, highly-available, multi-tenant log aggregation system inspired by Prometheus_. This is great for container based systems where scraping application logs from log files is possible, however, in AWS the standard for many services is to write logs to Cloudwatch. In order to get logs from Cloudwatch into Loki I've written a Lambda function which can be found here: [https://github.com/roobert/cloudwatch-loki-shipper](https://github.com/roobert/cloudwatch-loki-shipper)
 
 ## Cloudwatch-Loki-Shipper
 
