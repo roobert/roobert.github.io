@@ -6,6 +6,10 @@ date:       2020-02-25 20:27
 type:       post
 ---
 
+![gcp-logo](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/gcp-logo.jpg)
+![heart-logo](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/heart.png)
+![vault-logo](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/vault.svg)
+
 # GCP Service Account Key Cleaner
 
 ## Overview
