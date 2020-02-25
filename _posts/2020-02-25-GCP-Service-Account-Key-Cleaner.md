@@ -13,7 +13,7 @@ type:       post
 ## Overview
 
 
-We use [Vault](https://www.vaultproject.io/) to issue temporary access credentials to our GCP projects, this includes issuing credentials to our build Terraform and Kubernetes deployment pipeline. The [docs](https://www.vaultproject.io/docs/secrets/gcp/index.html#things-to-note) mention that the secrets engine can be configured to issue OAUTH tokens or service account keys. The advantage of OAUTH tokens is that you can issue as many as you like, and they have a fixed life of 1hr. Terraform can use OAUTH to connect to GCP and deploy your infrastructure, however, it is not possible to use OAUTH with `gcloud(1)` to configure access to your Kubernetes clusters.
+We use [Vault](https://www.vaultproject.io/) to issue temporary access credentials to our GCP projects, this includes issuing credentials to our build Terraform and Kubernetes deployment pipeline. The [docs](https://www.vaultproject.io/docs/secrets/gcp/index.html#things-to-note) mention that the secrets engine can be configured to issue OAuth tokens or service account keys. The advantage of OAuth tokens is that you can issue as many as you like, and they have a fixed life of 1hr. Terraform can use OAuth to connect to GCP and deploy your infrastructure, however, it is not possible to use OAuth with `gcloud(1)` to configure access to your Kubernetes clusters.
 
 The solution is to configure Vault to issue service account keys. Service account keys have one major disadvantage: you are limited to 10 keys per service account. This means that if Something Bad happens and you fail to revoke the service account key after it's been used, you could run out of available key slots.
 
