@@ -19,7 +19,7 @@ The solution is to configure Vault to issue service account keys. Service accoun
 
 [GCP Service Account Key Cleaner](https://github.com/roobert/gcp-service-account-key-cleaner) is a small python app which can be run locally or periodically as a [GCP Function](https://cloud.google.com/functions) to delete keys after a TTL is reached.
 
-![gcp-sakc](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/gcp-function-sakc.png)
+![gcp-sakc](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sakc.png)
 
 After running `package.sh` and uploading the code to a bucket named `<company_name>-gcp-service-account-key-cleaner`, you can use something like the following Terraform code to deploy the function:
 
