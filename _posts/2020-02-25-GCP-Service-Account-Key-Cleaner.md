@@ -19,31 +19,17 @@ The solution is to configure Vault to issue service account keys. Service accoun
 
 [GCP Service Account Key Cleaner](https://github.com/roobert/gcp-service-account-key-cleaner) is a small python app which can be run locally or periodically as a [GCP Function](https://cloud.google.com/functions) to delete keys after a TTL is reached.
 
+![gcp-sakc](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/gcp-function-sakc.png)
+
 After running `package.sh` and uploading the code to a bucket named `<company_name>-gcp-service-account-key-cleaner`, you can use something like the following Terraform code to deploy the function:
+
 ```terraform
 locals {
   company_name          = "example"
   project_id            = var.project_id
-  service_account_email = var.vault_service_account
   app_version           = "0.0.1"
-}
-
-resource "google_pubsub_topic" "gcp-service-account-key-cleaner" {
-  name = "gcp-service-account-key-cleaner"
-}
-
-resource "google_cloud_scheduler_job" "gcp-service-account-key-cleaner" {
-  name     = "gcp-service-account-key-cleaner"
-  schedule = "* * * * *"
-
-  pubsub_target {
-    topic_name = google_pubsub_topic.gcp-service-account-key-cleaner.id
-    data       = base64encode("ping")
-  }
-}
-
-resource "google_storage_bucket" "gcp-service-account-key-cleaner" {
-  name = "${local.company_name}-gcp-service-account-key-cleaner"
+  service_account_email = var.vault_service_account
+  time_to_live          = 20
 }
 
 resource "google_cloudfunctions_function" "gcp-service-account-key-cleaner" {
@@ -62,7 +48,25 @@ resource "google_cloudfunctions_function" "gcp-service-account-key-cleaner" {
 
   environment_variables = {
     SERVICE_ACCOUNT_EMAIL = local.service_account_email
-    EXPIRE_AFTER_MINUTES  = 20
+    TIME_TO_LIVE          = local.time_to_live
+  }
+}
+
+resource "google_storage_bucket" "gcp-service-account-key-cleaner" {
+  name = "${local.company_name}-gcp-service-account-key-cleaner"
+}
+
+resource "google_pubsub_topic" "gcp-service-account-key-cleaner" {
+  name = "gcp-service-account-key-cleaner"
+}
+
+resource "google_cloud_scheduler_job" "gcp-service-account-key-cleaner" {
+  name     = "gcp-service-account-key-cleaner"
+  schedule = "* * * * *"
+
+  pubsub_target {
+    topic_name = google_pubsub_topic.gcp-service-account-key-cleaner.id
+    data       = base64encode("ping")
   }
 }
 ```
