@@ -12,7 +12,7 @@ type:       post
 
 ## NOTE:
 
-Do not do what is described in this article - managing Vault managed resources outside of Vault is a bad idea.
+Do not do what is described in this article - managing Vault managed resources outside of Vault is a bad idea!
 
 ## Problem
 
