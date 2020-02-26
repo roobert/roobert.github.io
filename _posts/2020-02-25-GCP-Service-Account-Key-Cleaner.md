@@ -20,7 +20,11 @@ Our primary Terraform and Kubernetes deployment pipeline uses Vault to access ou
 
 ## Vault GCP Secrets Backend: OAuth2 Vs. Service Accounts
 
-The GCP [docs](https://www.vaultproject.io/docs/secrets/gcp/index.html#things-to-note) mention that the secrets engine can be configured to issue OAuth tokens or service account keys. The official advice states "Where possible, use OAuth2 access tokens instead of Service Account keys." So why use Service Accounts over OAuth2 tokens? Many applications (Terraform included) can use OAuth to connect to GCP APIs, equally though, a lot of software does not support OAuth - `gcloud(1)` being a primary example. Since we want to use `gcloud(1)` to configure access to our GCP Kubernetes clusters, we need to issue Service Accounts keys rather than OAuth tokens. In general service account keys are more flexible and their usage must be balanced against the corresponding risk that comes with that flexibility
+The GCP [docs](https://www.vaultproject.io/docs/secrets/gcp/index.html#things-to-note) mention that the secrets engine can be configured to issue OAuth tokens or service account keys. The official advice states "Where possible, use OAuth2 access tokens instead of Service Account keys."
+
+So why use Service Accounts over OAuth2 tokens? Many applications (Terraform included) can use OAuth to connect to GCP APIs, equally though, a lot of software does not support OAuth - `gcloud(1)` being a primary example.
+
+Since we want to use `gcloud(1)` to configure access to our GCP Kubernetes clusters, we need to issue Service Accounts keys rather than OAuth tokens. In general service account keys are more flexible and their usage must be balanced against the corresponding risk that comes with that flexibility
 
 ## Reclaiming Service Account Key Slots
 
