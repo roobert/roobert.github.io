@@ -10,19 +10,21 @@ type:       post
 
 # GCP Service Account Key Cleaner
 
-## Overview
+## Problem
 
+At my current job we use [Vault](https://www.vaultproject.io/) to issue temporary access credentials to our GCP projects. GCP has a limit of ten access keys per service account. Although we attempt to keep a sanitised environment by revoking keys after use, having short key TTLs, and by trapping process failures and performing key-revokes, there are still instances where stale keys can happen. Since our primary Terraform and Kubernetes deployment pipeline uses Vault to access our projects, stale keys using up all ten key slots can cause deployment failure when no more key allocations can happen.
 
-We use [Vault](https://www.vaultproject.io/) to issue temporary access credentials to our GCP projects, this includes issuing credentials to our build Terraform and Kubernetes deployment pipeline. The [docs](https://www.vaultproject.io/docs/secrets/gcp/index.html#things-to-note) mention that the secrets engine can be configured to issue OAuth tokens or service account keys. The advantage of OAuth tokens is that you can issue as many as you like, and they have a fixed life of 1hr. Terraform can use OAuth to connect to GCP and deploy your infrastructure, however, it is not possible to use OAuth with `gcloud(1)` to configure access to your Kubernetes clusters.
+## Vault GCP Secrets Backend: OAuth2 Vs. Service Accounts
 
-The solution is to configure Vault to issue service account keys. Service account keys have one major disadvantage: you are limited to 10 keys per service account. This means that if Something Bad happens and you fail to revoke the service account key after it's been used, you could run out of available key slots.
+The GCP [docs](https://www.vaultproject.io/docs/secrets/gcp/index.html#things-to-note) mention that the secrets engine can be configured to issue OAuth tokens or service account keys. The official advice states "Where possible, use OAuth2 access tokens instead of Service Account keys." So why use Service Accounts over OAuth2 tokens? Many applications (Terraform included) can use OAuth to connect to GCP APIs, equally though, a lot of software does not support OAuth - `gcloud(1)` being a primary example. Since we want to use `gcloud(1)` to configure access to our GCP Kubernetes clusters, we need to issue Service Accounts keys rather than OAuth tokens. In general service account keys are more flexible and their usage must be balanced against the corresponding risk that comes with that flexibility
 
-[GCP Service Account Key Cleaner](https://github.com/roobert/gcp-service-account-key-cleaner) is a small python app which can be run locally or periodically as a [GCP Function](https://cloud.google.com/functions) to delete keys after a TTL is reached.
+## Reclaiming Service Account Key Slots
+
+[GCP Service Account Key Cleaner](https://github.com/roobert/gcp-service-account-key-cleaner) is a small python app I have written which can be run locally, or periodically as a [GCP Function](https://cloud.google.com/functions) to delete keys after a TTL is reached.
 
 ![gcp-sakc](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sakc.png)
 
-After running `package.sh` and uploading the code to a bucket named `<company_name>-gcp-service-account-key-cleaner`, you can use something like the following Terraform code to deploy the function:
-
+You can use `package.sh` do create a distributable asset, and then upload the code to the bucket named `<company_name>-gcp-service-account-key-cleaner` which, along with configuring a GCP Function and associated scheduling resources, is created by the following Terraform:
 ```terraform
 locals {
   company_name          = "example"
