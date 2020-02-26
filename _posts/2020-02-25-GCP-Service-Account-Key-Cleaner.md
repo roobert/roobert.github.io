@@ -12,7 +12,7 @@ type:       post
 
 ## Problem
 
-At my current job we use [Vault](https://www.vaultproject.io/) to issue temporary access credentials to our GCP projects. GCP has a limit of ten access keys per service account.
+At my current job we use [Vault](https://www.vaultproject.io/) to issue temporary access credentials to our GCP projects. GCP has a limit of ten access keys per Service Account.
 
 We attempt to keep a sanitised environment by revoking keys after use, having short key TTLs, and by trapping process failures so we can perform key-revokes, however, there are still instances where keys can fail to be removed and so we end up with stale keys.
 
@@ -24,11 +24,11 @@ The GCP [docs](https://www.vaultproject.io/docs/secrets/gcp/index.html#things-to
 
 So why use Service Accounts keys over OAuth2 tokens? Many applications (Terraform included) can use OAuth to connect to GCP APIs, equally though, a lot of software does not support OAuth - `gcloud(1)` being a primary example.
 
-Since we want to use `gcloud(1)` to configure access to our GCP Kubernetes clusters, we need to issue Service Accounts keys rather than OAuth tokens. In general service account keys are more flexible and their usage must be balanced against the corresponding risk that comes with that flexibility
+Since we want to use `gcloud(1)` to configure access to our GCP Kubernetes clusters, we need to issue Service Accounts keys rather than OAuth tokens. In general Service Account keys are more flexible than OAuth2 tokens, however, this means that their usage must be balanced against the corresponding risk that comes with that extra flexibility.
 
 ## Reclaiming Service Account Key Slots
 
-[GCP Service Account Key Cleaner](https://github.com/roobert/gcp-service-account-key-cleaner) is a small python app I have written which deletes keys after a TTL has been reached. The app can be run either locally, or periodically as a [GCP Function](https://cloud.google.com/functions).
+[GCP Service Account Key Cleaner](https://github.com/roobert/gcp-service-account-key-cleaner) is a small python app I have written which deletes keys after a TTL has been reached. The app can be either run [locally](https://github.com/roobert/gcp-service-account-key-cleaner/blob/master/README.md#example), or periodically as a [GCP Function](https://cloud.google.com/functions):
 
 ![gcp-sakc](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sakc.png)
 
