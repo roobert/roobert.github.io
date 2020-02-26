@@ -7,7 +7,7 @@ type:       post
 ---
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/gcp-heart-vault.png" width="600px">
+<img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/gcp-heart-vault.png" width="600px" style="width: length;">
 </p>
 
 ## Problem
