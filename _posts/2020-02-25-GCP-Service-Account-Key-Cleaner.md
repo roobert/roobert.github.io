@@ -32,7 +32,7 @@ Since we want to use `gcloud(1)` to configure access to our GCP Kubernetes clust
 
 ![gcp-sakc](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sakc.png)
 
-You can use `package.sh` do create a distributable asset, and then upload the code to the bucket named `<company_name>-gcp-service-account-key-cleaner` which, along with configuring a GCP Function and associated scheduling resources, is created by the following Terraform:
+You can use `package.sh` to create a distributable asset, and then upload the code to the bucket named `<company_name>-gcp-service-account-key-cleaner` which, along with configuring a GCP Function and associated scheduling resources, is created by the following Terraform:
 ```terraform
 locals {
   company_name          = "example"
