@@ -8,8 +8,6 @@ type:       post
 
 ![gcp-logo](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/gcp-heart-vault.png)
 
-# GCP Service Account Key Cleaner
-
 ## Problem
 
 At my current job we use [Vault](https://www.vaultproject.io/) to issue temporary access credentials to our GCP projects. GCP has a limit of ten access keys per service account.
