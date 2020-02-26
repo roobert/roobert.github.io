@@ -7,7 +7,7 @@ type:       post
 ---
 
 <p align="center">
-![gcp-logo](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/gcp-heart-vault.png)
+<img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/gcp-heart-vault.png" width="600px">
 </p>
 
 ## Problem
