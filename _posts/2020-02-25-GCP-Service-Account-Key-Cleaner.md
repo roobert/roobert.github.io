@@ -34,7 +34,9 @@ Since we want to use `gcloud(1)` to configure access to our GCP Kubernetes clust
 
 ## Deployment
 
-[The repository](https://github.com/roobert/gcp-service-account-key-cleaner) includes a [`package.sh`](https://github.com/roobert/gcp-service-account-key-cleaner/blob/master/package.sh) which can be used to create a distributable asset in the form of a zip file. Internally we run this script and upload the asset to a GCP storage bucket. The bucket is defined in the following Terraform config, along with the GCP Function definition, and associated scheduler resources:
+[The repository](https://github.com/roobert/gcp-service-account-key-cleaner) includes a [`package.sh`](https://github.com/roobert/gcp-service-account-key-cleaner/blob/master/package.sh) which can be used to create a distributable asset in the form of a zip file. Internally we run this script and upload the asset to a GCP storage bucket as part of the project build pipeline.
+
+The bucket is defined in the following Terraform config, along with the GCP Function definition, and associated scheduler resources:
 ```terraform
 locals {
   company_name          = "example"
