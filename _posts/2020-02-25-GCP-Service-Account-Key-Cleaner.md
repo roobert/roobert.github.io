@@ -6,7 +6,9 @@ date:       2020-02-25 20:27
 type:       post
 ---
 
+<p align="center">
 ![gcp-logo](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/gcp-heart-vault.png)
+</p>
 
 ## Problem
 
