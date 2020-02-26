@@ -28,11 +28,11 @@ Since we want to use `gcloud(1)` to configure access to our GCP Kubernetes clust
 
 ## Reclaiming Service Account Key Slots
 
-[GCP Service Account Key Cleaner](https://github.com/roobert/gcp-service-account-key-cleaner) is a small python app I have written which can be run locally, or periodically as a [GCP Function](https://cloud.google.com/functions) to delete keys after a TTL is reached.
+[GCP Service Account Key Cleaner](https://github.com/roobert/gcp-service-account-key-cleaner) is a small python app I have written which deletes keys after a TTL has been reached. The app can be run either locally, or periodically as a [GCP Function](https://cloud.google.com/functions).
 
 ![gcp-sakc](https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/sakc.png)
 
-You can use `package.sh` to create a distributable asset, and then upload the code to the bucket named `<company_name>-gcp-service-account-key-cleaner` which, along with configuring a GCP Function and associated scheduling resources, can be created by the following Terraform:
+The repository includes a `package.sh` which can be used to create a distributable asset which can then be uploaded to the bucket named `<company_name>-gcp-service-account-key-cleaner` which, along with configuring a GCP Function and associated scheduling resources, can be created by the following Terraform config:
 ```terraform
 locals {
   company_name          = "example"
