@@ -1,5 +1,5 @@
 ---
-draft:      true
+draft:      false
 layout:     post
 title:      GCP Service Account Key Cleaner
 date:       2020-02-25 20:27
