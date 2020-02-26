@@ -43,7 +43,7 @@ locals {
   project_id            = var.project_id
   app_version           = "0.0.1"
   service_account_email = var.vault_service_account
-  time_to_live          = 20
+  time_to_live_minutes  = 20
 }
 
 resource "google_cloudfunctions_function" "gcp-service-account-key-cleaner" {
@@ -62,7 +62,7 @@ resource "google_cloudfunctions_function" "gcp-service-account-key-cleaner" {
 
   environment_variables = {
     SERVICE_ACCOUNT_EMAIL = local.service_account_email
-    TIME_TO_LIVE          = local.time_to_live
+    TIME_TO_LIVE_MINUTES  = local.time_to_live_minutes
   }
 }
 
