@@ -24,7 +24,7 @@ The GCP [docs](https://www.vaultproject.io/docs/secrets/gcp/index.html#things-to
 
 So why use Service Accounts keys over OAuth2 tokens? Many applications (Terraform included) can use OAuth to connect to GCP APIs, equally though, a lot of software does not support OAuth - `gcloud(1)` being a primary example.
 
-Since we want to use `gcloud(1)` to configure access to our GCP Kubernetes clusters, we need to issue Service Accounts keys rather than OAuth tokens. In general service account keys are more flexible, their usage must be balanced against the corresponding risk that comes with that flexibility
+Since we want to use `gcloud(1)` to configure access to our GCP Kubernetes clusters, we need to issue Service Accounts keys rather than OAuth tokens. In general service account keys are [more flexible](https://www.vaultproject.io/docs/secrets/gcp/#access-tokens-vs-service-account-keys), their usage must be balanced against the corresponding risk that comes with that flexibility
 
 
 
