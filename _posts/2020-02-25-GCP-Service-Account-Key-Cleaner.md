@@ -1,5 +1,5 @@
 ---
-draft:      false
+draft:      true
 layout:     post
 title:      GCP Service Account Key Cleaner
 date:       2020-02-25 20:27
@@ -9,6 +9,10 @@ type:       post
 <p align="center">
 <img src="https://raw.githubusercontent.com/roobert/roobert.github.io/master/images/gcp-heart-vault.png" class="img-header-600" />
 </p>
+
+## NOTE:
+
+Do not do what is described in this article - managing Vault managed resources outside of Vault is a bad idea.
 
 ## Problem
 
