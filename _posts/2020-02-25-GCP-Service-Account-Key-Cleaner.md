@@ -14,9 +14,9 @@ type:       post
 
 At my current job we use [Vault](https://www.vaultproject.io/) to issue temporary access credentials to our GCP projects. GCP has a limit of ten access keys per service account.
 
-We attempt to keep a sanitised environment by revoking keys after use, having short key TTLs, and by trapping process failures and performing key-revokes, there are still instances where stale keys can happen.
+We attempt to keep a sanitised environment by revoking keys after use, having short key TTLs, and by trapping process failures so we can still perform key-revokes, however, there are still instances where keys can fail to be cleaned up and so we end up with stale keys.
 
-Since our primary Terraform and Kubernetes deployment pipeline uses Vault to access our projects, stale keys using up all ten key slots can cause deployment failure when no more key allocations can happen.
+Our primary Terraform and Kubernetes deployment pipeline uses Vault to access our projects. Stale keys using up all ten key slots can cause deployment failure since no more key allocations can happen.
 
 ## Vault GCP Secrets Backend: OAuth2 Vs. Service Accounts
 
