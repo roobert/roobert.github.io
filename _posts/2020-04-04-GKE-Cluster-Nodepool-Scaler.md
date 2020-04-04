@@ -124,13 +124,20 @@ Finally, check the function log to see if the function executed at the correct t
 If a developer wants to work out of hours and needs to circumvent the usual triggers, they can trigger the scale-up function to scale up each node pool:
 ```bash
 cat >> ~/bin/gke_scale_nodepool.sh << EOF
-#!/bin/bash
-PROJECTS="project0 project1 project2"
+#!/usr/bin/env bash
 NODE_COUNT="${1}"
+PROJECTS="${2}"
 TOPIC="gke-cluster-nodepool-scaler"
 
-for project in "${PROJECTS}"; do
-  gcloud --project "${PROJECT}" pubsub topics publish "${TOPIC}" --message '{"nodes":${NODE_COUNT}}'
+set -euo pipefail
+
+if [[ $# != 2 ]]; then
+  echo "usage: $0 <node count> \"<project> ...\""
+  exit 1
+fi
+
+for project in ${PROJECTS}; do
+  gcloud --project "${PROJECT}" pubsub topics publish "${TOPIC}" --message "{\"nodes\":${NODE_COUNT}}"
 done
 EOF
 
