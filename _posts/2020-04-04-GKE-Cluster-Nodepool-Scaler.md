@@ -147,7 +147,7 @@ chmod +x ~/bin/gke_scale_nodepools.sh
 ~/bin/gke_scale_nodepools.sh 1 project0
 ```
 
-Equally, it's possible to manually trigger a scale down of a set of clusters across multiple projects:
+Equally, it's possible to manually trigger a scale down for a set of clusters across multiple projects:
 ```bash
 # scale nodepool down
 ~/bin/gke_scale_nodepools.sh 0 "project0 project1 project2 project3"
