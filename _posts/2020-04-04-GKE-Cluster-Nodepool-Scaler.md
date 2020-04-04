@@ -21,6 +21,8 @@ I've written a simple GCP function called [gke-cluster-nodepool-scaler](https://
 
 ## Deployment
 
+Note that if Terraform is run during the out-of-hours time period where the cluster has been scaled down to zero, it will attempt to change the nodepool state back to whatever it was provisioned with.
+
 Example Terraform module:
 ```terraform
 variable company_name {}
@@ -86,6 +88,10 @@ resource "google_cloud_scheduler_job" "gke-cluster-nodepool-scaler-scale-up" {
 ```
 
   _Note: A copy of the manifest can be found [here](https://github.com/roobert/gke-cluster-nodepool-scaler/blob/master/gke-cluster-nodepool-scaler.tf)._
+
+## Caveats
+
+I found when auto-scaling was enabled that sometimes the cluster size could end up above what I was expecting when triggering a resize. I believe this is due to the cluster auto-scaler. In my case auto-scaling is unnecessary in our dev and test environments so I've set the max nodes to 1 for each zone to prevent unwanted node creation.
 
 ## Testing
 
