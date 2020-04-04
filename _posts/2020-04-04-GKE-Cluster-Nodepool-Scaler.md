@@ -123,7 +123,7 @@ Finally, check the function log to see if the function executed at the correct t
 
 If a developer wants to work out of hours and needs to circumvent the usual triggers, they can trigger the scale-up function to scale up each node pool:
 ```bash
-cat >> ~/bin/gke_scale_nodepool.sh << EOF
+cat >> ~/bin/gke_scale_nodepools.sh << EOF
 #!/usr/bin/env bash
 NODE_COUNT="${1}"
 PROJECTS="${2}"
