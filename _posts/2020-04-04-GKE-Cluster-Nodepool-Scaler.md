@@ -22,7 +22,7 @@ I've written a simple GCP function called [gke-cluster-nodepool-scaler](https://
 ## Deployment
 
 Example Terraform module:
-```
+```terraform
 variable company_name {}
 variable project_id {}
 variable zone {}
@@ -116,7 +116,7 @@ Finally, check the function log to see if the function executed at the correct t
 ## Circumventing the Schedule
 
 If a developer wants to work out of hours and needs to circumvent the usual triggers, they can trigger the scale-up function to scale up each node pool:
-```
+```bash
 cat >> ~/bin/gke_scale_nodepool.sh << EOF
 #!/bin/bash
 PROJECTS="project0 project1 project2"
@@ -135,7 +135,7 @@ chmod +x ~/bin/gke_scale_nodepool.sh
 ```
 
 Equally, once they are done, it's possible to manually trigger a scale down of all services.
-```
+```bash
 # scale nodepool down
 ~/bin/gke_scale_nodepool.sh 0
 ```
