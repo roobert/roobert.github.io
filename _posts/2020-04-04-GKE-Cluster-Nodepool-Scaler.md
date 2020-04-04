@@ -26,25 +26,25 @@ There are several ways which the service can be tested.
 
 It's possible to directly execute the GCP function:
 <p align="center">
-<img src="gcp_function_test.png"/>
+<img src="https://github.com/roobert/roobert.github.io/raw/master/images/gke_scaler/gcp_function_test.png"/>
 </p>
 <p align="center">
-<img src="gcp_function_test_log.png"/>
+<img src="https://github.com/roobert/roobert.github.io/raw/master/images/gke_scaler/gcp_function_test_log.png"/>
 </p>
 
 Once the function works, test publishing a message onto the pubsub queue:
 <p align="center">
-<img src="pubsub_test.png"/>
+<img src="https://github.com/roobert/roobert.github.io/raw/master/images/gke_scaler/pubsub_test.png"/>
 </p>
 
 Then test the scheduler publishing is functioning:
 <p align="center">
-<img src="scheduler_test.png"/>
+<img src="https://github.com/roobert/roobert.github.io/raw/master/images/gke_scaler/scheduler_test.png"/>
 </p>
 
 Finally, check the function log to see if the function executed at the correct times:
 <p align="center">
-<img src="gcp_function_log.png"/>
+<img src="https://github.com/roobert/roobert.github.io/raw/master/images/gke_scaler/gcp_function_log.png"/>
 </p>
 
 
