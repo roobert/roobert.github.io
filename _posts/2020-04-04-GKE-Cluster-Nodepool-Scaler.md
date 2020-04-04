@@ -89,7 +89,7 @@ resource "google_cloud_scheduler_job" "gke-cluster-nodepool-scaler-scale-up" {
 
 ## Caveats
 
-If Terraform is run during the out-of-hours time period where the cluster has been scaled down to zero, it will attempt to change the nodepool state back to whatever it was provisioned with.
+If Terraform is run during the out-of-hours time period where the cluster has been scaled down to zero, it will attempt to change the nodepool state back to whatever it was provisioned with. This is potentially desired behaviour since for us it means a terraform change has been pushed to our CD systems which we probably want to test. In either case, this scaling process can co-exist harmoniously with Terraform in that both of them are able to adjust the same nodepools without causing conflict.
 
 I also found when auto-scaling was enabled that sometimes the cluster size could end up above what I was expecting when triggering a resize. I believe this is due to the cluster auto-scaler. In my case auto-scaling is unnecessary in our dev and test environments so I've set the max nodes to 1 for each zone to prevent unwanted node creation.
 
