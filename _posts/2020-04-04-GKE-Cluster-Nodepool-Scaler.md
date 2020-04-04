@@ -30,8 +30,6 @@ There are several ways which the service can be tested.
 It's possible to directly execute the GCP function:
 <p align="center">
 <img class="gcp-border" src="https://github.com/roobert/roobert.github.io/raw/master/images/gke_scaler/gcp_function_test.png"/>
-</p>
-<p align="center">
 <img class="gcp-border" src="https://github.com/roobert/roobert.github.io/raw/master/images/gke_scaler/gcp_function_test_log.png"/>
 </p>
 
