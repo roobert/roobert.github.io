@@ -17,7 +17,7 @@ As a cost cutting measure we spin down our dev and test clusters each weekday ni
 
 ## Solution
 
-I've written a simple GCP function called [gke-cluster-nodepool-scaler](https://github.com/roobert/gke-cluster-nodepool-scaler) that can be used in conjunction with GCP Scheduler and a PubSub topic to scale cluster nodepools up and down.
+I've written a simple GCP function called [gke-cluster-nodepool-scaler](https://github.com/roobert/gke-cluster-nodepool-scaler) that can be used in conjunction with the GCP Scheduler and a PubSub topic to scale cluster nodepools up and down.
 
 ## Deployment
 
