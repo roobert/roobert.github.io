@@ -81,4 +81,4 @@ Equally, once they are done, it's possible to manually trigger a scale down of a
 
 ## Conclusion
 
-Along with several other cost cutting measures, such as using preemptive instances, two-node clusters (to enable testing concurrency, but to keep the number of cluster nodes to a minimum), and by using g1-small instances, it's possibly to significantly reduce the running cost of non-production environments.
+Along with several other cost cutting measures such as using preemptive instances, using two-node clusters (to enable testing concurrency, but to keep the number of cluster nodes to a minimum), and by using the smallest possible instances for our apps, it was possible to significantly reduce the running cost of our non-production environments.
