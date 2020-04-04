@@ -1,5 +1,4 @@
 ---
-draft:      true
 layout:     post
 title:      GKE Cluster Nodepool Scaler
 date:       2020-04-04 13:20
