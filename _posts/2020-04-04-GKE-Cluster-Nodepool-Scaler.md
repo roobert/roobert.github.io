@@ -7,7 +7,7 @@ type:       post
 ---
 
 <p align="center">
-<img src="" class="img-header-600" />
+<img  src="https://github.com/roobert/roobert.github.io/raw/master/images/gke_scaler/gke_cluster_nodepool_scaler.png"/>
 </p>
 
 ## Problem
