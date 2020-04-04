@@ -141,16 +141,16 @@ for project in ${PROJECTS}; do
 done
 EOF
 
-chmod +x ~/bin/gke_scale_nodepool.sh
+chmod +x ~/bin/gke_scale_nodepools.sh
 
 # scale nodepool up
-~/bin/gke_scale_nodepool.sh 1
+~/bin/gke_scale_nodepools.sh 1
 ```
 
 Equally, once they are done, it's possible to manually trigger a scale down of all services.
 ```bash
 # scale nodepool down
-~/bin/gke_scale_nodepool.sh 0
+~/bin/gke_scale_nodepools.sh 0
 ```
 
 ## Conclusion
