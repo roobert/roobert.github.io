@@ -144,13 +144,13 @@ EOF
 chmod +x ~/bin/gke_scale_nodepools.sh
 
 # scale nodepool up
-~/bin/gke_scale_nodepools.sh 1
+~/bin/gke_scale_nodepools.sh 1 project0
 ```
 
-Equally, once they are done, it's possible to manually trigger a scale down of all services.
+Equally, it's possible to manually trigger a scale down of a set of clusters across multiple projects:
 ```bash
 # scale nodepool down
-~/bin/gke_scale_nodepools.sh 0
+~/bin/gke_scale_nodepools.sh 0 "project0 project1 project2 project3"
 ```
 
 ## Conclusion
