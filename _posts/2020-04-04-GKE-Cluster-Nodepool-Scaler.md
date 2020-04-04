@@ -12,15 +12,19 @@ type:       post
 
 ## Problem
 
-At my current job we have chosen to separate our concerns by running many small GKE clusters. We do this to separate concerns, limit potential blast radius of any security incident or human error, and to take advantage of hard boundaries between GCP projects.
+At my current job we have chosen to separate our concerns by running many small GKE clusters. This means we run a lot of clusters.
 
-This means we run a lot of clusters. As a cost cutting measure we spin our dev and test clusters down at for a period of about 8 hoursa a day. This allows our teams in multiple timezones to have access to them when they need them, but saves about 1/3 of the running cost for the nodes in the node pools per day. We also shut the machines down over the weekend. In total this saves 88 out of 168 hours a week of run time, or about 52% of the total cost.
+As a cost cutting measure we spin down our dev and test clusters for a period of about 8 hours a day, and over the weekend. This allows our teams in multiple timezones to have access to them when they need them, but but saves the unning cost for the nodes in the node pools when they are not needed. In total this saves 88 out of 168 hours a week of run time, or about 52% of the cost.
 
-## Terraform
+## Solution
 
-To deploy this..
+I wrote a simple GCP function called [gke-cluster-nodepool-scaler](https://github.com/roobert/gke-cluster-nodepool-scaler) that can be used in conjunction with GCP Scheduler and a PubSub topic to scale cluster nodepools up and down.
 
-## Test
+## Deployment
+
+An example Terraform module manifest can be found here: https://github.com/roobert/gke-cluster-nodepool-scaler/blob/master/gke-cluster-nodepool-scaler.tf
+
+## Testing
 
 There are several ways which the service can be tested.
 
@@ -67,12 +71,14 @@ chmod +x ~/bin/gke_scale_nodepool.sh
 
 # scale nodepool up
 ~/bin/gke_scale_nodepool.sh 1
+```
 
+Equally, once they are done, it's possible to manually trigger a scale down of all services.
+```
 # scale nodepool down
 ~/bin/gke_scale_nodepool.sh 0
 ```
 
-Equally, once they are done, they can manually trigger a scale down of all services.
+## Conclusion
 
-## Ingress and Pod Recovery
-
+Along with several other cost cutting measures, such as using preemptive instances, two-node clusters (to enable testing concurrency, but to keep the number of cluster nodes to a minimum), and by using g1-small instances, it's possibly to significantly reduce the running cost of non-production environments.
