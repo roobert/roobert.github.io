@@ -62,7 +62,7 @@ resource "google_pubsub_topic" "gke-cluster-nodepool-scaler" {
   name = "gke-cluster-nodepool-scaler"
 }
 
-# scale the cluster down every week-day night
+# scale the cluster down every weekday night
 resource "google_cloud_scheduler_job" "gke-cluster-nodepool-scaler-scale-down" {
   name     = "gke-cluster-nodepool-scaler-scale-down"
   schedule = "0 0 * * 2,3,4,5,6"
@@ -73,7 +73,7 @@ resource "google_cloud_scheduler_job" "gke-cluster-nodepool-scaler-scale-down" {
   }
 }
 
-# scale the cluster up every week-day morning
+# scale the cluster up every weekday morning
 resource "google_cloud_scheduler_job" "gke-cluster-nodepool-scaler-scale-up" {
   name     = "gke-cluster-nodepool-scaler-scale-up"
   schedule = "0 8 * * 1,2,3,4,5"
