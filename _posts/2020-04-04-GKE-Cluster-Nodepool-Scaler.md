@@ -14,7 +14,7 @@ type:       post
 
 At my current job we have chosen to separate our concerns by running many small GKE clusters. This means we run a lot of clusters.
 
-As a cost cutting measure we spin down our dev and test clusters for a period of about 8 hours a day, and over the weekend. This allows our teams in multiple timezones to have access to them when they need them, but but saves the unning cost for the nodes in the node pools when they are not needed. In total this saves 88 out of 168 hours a week of run time, or about 52% of the cost.
+As a cost cutting measure we spin down our dev and test clusters each weekday night for a period of about 8 hours a day, and over the weekend we leave them shutdown altogether. This allows our teams in multiple timezones to have access to the clusters when they need them, but saves the compute running cost for the nodes in the node pools when they are not needed. In total this saves 88 out of 168 hours a week of run time, or about 52% of the nodepool cost.
 
 ## Solution
 
