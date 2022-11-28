@@ -265,3 +265,8 @@ gd
 #### Functions, etc.
 
 #### Snippets
+
+### Cheatsheet
+
+### Colorscheme
+
