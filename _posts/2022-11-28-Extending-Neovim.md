@@ -17,7 +17,7 @@ maintain.
 First we'll clarify which technologies we'll be using, then how we use them, then how we
 can diagnose issues, and finally, how we can learn and improve.
 
-## Technologies
+## Understanding the Technologies
 
 ### LSP - the Language Server Protocol
 
@@ -63,8 +63,15 @@ plugins authors to write plugins and for better than normal syntax highlighting.
 > * Set breakpoints and step through code
 > * Inspect the state of the application
 
+## My Approach 
 
-## Neovim Plugins
+LunarVim is described as "An IDE layer for Neovim with sane defaults. Completely free and community driven.". LunarVIM adds a good set of default plugins to NeoVIM with configurations that will suit most people, and more importantly to me, it comes with all the essentials pre-configured but also allows customisation (enabling/disabling/configuration) and extension using additional plugins.
+
+The default plugin list can be found [here](https://www.lunarvim.org/docs/plugins/core-plugins-list), along with a list of extra plugins [here](https://www.lunarvim.org/docs/plugins/extra-plugins).
+
+Default vim settings: https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua
+
+### Neovim Plugins which Solve Problems
 
 * nvim-lspconfig - configs to connect the built-in lsp client to lsp servers
 * nvim-lsp-installer - originally used to install lsp /servers/, now replaced by Mason.
@@ -75,22 +82,8 @@ plugins authors to write plugins and for better than normal syntax highlighting.
 * null-ls - allow hooking things into the LSP client - this is used to, for example,
   hook programmes that are not LSP servers into the LSP client such as formatters, linters, etc. that are not LSP servers themselves.
 
-
-
 mason + null-ls https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 
-## My Approach
-
-LunarVim is described as "An IDE layer for Neovim with sane defaults. Completely free and community driven.". LunarVIM adds a good set of default plugins to NeoVIM with configurations that will suit most people, and more importantly to me, it comes with all the essentials pre-configured but also allows customisation (enabling/disabling/configuration) and extension using additional plugins.
-
-The default plugin list can be found [here](https://www.lunarvim.org/docs/plugins/core-plugins-list), along with a list of extra plugins [here](https://www.lunarvim.org/docs/plugins/extra-plugins).
-
-Default vim settings: https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua
-
-```
-# -p = open multiple files in buffers by default
-alias vim="lvim -p"
-```
 
 ## What to do when editing a new file type
 
