@@ -71,7 +71,7 @@ plugins authors to write plugins and for better than normal syntax highlighting.
 * Ensure keybindings are discoverable, logically grouped, and don't conflict
 * Create a cheatsheet to remind us of stuff we dont use often or can help us whilst learning
 
-### Neovim Plugins which Solve Problems
+## Neovim Plugins which Solve Problems
 
 * nvim-lspconfig - configs to connect the built-in lsp client to lsp servers
 * nvim-lsp-installer - originally used to install lsp /servers/, now replaced by Mason.
