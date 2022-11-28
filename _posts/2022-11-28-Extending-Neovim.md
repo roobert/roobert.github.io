@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Extending Neovim with LSPs, Linters, Formatters, Treesitter, and Debugger Adapter Protocol
+title:      Extending Neovim - LSPs, Linters, Formatters, Treesitter, and the DAP
 date:       2022-11-28 13:20
 type:       post
 draft:      true
@@ -19,7 +19,7 @@ can diagnose issues, and finally, how we can learn and improve.
 
 ## Technologies
 
-### LSP
+### LSP - the Language Server Protocol
 
 The Langauge Server Protocol was introduced to improve editor performance.
 
@@ -55,7 +55,7 @@ Formatters format code to conform to a specific style.
 Treesitter builds an internal graph representation of your code which can be used by
 plugins authors to write plugins and for better than normal syntax highlighting.
 
-### Debugger Adapter Protocol
+### Dap - the Debugger Adapter Protocol
 
 > nvim-dap is a Debug Adapter Protocol client implementation for Neovim. nvim-dap allows you to:
 > * Launch an application to debug
