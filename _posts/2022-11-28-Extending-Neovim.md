@@ -63,6 +63,13 @@ Formatters format code to conform to a specific style.
 Treesitter builds an internal graph representation of your code which can be used by
 plugins authors to write plugins and for better than normal syntax highlighting.
 
+## Goals
+
+* Minimize the amount of configuration we have to maintain
+* Ensure we have mechanisms to install and update everything
+* Ensure keybindings are discoverable, logically grouped, and don't conflict
+* Create a cheatsheet to remind us of stuff we dont use often or can help us whilst learning
+
 ## My Approach 
 
 LunarVim is described as "An IDE layer for Neovim with sane defaults. Completely free and community driven.". LunarVIM adds a good set of default plugins to NeoVIM with configurations that will suit most people, and more importantly to me, it comes with all the essentials pre-configured but also allows customisation (enabling/disabling/configuration) and extension using additional plugins.
