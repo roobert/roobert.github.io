@@ -42,6 +42,14 @@ In practice this means you may need to separately configure your LSP client, for
 So, there is a solution - a community maintained set of configurations that handle most
 of this for most stuff.
 
+### DAP - the Debugger Adapter Protocol
+
+> nvim-dap is a Debug Adapter Protocol client implementation for Neovim. nvim-dap allows you to:
+> * Launch an application to debug
+> * Attach to running applications and debug them
+> * Set breakpoints and step through code
+> * Inspect the state of the application
+
 ### Linters
 
 Linters check code for common problems.
@@ -54,14 +62,6 @@ Formatters format code to conform to a specific style.
 
 Treesitter builds an internal graph representation of your code which can be used by
 plugins authors to write plugins and for better than normal syntax highlighting.
-
-### Dap - the Debugger Adapter Protocol
-
-> nvim-dap is a Debug Adapter Protocol client implementation for Neovim. nvim-dap allows you to:
-> * Launch an application to debug
-> * Attach to running applications and debug them
-> * Set breakpoints and step through code
-> * Inspect the state of the application
 
 ## My Approach 
 
@@ -87,7 +87,7 @@ mason + null-ls https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc
 
 ## What to do when editing a new file type
 
-Langauge servers (LSPs)
+### Langauge servers (LSPs)
 
 ```
 # Show available language servers
@@ -99,6 +99,14 @@ LspInfo
 LvimInfo
 ```
 
+TODO: how to see what the LSP supports
+
+### Debugger Adapter Protocol
+
+TODO
+
+### Treesitter
+
 Ensure treesitter parser to ensure highlighting works
 ```
 TSInstall <filetype>
@@ -106,7 +114,8 @@ TSInstall <filetype>
 TSInstallInfo
 ```
 
-Optionally configure formatter and linter outside of LSP
+### Optional Formatter(s)
+Optionally configure formatter
 ```lua
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -122,10 +131,11 @@ formatters.setup {
   },
 }
 
---
--- Linting
---
+```
 
+### Optional Linter(s)
+
+```lua
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { command = "flake8", filetypes = { "python" } },
