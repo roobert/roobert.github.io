@@ -8,14 +8,15 @@ draft:      true
 
 ## Abstract
 
-This article aims to describe the relationship between the various different plugins and
-technologies Neovim leverages.
+In order to make the most of Neovim it's useful to understand the technologies it can
+leverage along with how the various plugins that manage these technologies relate to one
+another and can be configured.
 
-This article aims to describe how to effectively extend Neovim in a way that is easy to
-maintain.
-
-First we'll clarify which technologies we'll be using, then how we use them, then how we
-can diagnose issues, and finally, how we can learn and improve.
+1. Understanding the Technologies
+2. Neovim Configuration Goals
+4. Neovim Plugins which Solve Problems
+3. Lunarvim - An IDE Layer with Sane Defaults
+4. Adding Support for New Programming Languages
 
 ## Understanding the Technologies
 
@@ -63,20 +64,12 @@ Formatters format code to conform to a specific style.
 Treesitter builds an internal graph representation of your code which can be used by
 plugins authors to write plugins and for better than normal syntax highlighting.
 
-## Goals
+## Neovim Configuration Goals
 
 * Minimize the amount of configuration we have to maintain
 * Ensure we have mechanisms to install and update everything
 * Ensure keybindings are discoverable, logically grouped, and don't conflict
 * Create a cheatsheet to remind us of stuff we dont use often or can help us whilst learning
-
-## My Approach 
-
-LunarVim is described as "An IDE layer for Neovim with sane defaults. Completely free and community driven.". LunarVIM adds a good set of default plugins to NeoVIM with configurations that will suit most people, and more importantly to me, it comes with all the essentials pre-configured but also allows customisation (enabling/disabling/configuration) and extension using additional plugins.
-
-The default plugin list can be found [here](https://www.lunarvim.org/docs/plugins/core-plugins-list), along with a list of extra plugins [here](https://www.lunarvim.org/docs/plugins/extra-plugins).
-
-Default vim settings: https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua
 
 ### Neovim Plugins which Solve Problems
 
@@ -89,12 +82,24 @@ Default vim settings: https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/
 * null-ls - allow hooking things into the LSP client - this is used to, for example,
   hook programmes that are not LSP servers into the LSP client such as formatters, linters, etc. that are not LSP servers themselves.
 
-mason + null-ls https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+If the above doesn't make a lot of sense, don't worry. Instead of trying to manage all
+this stuff ourselves we can lean on one of the available community maintained systems
+that has all of these preconfigured.
 
+## Lunarvim - An IDE Layer with Sane Defaults
 
-## What to do when editing a new file type
+LunarVim is described as "An IDE layer for Neovim with sane defaults. Completely free and community driven.". LunarVIM adds a good set of default plugins to NeoVIM with configurations that will suit most people, and more importantly to me, it comes with all the essentials pre-configured but also allows customisation (enabling/disabling/configuration) and extension using additional plugins.
 
-### Langauge servers (LSPs)
+The default plugin list can be found [here](https://www.lunarvim.org/docs/plugins/core-plugins-list), along with a list of extra plugins [here](https://www.lunarvim.org/docs/plugins/extra-plugins).
+
+Default vim settings: https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua
+
+## Adding Support for New Programming Languages
+
+Although we're going to leverage Lunarvim, it's still necessary to do some configuration
+when we want to add support for a new language.
+
+### Langauge Server Protocol Servers (LSPs)
 
 ```
 # Show available language servers
@@ -115,6 +120,7 @@ TODO
 ### Treesitter
 
 Ensure treesitter parser to ensure highlighting works
+
 ```
 TSInstall <filetype>
 # Show installed and available parsers
@@ -122,7 +128,9 @@ TSInstallInfo
 ```
 
 ### Optional Formatter(s)
+
 Optionally configure formatter
+
 ```lua
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
