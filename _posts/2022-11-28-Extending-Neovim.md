@@ -1,12 +1,15 @@
 ---
 layout:     post
-title:      Extending Neovim with LSPs, Linters, Formatters, Treesitter, and DAP
+title:      Extending Neovim with LSPs, Linters, Formatters, Treesitter, and Debugger Adapter Protocol
 date:       2022-11-28 13:20
 type:       post
 draft:      true
 ---
 
 ## Abstract
+
+This article aims to describe the relationship between the various different plugins and
+technologies Neovim leverages.
 
 This article aims to describe how to effectively extend Neovim in a way that is easy to
 maintain.
@@ -24,8 +27,11 @@ NeoVIM added LSP support in whenever and describes it as follows:
 > LSP facilitates features like go-to-definition, find-references, hover, completion, rename, format, refactor, etc., using semantic whole-project analysis (unlike ctags).
 
 For each filetype opened an LSP client will connect to an LSP server and depending on
-the server, a number of features become available, the most useful of which are probably
-completion, formatting, and hover-signatures.
+the server, a number of features become available, the most useful of which are probably:
+* completion
+* linting
+* formatting
+* hover-signatures
 
 Somewhat confusingly, not all servers support all features and so sometimes it's
 necessary to fall-back to executing a program to perform some feature (i.e: linting, or
@@ -36,14 +42,26 @@ In practice this means you may need to separately configure your LSP client, for
 So, there is a solution - a community maintained set of configurations that handle most
 of this for most stuff.
 
-
 ### Linters
+
+Linters check code for common problems.
 
 ### Formatters
 
+Formatters format code to conform to a specific style.
+
 ### Treesitter
 
-### DAP
+Treesitter builds an internal graph representation of your code which can be used by
+plugins authors to write plugins and for better than normal syntax highlighting.
+
+### Debugger Adapter Protocol
+
+> nvim-dap is a Debug Adapter Protocol client implementation for Neovim. nvim-dap allows you to:
+> * Launch an application to debug
+> * Attach to running applications and debug them
+> * Set breakpoints and step through code
+> * Inspect the state of the application
 
 
 ## Neovim Plugins
