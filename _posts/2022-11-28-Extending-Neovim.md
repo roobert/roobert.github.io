@@ -105,7 +105,7 @@ TODO: how to see what the LSP supports
 
 It's possible to define which servers are installed in config:
 ```
-
+mason-lspconfig ensure_installed..
 ```
 
 It's also possible to use an interactive method:
@@ -131,8 +131,27 @@ TODO
 
 ### Treesitter
 
-Ensure treesitter parser to ensure highlighting works
+Ensure treesitter parser to ensure highlighting works by adjusting lunarvim config:
+```
+lvim.builtin.treesitter.ensure_installed = {
+  "bash",
+  "c",
+  "javascript",
+  "json",
+  "lua",
+  "python",
+  "typescript",
+  "tsx",
+  "css",
+  "rust",
+  "java",
+  "yaml",
+  "go",
+  "hcl",
+}
+```
 
+or interactively:
 ```
 TSInstall <filetype>
 # Show installed and available parsers
