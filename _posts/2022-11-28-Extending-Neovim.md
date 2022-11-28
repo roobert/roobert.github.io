@@ -206,7 +206,7 @@ G
 bufdo exe ":%g/whatever/d" | w
 ```
 
-### Diagnostis
+### Diagnostics
 
 ```
 # Open diagnostics (Trouble plugin)
