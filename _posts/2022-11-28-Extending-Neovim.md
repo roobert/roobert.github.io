@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Extending Neovim - LSPs, Linters, Formatters, Treesitter, and the DAP
+title:      Extending Neovim - LSP, DAP, Linters, Formatters, and Treesitter
 date:       2022-11-28 13:20
 type:       post
 draft:      true
