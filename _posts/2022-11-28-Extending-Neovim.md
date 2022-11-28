@@ -101,19 +101,29 @@ when we want to add support for a new language.
 
 ### Langauge Server Protocol Servers (LSPs)
 
+TODO: how to see what the LSP supports
+
+It's possible to define which servers are installed in config:
+```
+
+```
+
+It's also possible to use an interactive method:
+
 ```
 # Show available language servers
 LspInstall <filetype>
-# -or- to browse supported plugins
+# -or- to browse and install supported plugins
 Mason
+```
 
+To check the state of the LSP client:
+```
 # Inspect which formatters and linters are attached to the buffer
 LspInfo
 # -or-
 LvimInfo
 ```
-
-TODO: how to see what the LSP supports
 
 ### Debugger Adapter Protocol
 
