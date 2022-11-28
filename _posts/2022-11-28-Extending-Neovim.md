@@ -104,6 +104,8 @@ when we want to add support for a new language.
 ```
 # Show available language servers
 LspInstall <filetype>
+# -or- to browse supported plugins
+Mason
 
 # Inspect which formatters and linters are attached to the buffer
 LspInfo
