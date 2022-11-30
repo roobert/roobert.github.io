@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Understanding and Managing Neovim Plugins - LSP Servers, Linters, Formatters, and Treesitter
+title:      Neovim Spaghetti - LSP Servers, Linters, Formatters, and Treesitter
 date:       2022-11-28 13:20
 type:       post
 draft:      true
