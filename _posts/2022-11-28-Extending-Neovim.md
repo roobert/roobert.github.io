@@ -178,9 +178,9 @@ It's also possible to use an interactive method:
 
 ```
 # Show available language servers
-LspInstall <filetype>
+:LspInstall <filetype>
 # -or- to browse and install supported plugins
-Mason
+:Mason
 ```
 
 To check the state of the LSP client:
@@ -195,7 +195,7 @@ To check the state of the LSP client:
 
 To see a list of available languages:
 ```
-TSInstallInfo
+:TSInstallInfo
 ```
 
 Add the list of languages you'd like to have treesitter support for in `~/.config/lvim/config.lua`:
@@ -222,7 +222,7 @@ Once updated, run `:PackerCompile` and restart the editor.
 
 Or interactively:
 ```
-TSInstall <filetype>
+:TSInstall <filetype>
 ```
 
 ### Optional Formatter(s)
