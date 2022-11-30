@@ -110,6 +110,27 @@ alias vi="lvim -p"
 alias vim=vi
 ```
 
+All of the plugins in the above section are included in Lunarvim, apart from `mason-null-ls`,
+lets add it to `~/.config/lvim/config.lua`:
+
+```lua
+lvim.plugins = {
+  -- automatically install all the formatters and linters specified by the following
+  -- config options:
+  -- * linters.setup
+  -- * formatters.setup
+  { "jayp0521/mason-null-ls.nvim",
+    config = function()
+      require "mason-null-ls".setup({
+        automatic_installation = false,
+        automatic_setup = true,
+        ensure_installed = nil
+      })
+    end
+  },
+}
+```
+
 Lunarvim is an excellent base system but in-order to really have a good experience we
 need to understand how to customize it, configure it, and extend it.
 
@@ -213,13 +234,11 @@ linters.setup {
 Once added here, run: `PackerCompile` and restart the editor. You can check that the
 formatters have been installed by checking the `Installed` list in `:Mason`.
 
-### Completion
+## Additional Configuration
 
-#### Functions, etc.
+## Cheatsheet Plugin
 
-#### Snippets
 
-### Cheatsheet
+## Conclusion
 
-### Colorscheme
-
+Next, we'll look at 
