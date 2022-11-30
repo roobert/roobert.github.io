@@ -123,6 +123,22 @@ Open the cheat sheet viewer by pressing `<leader>-?`, in Lunarvim `<leader>` is 
 
 Once the cheatsheet is open you can edit it with `<ctrl>-e`.
 
+## Quick Reference
+
+### Operator, Text Object, Motion
+
+### Completion
+
+### Snippets
+
+### Co-Pilot
+
+### Go-To Definition/Implementation/Help
+
+### Macros
+
+### Copy / Paste
+
 ## Conclusion
 
 blah blah blah
