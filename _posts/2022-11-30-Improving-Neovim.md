@@ -14,6 +14,10 @@ draft:      true
 
 Two useful plugins which can be used to 
 
+## Default Keybindings
+
+Find a cheatsheet from https://github.com/mattmc3/neovim-cheatsheet
+
 ## Discoverability with the Which-Key Plugin
 
 ```
