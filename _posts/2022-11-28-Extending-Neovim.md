@@ -37,7 +37,8 @@ the server, a number of features become available, for example:
 
 ### Linters
 
-Linters check code for common problems.
+Linters check code for common problems and provide hints on how to correct any detected
+issues.
 
 ### Formatters
 
@@ -50,11 +51,11 @@ plugins authors to write plugins and for better than normal syntax highlighting.
 
 ## The Problem
 
-Somewhat confusingly, not all servers support all features and so sometimes it's
-necessary to fall-back to executing a program to perform some feature (i.e: linting, or
-formatting) for you.
+Not all LSP servers support all features and so it can be necessary to fall-back to executing a program to perform some feature like linting, or formatting.
 
-In practice this means it is sometimes necessary to separately configure your LSP client, formatter(s), and a linter for every language that you wish to have these features for. This can be complicated to get right and in the fast-paced and ever shifting world of neovim can result in brittle configurations that break often.
+In practice this means it is can be necessary to separately configure your LSP client, formatter(s), and a linter for every language that you wish to have these features for. The configuration process 
+
+This can be complicated to get right and in the fast-paced and ever shifting world of neovim can result in brittle configurations that break often.
 
 The solution to this problem that we'll look at here is to rely on using a community maintained configuration that we can then extend and configure to our own liking.
 
@@ -76,6 +77,7 @@ The solution to this problem that we'll look at here is to rely on using a commu
   LSP configs with neovim so the LSP client can connect to the servers
 * null-ls - allow hooking things into the LSP client - this is used to, for example,
   hook programmes that are not LSP servers into the LSP client such as formatters, linters, etc. that are not LSP servers themselves.
+* mason-null-ls - automatically install formatters/linters to be used by null-ls
 
 If the above doesn't make a lot of sense, don't worry. Instead of trying to manage all
 this stuff ourselves we can lean on one of the available community maintained systems
