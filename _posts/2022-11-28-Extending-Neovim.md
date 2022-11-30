@@ -353,15 +353,16 @@ Top/bottom of file      | gg G
 Toggle comments         | <leader>-/
 
 ## search-and-replace
-Search and Replace                                                     | /<pattern>
-Disable highlight after search                                         | <leader>-h
-Press * on a word (or visual selection), // represents selected string | * :%s//replace/gc
-Delete "whatever" from every open buffer                               | bufdo exe ":%g/whatever/d" | w
+Search and Replace                       | /<pattern>
+Disable highlight after search           | <leader>-h
+Press * on a word (or visual selection), | *
+  // represents selected string          | :%s//replace/gc
+Delete "whatever" from every open buffer | bufdo exe ":%g/whatever/d" | w
 
 ## diagnostics
 Open diagnostics (Trouble plugin) and witch buffers with ctrl-j/k | <leader>-t
-Toggle inline diagnostics | <leader>--
-Next/previous diagnostics | ]d [d
+Toggle inline diagnostics                                         | <leader>--
+Next/previous diagnostics                                         | ]d [d
 
 ## introspection
 Show help/hint  | <shift>-k
