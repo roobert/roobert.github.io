@@ -311,18 +311,8 @@ lvim.plugins = {
     },
     config = function()
       require('cheatsheet').setup {
+        -- hide bundled cheatsheets to make our own notes more easy to reference
         bundled_cheatsheets = false,
-        -- {
-        --   enabled = { 'default' },
-        --   disabled = {
-        --     'unicode',
-        --     'nerd-fonts',
-        --     'edit-vim',
-        --     'text-manipulation-vim',
-        --     'edit-vim',
-        --     'file-vim'
-        --   },
-        -- },
         bundled_plugin_cheatsheets = false,
         include_only_installed_plugins = false,
         location = 'bottom',
