@@ -104,9 +104,9 @@ Press * on a word (or visual selection), | *
 Delete "whatever" from every open buffer | bufdo exe ":%g/whatever/d" | w
 
 ## diagnostics
-Open diagnostics (Trouble plugin) and witch buffers with ctrl-j/k | <leader>-t
-Toggle inline diagnostics                                         | <leader>--
-Next/previous diagnostics                                         | ]d [d
+Open diagnostics (Trouble plugin)     | <leader>-t
+Toggle inline diagnostic virtual text | <leader>--
+Next/previous diagnostics             | ]d [d
 
 ## introspection
 Show help/hint  | <shift>-k
@@ -117,6 +117,8 @@ Open file explorer           | <leader>-e
 Prev/next buffer             | <shift>-h <shift>-l
 Close buffer                 | <leader>-c
 Fuzzy switch between buffers | <leader>-f
+Switch buffers               | <ctrl>-j <ctrl>-k
+
 ```
 
 Open the cheat sheet viewer by pressing `<leader>-?`, in Lunarvim `<leader>` is spacebar.
@@ -138,6 +140,16 @@ Once the cheatsheet is open you can edit it with `<ctrl>-e`.
 ### Macros
 
 ### Copy / Paste
+
+### Copy/Pasting
+
+My preferred method of copy/paste involves two plugins.
+
+By default any delete action stores the deleted text in the default copy register, I
+prefer to change this behaviour so deleting texts does not overwrite the default
+register.
+
+I also prefer to use a yank-ring to store a history of copied text.
 
 ## Conclusion
 
