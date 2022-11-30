@@ -19,6 +19,9 @@ Here are a few tips for learning Neovim.
 The main way to customise Neovim is with plugins, either build your own configuration or
 a good idea to begin with is to use a pre-packaged collection such as [Lunarvim](https://github.com/lunarvim/lunarvim).
 
+Also, see my article on
+[extending Neovim](https://roobert.github.io/2022/11/28/Extending-Neovim/).
+
 ## Default Keybindings
 
 First, find a cheatsheet for your keyboard layout from [here](https://github.com/mattmc3/neovim-cheatsheet).
