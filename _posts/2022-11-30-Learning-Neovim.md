@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Tips on Learning Neovim
+title:      Learning Neovim
 date:       2022-11-30 20:20
 type:       post
 draft:      true
