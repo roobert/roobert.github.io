@@ -6,6 +6,10 @@ type:       post
 draft:      true
 ---
 
+<p align="center">
+<img  src="https://github.com/roobert/roobert.github.io/raw/master/images/Neovim-logo.svg.png"/>
+</p>
+
 ## Abstract
 
 To make the most of Neovim it's useful to understand the technologies it can leverage along with how the various plugins that manage these technologies relate to one another and can be configured.
