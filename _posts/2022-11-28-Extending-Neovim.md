@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Extending Neovim - LSP, DAP, Linters, Formatters, and Treesitter
+title:      Extending Neovim - LSP, Linters, Formatters, and Treesitter
 date:       2022-11-28 13:20
 type:       post
 draft:      true
@@ -8,9 +8,7 @@ draft:      true
 
 ## Abstract
 
-In order to make the most of Neovim it's useful to understand the technologies it can
-leverage along with how the various plugins that manage these technologies relate to one
-another and can be configured.
+To make the most of Neovim it's useful to understand the technologies it can leverage along with how the various plugins that manage these technologies relate to one another and can be configured.
 
 1. Understanding the Technologies
 2. Neovim Configuration Goals
@@ -22,34 +20,20 @@ another and can be configured.
 
 ### LSP - the Language Server Protocol
 
-The Langauge Server Protocol was introduced to improve editor performance.
+The Langauge Server Protocol was introduced to improve editor performance. Prior to LSP
+editors would have to execute binaries to do things like linting and formatting. With
+the advent of LSPs editors get real-time feedback to the editor.
 
-NeoVIM added LSP support in whenever and describes it as follows:
+NeoVIM added LSP support in version `0.5.0` and describes it as follows:
 > LSP facilitates features like go-to-definition, find-references, hover, completion, rename, format, refactor, etc., using semantic whole-project analysis (unlike ctags).
 
 For each filetype opened an LSP client will connect to an LSP server and depending on
-the server, a number of features become available, the most useful of which are probably:
+the server, a number of features become available, for example:
 * completion
 * linting
 * formatting
 * hover-signatures
-
-Somewhat confusingly, not all servers support all features and so sometimes it's
-necessary to fall-back to executing a program to perform some feature (i.e: linting, or
-formatting) for you.
-
-In practice this means you may need to separately configure your LSP client, formatter(s), and a linter for every filetype that you wish to have these features for. This can be complicated to get right and in the fast-paced world of neovim means that your configuration can break often as things change so rapidly.
-
-So, there is a solution - a community maintained set of configurations that handle most
-of this for most stuff.
-
-### DAP - the Debugger Adapter Protocol
-
-> nvim-dap is a Debug Adapter Protocol client implementation for Neovim. nvim-dap allows you to:
-> * Launch an application to debug
-> * Attach to running applications and debug them
-> * Set breakpoints and step through code
-> * Inspect the state of the application
+* diagnostics
 
 ### Linters
 
@@ -63,6 +47,17 @@ Formatters format code to conform to a specific style.
 
 Treesitter builds an internal graph representation of your code which can be used by
 plugins authors to write plugins and for better than normal syntax highlighting.
+
+## The Problem
+
+Somewhat confusingly, not all servers support all features and so sometimes it's
+necessary to fall-back to executing a program to perform some feature (i.e: linting, or
+formatting) for you.
+
+In practice this means it is sometimes necessary to separately configure your LSP client, formatter(s), and a linter for every language that you wish to have these features for. This can be complicated to get right and in the fast-paced and ever shifting world of neovim can result in brittle configurations that break often.
+
+The solution to this problem that we'll look at here is to rely on using a community maintained configuration that we can then extend and configure to our own liking.
+
 
 ## Neovim Configuration Goals
 
