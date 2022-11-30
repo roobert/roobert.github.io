@@ -143,9 +143,35 @@ when we want to add support for a new language.
 
 TODO: how to see what the LSP supports
 
-It's possible to define which servers are installed in config:
+Available LSP servers [here](https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers).
+
+Update `~/.config/lvim/config.lua` with a list of desired LSP Servers to install:
 ```
-mason-lspconfig ensure_installed..
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "awk_ls",
+    "bashls",
+    "cssls",
+    "dockerls",
+    "gopls",
+    "gradle_ls",
+    "grammarly",
+    "graphql",
+    "html",
+    "jsonls",
+    "tsserver",
+    "sumneko_lua",
+    "marksman",
+    "pyright",
+    "pylsp",
+    "sqlls",
+    "tailwindcss",
+    "terraformls",
+    "tflint",
+    "vuels",
+    "yamlls"
+  }
+})
 ```
 
 It's also possible to use an interactive method:
@@ -160,12 +186,17 @@ Mason
 To check the state of the LSP client:
 ```
 # Inspect which formatters and linters are attached to the buffer
-LspInfo
+:LspInfo
 # -or-
-LvimInfo
+:LvimInfo
 ```
 
 ### Treesitter
+
+To see a list of available languages:
+```
+TSInstallInfo
+```
 
 Add the list of languages you'd like to have treesitter support for in `~/.config/lvim/config.lua`:
 ```
@@ -187,14 +218,16 @@ lvim.builtin.treesitter.ensure_installed = {
 }
 ```
 
-or interactively:
+Once updated, run `:PackerCompile` and restart the editor.
+
+Or interactively:
 ```
 TSInstall <filetype>
-# Show installed and available parsers
-TSInstallInfo
 ```
 
 ### Optional Formatter(s)
+
+To see supported formatters, run: `NullLsInfo`.
 
 Optionally configure additional formatters in `~/.config/lvim/config.lua`:
 
@@ -219,6 +252,8 @@ formatters have been installed by checking the `Installed` list in `:Mason`.
 
 ### Optional Linter(s)
 
+To see supported linters (diagnostics), run: `NullLsInfo`.
+
 Optionally configure additional linters in `~/.config/lvim/config.lua`:
 
 ```lua
@@ -234,9 +269,8 @@ linters.setup {
 Once added here, run: `PackerCompile` and restart the editor. You can check that the
 formatters have been installed by checking the `Installed` list in `:Mason`.
 
-## Additional Configuration
-
 ## Cheatsheet Plugin
+
 
 
 ## Conclusion
