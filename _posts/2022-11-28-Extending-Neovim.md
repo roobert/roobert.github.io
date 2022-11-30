@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Extending Neovim - LSP, Linters, Formatters, and Treesitter
+title:      Understanding and Managing Neovim Plugins - LSP Servers, Linters, Formatters, and Treesitter
 date:       2022-11-28 13:20
 type:       post
 draft:      true
