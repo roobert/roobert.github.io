@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Improving with Neovim
+title:      Tips on Learning Neovim
 date:       2022-11-30 20:20
 type:       post
 draft:      true
@@ -12,13 +12,30 @@ draft:      true
 
 ## Abstract
 
-Two useful plugins which can be used to 
+Here are a few tips for learning Neovim.
+
+## Plugins
+
+The main way to customise Neovim is with plugins, either build your own configuration or
+a good idea to begin with is to use a pre-packaged collection such as [Lunarvim](https://github.com/lunarvim/lunarvim).
 
 ## Default Keybindings
 
-Find a cheatsheet from https://github.com/mattmc3/neovim-cheatsheet
+First, find a cheatsheet for your keyboard layout from [here](https://github.com/mattmc3/neovim-cheatsheet).
+
+It's not critical to learn all the keybindings immediately, however, it is a good idea
+to try and learn movement with `hjkl`.
+
+Keep a copy of the keyboard cheatsheet handy for reference.
+
+## Vim Tutor
+
+Run `:Tutor` to go through a set of lessons that'll introduce you to the most common
+features of Neovim.
 
 ## Discoverability with the Which-Key Plugin
+
+If not using Lunarvim, install the `which-key` plugin.
 
 ```
 lvim.builtin.which_key.mappings["f"] = { "<CMD>Telescope buffers<CR>", "Buffer list" }
@@ -28,6 +45,10 @@ lvim.builtin.which_key.mappings["+"] = { "<CMD>Copilot toggle<CR>", "Toggle Copi
 ```
 
 ## Improving with the Cheatsheet Plugin
+
+The cheatsheet plugin (not to be confused with the keyboard shortcuts cheatsheet) is a
+great way to keep and refer to notes and reminders that you can use to improve your Neovim
+knowledge.
 
 Install the plugin by updating `~/.config/lvim/config.lua`:
 ```
