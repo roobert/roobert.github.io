@@ -269,10 +269,109 @@ linters.setup {
 Once added here, run: `PackerCompile` and restart the editor. You can check that the
 formatters have been installed by checking the `Installed` list in `:Mason`.
 
-## Cheatsheet Plugin
+## Discoverability with the Which-Key Plugin
 
+```
+-- switch buffers with shift-l/h
+lvim.keys.normal_mode["<S-l>"] = "<CMD>BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-h>"] = "<CMD>BufferLineCyclePrev<CR>"
 
+-- navigate between errors with [/]-d
+lvim.keys.normal_mode["[d"] = ":lua vim.diagnostic.goto_prev()<CR>"
+lvim.keys.normal_mode["]d"] = ":lua vim.diagnostic.goto_next()<CR>"
+
+lvim.builtin.which_key.mappings["f"] = { "<CMD>Telescope buffers<CR>", "Buffer list" }
+lvim.builtin.which_key.mappings["t"] = { "<CMD>TroubleToggle document_diagnostics<CR>", "Trouble" }
+lvim.builtin.which_key.mappings["-"] = { "<Plug>(toggle-lsp-diag-vtext)", "Toggle Diagnostics" }
+
+lvim.builtin.which_key.mappings["+"] = { "<CMD>Copilot toggle<CR>", "Toggle Copilot" }
+
+-- yank history interaction
+lvim.keys.normal_mode["<c-p>"] = [[<plug>(YoinkPostPasteSwapBack)]]
+lvim.keys.normal_mode["<c-n>"] = [[<plug>(YoinkPostPasteSwapForward)]]
+lvim.keys.normal_mode["p"] = [[<plug>(YoinkPaste_p)]]
+lvim.keys.normal_mode["P"] = [[<plug>(YoinkPaste_P)]]
+lvim.keys.normal_mode["gp"] = [[<plug>(YoinkPaste_gp)]]
+lvim.keys.normal_mode["gP"] = [[<plug>(YoinkPaste_gP)]]
+lvim.keys.normal_mode["<C-y>"] = [[<CMD>Yanks<CR>]]
+lvim.keys.insert_mode["<C-y>"] = [[<CMD>Yanks<CR>]]
+```
+
+## Improving with the Cheatsheet Plugin
+
+Create a ~/.config/nvim/cheatsheet.txt
+```
+## movement
+Left, down, up, right   | h j k l
+Previous/next paragraph | { }
+Next/previous block     | [ ]
+Top/bottom of file      | gg G
+
+## comment-management
+Toggle comments         | <leader>-/
+
+## search-and-replace
+Search and Replace                                                     | /<pattern>
+Disable highlight after search                                         | <leader>-h
+Press * on a word (or visual selection), // represents selected string | * :%s//replace/gc
+Delete "whatever" from every open buffer                               | bufdo exe ":%g/whatever/d" | w
+
+## diagnostics
+Open diagnostics (Trouble plugin) and witch buffers with ctrl-j/k | <leader>-t
+Toggle inline diagnostics | <leader>--
+Next/previous diagnostics | ]d [d
+
+## introspection
+Show help/hint  | <shift>-k
+Goto definition | gd
+
+## file-management
+Open file explorer           | <leader>-e
+Prev/next buffer             | <shift>-h <shift>-l
+Close buffer                 | <leader>-c
+Fuzzy switch between buffers | <leader>-f
+```
+
+Install the plugin by updating `~/.config/lvim/config.lua`:
+```
+lvim.plugins = {
+  -- place to store reminders and rarely used but useful stuff
+  { 'sudormrfbin/cheatsheet.nvim',
+    requires = {
+      { 'nvim-telescope/telescope.nvim' },
+      { 'nvim-lua/popup.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+    },
+    config = function()
+      require('cheatsheet').setup {
+        bundled_cheatsheets = false,
+        -- {
+        --   enabled = { 'default' },
+        --   disabled = {
+        --     'unicode',
+        --     'nerd-fonts',
+        --     'edit-vim',
+        --     'text-manipulation-vim',
+        --     'edit-vim',
+        --     'file-vim'
+        --   },
+        -- },
+        bundled_plugin_cheatsheets = false,
+        include_only_installed_plugins = false,
+        location = 'bottom',
+        keys_label = 'Keys',
+        description_label = 'Description',
+        show_help = true,
+      }
+    end,
+  },
+}
+```
 
 ## Conclusion
 
-Next, we'll look at 
+blah blah blah
+
+Check out my config..
+
+Check out my colorscheme..
