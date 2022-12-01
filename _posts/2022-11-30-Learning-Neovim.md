@@ -127,7 +127,38 @@ Once the cheatsheet is open you can edit it with `<ctrl>-e`.
 
 ## Quick Reference
 
+To see the Quick Reference run `:help quickref` - use `<ctrl>-]` to go to the section
+under the cursor and `<ctrl>-o` to go back.
+
+After learning the basics from the Vim Tutor, check out the quick reference and in
+particular, the `Text objects section`.
+
 ### Operator, Text Object, Motion
+
+One of the most powerful features in vim is the operator-(object)-motion pattern.
+
+examples:
+```
+d2w = delete 2 words.
+di( = delete in "(s
+caw = change around word
+dt' = delete to '
+df[ = delete forwards to and including [
+```
+
+With the xyz plugin, you can jump inside objects further in the sentence, e.g:
+
+```
+ci" = change inside "
+```
+
+With the zxy plugin you can modify and change syntax around code, e.g:
+
+```
+ysaw" = you surround around word "'s
+cs"' = change surround (from) " (to) '
+cs([ = change surround (from) ( (to) [
+```
 
 ### Completion
 
@@ -139,7 +170,9 @@ Once the cheatsheet is open you can edit it with `<ctrl>-e`.
 
 ### Macros
 
-### Copy / Paste
+### Marks
+
+### Registers - Copy / Paste
 
 ### Copy/Pasting
 

@@ -12,7 +12,7 @@ draft:      true
 
 ## Abstract
 
-To make the most of Neovim it's useful to understand the technologies it can leverage along with how the various plugins that manage these technologies relate to one another and can be configured. In this article we'll attempt to untangle the Neovim plugin spaghetti that turns Neovim into a more featureful modern editor.
+To make the most of Neovim it's useful to understand the technologies it can leverage, how the various plugins that manage these technologies relate to one another, and how they can be installed and configured. In this article we'll attempt to untangle the Neovim plugin spaghetti that turns Neovim into a more featureful modern editor.
 
 This article is broken up into the following sections:
 
@@ -82,14 +82,13 @@ First, let's set-out some goals:
 Next, lets understand how the core-plugin management and wiring works. To begin, we'll
 need to understand what the core plugins are and how they relate to one-another:
 
-* nvim-lspconfig - configs to connect the built-in lsp client to lsp servers
-* nvim-lsp-installer - originally used to install lsp /servers/, now replaced by Mason.
-* Mason - a plugin which can be used to install and manage LSP servers, DAP servers, linters, and formatters
-* mason-lspconfig - This bridges the gap between nvim-lspconfig and mason - registering
+* [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - configs to connect the built-in lsp client to lsp servers
+* [williamboman/mason](https://github.com/williamboman/mason) - a plugin which can be used to install and manage LSP servers, DAP servers, linters, and formatters
+* [williamboman/mason-lspconfig](https://github.com/williamboman/mason-lspconfig) - This bridges the gap between nvim-lspconfig and mason - registering
   LSP configs with neovim so the LSP client can connect to the servers
-* null-ls - allow hooking things into the LSP client - this is used to, for example,
+* [jose-elias-alvarez/null-ls](https://github.com/jose-elias-alvarez/null-ls) - allow hooking things into the LSP client - this is used to, for example,
   hook programmes that are not LSP servers into the LSP client such as formatters, linters, etc. that are not LSP servers themselves.
-* mason-null-ls - automatically install formatters/linters to be used by null-ls
+* [jayp0521/mason-null-ls](https://github.com/jayp0521/mason-null-ls) - automatically install formatters/linters to be used by null-ls
 
 If the above doesn't make a lot of sense, don't worry. Instead of trying to manage all
 this stuff ourselves we can lean on one of the available community maintained systems
@@ -227,7 +226,7 @@ Or interactively:
 
 ### Optional Formatter(s)
 
-To see supported formatters, run: `NullLsInfo`.
+To see supported formatters, run: `:NullLsInfo`.
 
 Optionally configure additional formatters in `~/.config/lvim/config.lua`:
 
@@ -252,7 +251,7 @@ formatters have been installed by checking the `Installed` list in `:Mason`.
 
 ### Optional Linter(s)
 
-To see supported linters (diagnostics), run: `NullLsInfo`.
+To see supported linters (diagnostics), run: `:NullLsInfo`.
 
 Optionally configure additional linters in `~/.config/lvim/config.lua`:
 
