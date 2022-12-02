@@ -22,8 +22,8 @@ This article is broken up into the following sections:
 1. [Understanding the Technologies](#understanding-the-technologies)
 2. [LSP Servers are Only Half the Picture](#lsp-servers-are-only-half-the-picture)
 3. [Neovim Configuration Goals](#neovim-configuration-goals)
-4. [Neovim Plugins which Solve Problems](#neovim-plugins-which-solve-plugins)
-5. [Lunarvim - An IDE Layer with Sane Defaults](#lunarvim-an-ide-layer-with-sane-defaults)
+4. [Neovim Plugins which Solve Problems](#neovim-plugins-which-solve-problems)
+5. [Lunarvim - An IDE Layer with Sane Defaults](#lunarvim---an-ide-layer-with-sane-defaults)
 6. [Adding Support for New Programming Languages](#adding-support-for-new-programming-languages)
 7. [Keeping Everything Up-To-Date](#keeping-everything-up-to-date)
 8. [Conclusion](#conclusion)
@@ -87,7 +87,7 @@ First, let's set-out some goals:
 * Minimize the amount of configuration we have to maintain
 * Ensure we have mechanisms to install and update everything
 
-## [Neovim Plugins which Solve Problems](#neovim-plugins-which-solve-plugins)
+## [Neovim Plugins which Solve Problems](#neovim-plugins-which-solve-problems)
 
 Next, lets understand how the core-plugin management and configuration works. To begin, we'll
 need to understand what the core plugins are and how they relate to one-another:
