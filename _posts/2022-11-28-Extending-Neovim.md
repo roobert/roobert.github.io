@@ -153,12 +153,10 @@ when we want to add support for a new language.
 
 ### Langauge Server Protocol Servers (LSPs)
 
-TODO: how to see what the LSP supports
-
-Available LSP servers [here](https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers).
+To see a list of available LSP servers, run `:help lspconfig-all`.
 
 Update `~/.config/lvim/config.lua` with a list of desired LSP Servers to install:
-```
+```lua
 require("mason-lspconfig").setup({
   ensure_installed = {
     "awk_ls",
@@ -202,6 +200,25 @@ To check the state of the LSP client:
 :LvimInfo
 ```
 
+To see the features of the LSP server, see: `:lua print(vim.inspect(vim.lsp.protocol.make_client_capabilities()))`
+```
+{
+  callHierarchy = {
+    dynamicRegistration = false
+  },
+  textDocument = {
+    codeAction = {
+      codeActionLiteralSupport = {
+        codeActionKind = {
+          valueSet = { "", "quickfix", "refactor", "refactor.extract", "refactor.inline", "refactor.rewrite", "source", "source.organizeImpo
+rts" }
+        }
+      }
+    }
+  }
+}
+```
+
 ### Treesitter
 
 To see a list of available languages:
@@ -210,7 +227,7 @@ To see a list of available languages:
 ```
 
 Add the list of languages you'd like to have treesitter support for in `~/.config/lvim/config.lua`:
-```
+```lua
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
@@ -254,7 +271,7 @@ formatters.setup {
 }
 ```
 
-Once added here, run: `PackerCompile` and restart the editor. You can check that the
+Once added here, run: `:PackerCompile` and restart the editor. You can check that the
 formatters have been installed by checking the `Installed` list in `:Mason`.
 
 ### Optional Linter(s)
@@ -273,7 +290,7 @@ linters.setup {
 }
 ```
 
-Once added here, run: `PackerCompile` and restart the editor. You can check that the
+Once added here, run: `:PackerCompile` and restart the editor. You can check that the
 formatters have been installed by checking the `Installed` list in `:Mason`.
 
 ### Updating Everything
