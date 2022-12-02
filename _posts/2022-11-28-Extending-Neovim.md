@@ -257,6 +257,10 @@ Or interactively:
 
 ### Optional Formatter(s)
 
+If there is no LSP server for the language, or the LSP server doesn't support a
+formatter then it's possible to configure an external program to perform the formatting
+via the null-ls plugin.
+
 To see supported formatters, run: `:NullLsInfo`.
 
 Optionally configure additional formatters in `~/.config/lvim/config.lua`:
@@ -277,6 +281,10 @@ Once added here, run: `:PackerCompile` and restart the editor. You can check tha
 formatters have been installed by checking the `Installed` list in `:Mason`.
 
 ### Optional Linter(s)
+
+If there is no LSP server for the language, or the LSP server doesn't support a linter
+then it's possible to configure an external program to perform the linting via the
+null-ls plugin.
 
 To see supported linters (diagnostics), run: `:NullLsInfo`.
 
