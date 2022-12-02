@@ -205,7 +205,7 @@ To check the state of the LSP client:
 ```
 
 To see the features of the LSP server, see: `:lua print(vim.inspect(vim.lsp.protocol.make_client_capabilities()))`
-```json
+```
 {
   callHierarchy = {
     dynamicRegistration = false
