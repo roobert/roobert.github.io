@@ -329,6 +329,4 @@ Hopefully this article has helped explain how to establish a solid base system f
 Neovim along with how to the core components work together along with how to extend it
 to support new languages that you'd like to work with and keep everything up-to-date!
 
-You can check out my Neovim/Lunarvim config [here](https://github.com/roobert/dotfiles/blob/master/.config/lvim/config.lua).
-
-You can check out my Neovim theme [here](https://github.com/roobert/nightshift.vim).
+You can check out my Neovim/Lunarvim config [here](https://github.com/roobert/dotfiles/blob/master/.config/lvim/config.lua) and my theme [here](https://github.com/roobert/nightshift.vim).
