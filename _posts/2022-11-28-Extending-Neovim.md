@@ -104,7 +104,7 @@ If the above doesn't make a lot of sense, don't worry. Instead of trying to mana
 this stuff ourselves we can lean on one of the available community maintained systems
 that has all of these preconfigured and wired up...
 
-## [Lunarvim - An IDE Layer with Sane Defaults](#lunarvim-an-ide-layer-with-sane-defaults)
+## [Lunarvim - An IDE Layer with Sane Defaults](#lunarvim---an-ide-layer-with-sane-defaults)
 
 LunarVim is described as "An IDE layer for Neovim with sane defaults. Completely free
 and community driven.". LunarVIM adds a good set of default plugins to NeoVIM with
