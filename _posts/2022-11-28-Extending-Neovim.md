@@ -250,11 +250,7 @@ formatters.setup {
   { command = "isort", filetypes = { "python" } },
   { command = "shfmt", filetypes = { "sh" } },
   { command = "terraform_fmt", filtypes = { "terraform" } },
-  {
-    command = "prettier",
-    -- extra_args = { "--print-with", "100" },
-    filetypes = { "typescript", "typescriptreact" },
-  },
+  { command = "prettier", filetypes = { "typescript", "typescriptreact" }, },
 }
 ```
 
