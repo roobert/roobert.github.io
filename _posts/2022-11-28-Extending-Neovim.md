@@ -21,10 +21,12 @@ This article is broken up into the following sections:
 
 1. Understanding the Technologies
 2. LSP Servers are Only Half the Picture
-2. Neovim Configuration Goals
+3. Neovim Configuration Goals
 4. Neovim Plugins which Solve Problems
-3. Lunarvim - An IDE Layer with Sane Defaults
-4. Adding Support for New Programming Languages
+5. Lunarvim - An IDE Layer with Sane Defaults
+6. Adding Support for New Programming Languages
+7. Keeping Everything Up-To-Date
+8. Conclusion
 
 ## Understanding the Technologies
 
@@ -303,7 +305,7 @@ linters.setup {
 Once added here, run: `:PackerCompile` and restart the editor. You can check that the
 formatters have been installed by checking the `Installed` list in `:Mason`.
 
-### Updating Everything
+## Keeping Everything Up-To-Date
 
 To update Lunarvim itself:
 ```
