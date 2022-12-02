@@ -149,7 +149,9 @@ how.
 ## Adding Support for New Programming Languages
 
 Although we're going to leverage Lunarvim, it's still necessary to do some configuration
-when we want to add support for a new language.
+when we want to add support for a new language. The next sections explain how to add
+language support to the various different systems Neovim utilises to add language
+functions to the editor.
 
 ### Langauge Server Protocol Servers (LSPs)
 
