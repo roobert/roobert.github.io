@@ -155,7 +155,7 @@ when we want to add support for a new language. The next sections explain how to
 language support to the various different systems Neovim utilises to add language
 functions to the editor.
 
-### Langauge Server Protocol Servers (LSPs)
+### [Langauge Server Protocol Servers (LSPs)](#language-server-protocol-servers-lsps)
 
 To see a list of available LSP servers, run `:help lspconfig-all`.
 
@@ -223,7 +223,7 @@ To see the features of the LSP server, see: `:lua print(vim.inspect(vim.lsp.prot
 }
 ```
 
-### [Treesitter](#treesitter)
+### [Treesitter](#treesitter-1)
 
 To see a list of available languages:
 ```
@@ -257,7 +257,7 @@ Or interactively:
 :TSInstall <filetype>
 ```
 
-### Optional Formatter(s)
+### [Optional Formatter(s)](#optional-formatters)
 
 If there is no LSP server for the language, or the LSP server doesn't support a
 formatter then it's possible to configure an external program to perform the formatting
@@ -282,7 +282,7 @@ formatters.setup {
 Once added here, run: `:PackerCompile` and restart the editor. You can check that the
 formatters have been installed by checking the `Installed` list in `:Mason`.
 
-### Optional Linter(s)
+### [Optional Linter(s)](#optional-linters)
 
 If there is no LSP server for the language, or the LSP server doesn't support a linter
 then it's possible to configure an external program to perform the linting via the
