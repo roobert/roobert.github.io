@@ -32,7 +32,7 @@ This article is broken up into the following sections:
 
 First lets understand the technologies that we want to leverage..
 
-### LSP - the Language Server Protocol
+### [LSP - the Language Server Protocol](#lsp---the-language-server-protocol)
 
 The Langauge Server Protocol was introduced to improve editor performance. Prior to LSP
 editors would have to execute binaries to do things like linting and formatting. With
@@ -51,17 +51,17 @@ the server, a number of features become available, for example:
 * hover-signatures
 * diagnostics
 
-### Treesitter
+### [Treesitter](#treesitter)
 
 Treesitter builds an internal graph representation of your code which can be used by
 plugins authors to write plugins and for better than normal syntax highlighting.
 
-### Linters
+### [Linters](#linters)
 
 Linters check code for common problems and provide hints on how to correct any detected
 issues.
 
-### Formatters
+### [Formatters](#formatters)
 
 Formatters format code to conform to a specific coding style.
 
@@ -223,7 +223,7 @@ To see the features of the LSP server, see: `:lua print(vim.inspect(vim.lsp.prot
 }
 ```
 
-### Treesitter
+### [Treesitter](#treesitter)
 
 To see a list of available languages:
 ```
