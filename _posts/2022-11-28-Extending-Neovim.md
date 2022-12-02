@@ -34,7 +34,7 @@ First lets understand the technologies that we want to leverage..
 
 ### [LSP - the Language Server Protocol](#lsp---the-language-server-protocol)
 
-The Langauge Server Protocol was introduced to improve editor performance. Prior to LSP
+The Language Server Protocol was introduced to improve editor performance. Prior to LSP
 editors would have to execute binaries to do things like linting and formatting. With
 the advent of the LSP editors can get real-time feedback to the editor from a process
 which runs in the background.
@@ -155,7 +155,7 @@ when we want to add support for a new language. The next sections explain how to
 language support to the various different systems Neovim utilises to add language
 functions to the editor.
 
-### [Langauge Server Protocol Servers (LSPs)](#language-server-protocol-servers-lsps)
+### [Language Server Protocol Servers (LSPs)](#language-server-protocol-servers-lsps)
 
 To see a list of available LSP servers, run `:help lspconfig-all`.
 
