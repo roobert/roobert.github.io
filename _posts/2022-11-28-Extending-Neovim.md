@@ -28,7 +28,7 @@ This article is broken up into the following sections:
 7. [Keeping Everything Up-To-Date](#keeping-everything-up-to-date)
 8. [Conclusion](#conclusion)
 
-## [Understanding the Technologies](#undrstanding)
+## [Understanding the Technologies](#understanding-the-technologies)
 
 First lets understand the technologies that we want to leverage..
 
@@ -65,7 +65,7 @@ issues.
 
 Formatters format code to conform to a specific coding style.
 
-## [LSP Servers are Only Half the Picture](#half-the-picture)
+## [LSP Servers are Only Half the Picture](#lsp-servers-are-only-half-the-picture)
 
 Not all LSP servers support all features and so it can be necessary to fall-back to
 executing a program to perform some tasks, for example: linting, or formatting.
@@ -80,14 +80,14 @@ configuration.
 Next, we'll look at one way to try and ease the pain of handling what ends up being a
 fairly complex system.
 
-## [Neovim Configuration Goals](#config-goals)
+## [Neovim Configuration Goals](#neovim-configuration-goals)
 
 First, let's set-out some goals:
 
 * Minimize the amount of configuration we have to maintain
 * Ensure we have mechanisms to install and update everything
 
-## [Neovim Plugins which Solve Problems](#plugins)
+## [Neovim Plugins which Solve Problems](#neovim-plugins-which-solve-plugins)
 
 Next, lets understand how the core-plugin management and configuration works. To begin, we'll
 need to understand what the core plugins are and how they relate to one-another:
@@ -104,7 +104,7 @@ If the above doesn't make a lot of sense, don't worry. Instead of trying to mana
 this stuff ourselves we can lean on one of the available community maintained systems
 that has all of these preconfigured and wired up...
 
-## [Lunarvim - An IDE Layer with Sane Defaults](#lunarvim)
+## [Lunarvim - An IDE Layer with Sane Defaults](#lunarvim-an-ide-layer-with-sane-defaults)
 
 LunarVim is described as "An IDE layer for Neovim with sane defaults. Completely free
 and community driven.". LunarVIM adds a good set of default plugins to NeoVIM with
@@ -148,7 +148,7 @@ Lunarvim is an excellent base system but in-order to really have a good experien
 need to understand how to customize it, configure it, and extend it, read on to find out
 how.
 
-## [Adding Support for New Programming Languages](#language-support)
+## [Adding Support for New Programming Languages](#adding-support-for-new-programming-languages)
 
 Although we're going to leverage Lunarvim, it's still necessary to do some configuration
 when we want to add support for a new language. The next sections explain how to add
@@ -305,7 +305,7 @@ linters.setup {
 Once added here, run: `:PackerCompile` and restart the editor. You can check that the
 formatters have been installed by checking the `Installed` list in `:Mason`.
 
-## [Keeping Everything Up-To-Date](#updating)
+## [Keeping Everything Up-To-Date](#keeping-everything-up-to-date)
 
 To update Lunarvim itself:
 ```
