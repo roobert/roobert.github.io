@@ -33,7 +33,3 @@ permalink:    pretty
 paginate:     999
 sass:
   compressed: true
-
-# Disable auto-generated ID's for headings
-kramdown:
-  auto_ids: false
