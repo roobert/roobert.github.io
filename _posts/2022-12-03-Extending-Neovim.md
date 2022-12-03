@@ -42,8 +42,9 @@ NeoVIM added LSP support in version `0.5.0` and describes it as follows:
 > LSP facilitates features like go-to-definition, find-references, hover, completion,
 > rename, format, refactor, etc., using semantic whole-project analysis (unlike ctags).
 
-For each filetype opened an LSP client will connect to an LSP server and depending on
-the server, a number of features become available, for example:
+For each filetype opened if configured correctly, Neovims LSP client will connect to an
+LSP server and depending on the server, a number of features become available, for
+example:
 * completion
 * linting
 * formatting
@@ -62,7 +63,8 @@ issues.
 
 ### [Formatters](#formatters)
 
-Formatters format code to conform to a specific coding style.
+Formatters format code to conform to a specific coding style, typically these run when
+save-file is run.
 
 ## [LSP Servers are Only Half the Picture](#lsp-servers-are-only-half-the-picture)
 
@@ -71,20 +73,24 @@ executing a program to perform some tasks, for example: linting, or formatting.
 
 In practice this means it is can be necessary to separately configure your LSP client,
 formatter(s), and a linter(s) for every language that you wish to have these features
-for. This can become complicated since it involves using multiple plugins to handle
-overlapping areas of responsibility and even more so because the ecosystem can shift and
-change quite regularly due to how new everything is, which can often result in a broken
-configuration.
+for. This can be complicated since it involves using multiple plugins to handle
+overlapping areas of responsibility and since the Neovim landscape is relatively new and
+evolves quickly, things change often which can often leave your configuration either
+broken, using deprecated plugins, or out of date practices.
 
-Next, we'll look at one way to try and ease the pain of handling what ends up being a
+Next, we'll look at one way to try and ease the pain of handling what can end up being a
 fairly complex system.
 
 ## [Neovim Configuration Goals](#neovim-configuration-goals)
 
 First, let's set-out some goals:
 
+* Understand the core plugins that handle adding language-specific features to Neovim,
+  along with how to configure them
+* Understand how to extend the base configuration with any additional plugins that we
+  need
 * Minimize the amount of configuration we have to maintain
-* Ensure we have mechanisms to install and update everything
+* Ensure we have mechanisms to install and update our plugins and their external dependencies
 
 ## [Neovim Plugins which Solve Problems](#neovim-plugins-which-solve-problems)
 
@@ -100,8 +106,8 @@ need to understand what the core plugins are and how they relate to one-another:
 * [jayp0521/mason-null-ls](https://github.com/jayp0521/mason-null-ls) - automatically install formatters/linters to be used by null-ls
 
 If the above doesn't make a lot of sense, don't worry. Instead of trying to manage all
-this stuff ourselves we can lean on one of the available community maintained systems
-that has all of these preconfigured and wired up...
+of these plugins ourselves we can lean on one of the available community maintained systems
+that has all of these preconfigured and wired up out of the box..
 
 ## [LunarVim - An IDE Layer with Sane Defaults](#lunarvim---an-ide-layer-with-sane-defaults)
 
@@ -111,11 +117,16 @@ configurations that will suit most people, and more importantly, it comes with a
 essentials pre-configured - but also allows customisation
 (enabling/disabling/configuration), and extension using additional plugins.
 
-If you'd like to know a bit more about what LunarVim includes, you can read the default plugin list which can be found [here](https://www.lunarvim.org/docs/plugins/core-plugins-list), along with a list of extra plugins [here](https://www.lunarvim.org/docs/plugins/extra-plugins), and also the default settings which can be found [here](https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua).
+If you'd like to know a bit more about what LunarVim includes, you can read the default
+plugin list which can be found
+[here](https://www.lunarvim.org/docs/plugins/core-plugins-list), along with a list of
+extra plugins [here](https://www.lunarvim.org/docs/plugins/extra-plugins), and also the
+default settings which can be found
+[here](https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua).
 
 Start by installing LunarVim following the instructions [here](https://www.lunarvim.org/docs/installation).
 
-Next we'll create some aliases for convenience and that by default allows us to open up multiple files in tabs:
+Next we'll create some aliases for convenience and that by default allow us to open up multiple files in tabs:
 
 ```
 alias vi="lvim -p"
@@ -123,7 +134,7 @@ alias vim=vi
 ```
 
 All of the plugins in the above section are included in LunarVim, apart from `mason-null-ls`,
-lets add it to `~/.config/lvim/config.lua`:
+lets extend our configuration by adding it to `~/.config/lvim/config.lua`:
 
 ```lua
 lvim.plugins = {
@@ -190,8 +201,8 @@ require("mason-lspconfig").setup({
 It's also possible to use an interactive method:
 ```
 # Show available language servers
-:LspInstall <filetype>
-# -or- to browse and install supported plugins
+:LspInstall <lsp-server>
+# -or- to browse and install supported plugins (use g? to see controls)
 :Mason
 ```
 
@@ -203,7 +214,7 @@ To check the state of the LSP client:
 :LvimInfo
 ```
 
-To see the features of the LSP server, see: `:lua print(vim.inspect(vim.lsp.protocol.make_client_capabilities()))`
+To see the features of the LSP server, run: `:lua print(vim.inspect(vim.lsp.protocol.make_client_capabilities()))`
 ```
 {
   callHierarchy = {
@@ -246,7 +257,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "yaml",
   "go",
   "hcl",
-  "markdown",
+  "markdown"
 }
 ```
 
@@ -280,7 +291,7 @@ formatters.setup {
 ```
 
 Once added here, run: `:PackerCompile` and restart the editor. You can check that the
-formatters have been installed by checking the `Installed` list in `:Mason`.
+formatters have been installed by checking the `Installed` list under `:Mason`.
 
 ### [Optional Linter(s)](#optional-linters)
 
@@ -297,13 +308,12 @@ local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
   { command = "flake8", filetypes = { "python" } },
   { command = "shellcheck", extra_args = { "--severity", "warning" }, },
-  { command = "codespell", filetypes = { "javascript", "python" },
-  },
+  { command = "codespell", filetypes = { "javascript", "python" }, },
 }
 ```
 
 Once added here, run: `:PackerCompile` and restart the editor. You can check that the
-formatters have been installed by checking the `Installed` list in `:Mason`.
+formatters have been installed by checking the `Installed` list under `:Mason`.
 
 ## [Keeping Everything Up-To-Date](#keeping-everything-up-to-date)
 
@@ -331,7 +341,8 @@ To update formatters/linters/LSPs, etc.:
 ## [Conclusion](#conclusion)
 
 Hopefully this article has helped explain how to establish a solid base system for
-Neovim along with how to the core components work together along with how to extend it
-to support new languages that you'd like to work with and keep everything up-to-date!
+Neovim using LunarVim, how the core components work together, how to configure and
+extend them to support new languages that you'd like to work with, along with how to
+keep everything up-to-date!
 
 You can check out my Neovim/LunarVim config [here](https://github.com/roobert/dotfiles/blob/master/.config/lvim/config.lua) and my theme [here](https://github.com/roobert/nightshift.vim).
