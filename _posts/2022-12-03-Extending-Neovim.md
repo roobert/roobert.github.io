@@ -29,7 +29,8 @@ This article is broken up into the following sections:
 
 ## [Understanding the Technologies](#understanding-the-technologies)
 
-First lets understand the technologies that we want to leverage.
+First lets understand the technologies that make up the core support for
+the language-specific features of Neovim.
 
 ### [LSP - the Language Server Protocol](#lsp---the-language-server-protocol)
 
