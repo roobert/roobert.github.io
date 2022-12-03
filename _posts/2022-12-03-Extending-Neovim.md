@@ -46,7 +46,7 @@ issues.
 Formatters format code to conform to a specific coding style, typically these run when
 save-file is run.
 
-### [LSP - the Language Server Protocol](#lsp---the-language-server-protocol)
+### [LSP](#lsp)
 
 The Language Server Protocol was introduced to improve editor performance. Prior to LSP,
 editors would have to execute binaries to do things like linting and formatting. With
