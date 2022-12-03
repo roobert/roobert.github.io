@@ -316,6 +316,11 @@ To update Neovim plugins
 :PackerSync
 ```
 
+To update Treesitter parsers
+```
+:tSUpdate
+```
+
 To update formatters/linters/LSPs, etc.:
 ```
 # followed by "U" to Update All
