@@ -19,6 +19,7 @@ Neovim plugin spaghetti that turns Neovim into a more featureful modern editor.
 This article is broken up into the following sections:
 
 1. [Understanding the Technologies](#understanding-the-technologies)
+2. [LSP Servers are Only Half the Picture](#lsp-servers-are-only-half-the-picture)
 3. [Neovim Configuration Goals](#neovim-configuration-goals)
 4. [Neovim Plugins which Solve Problems](#neovim-plugins-which-solve-problems)
 5. [LunarVim - An IDE Layer with Sane Defaults](#lunarvim---an-ide-layer-with-sane-defaults)
@@ -65,6 +66,8 @@ example:
 * formatting
 * hover-signatures
 * diagnostics
+
+## [LSP Servers are Only Half the Picture](#lsp-servers-are-only-half-the-picture)
 
 Not all LSP servers support all features and so it can be necessary to fall-back to
 executing a program to perform some tasks, for example: linting, or formatting.
