@@ -246,6 +246,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "yaml",
   "go",
   "hcl",
+  "markdown",
 }
 ```
 
