@@ -22,7 +22,7 @@ This article is broken up into the following sections:
 2. [LSP Servers are Only Half the Picture](#lsp-servers-are-only-half-the-picture)
 3. [Neovim Configuration Goals](#neovim-configuration-goals)
 4. [Neovim Plugins which Solve Problems](#neovim-plugins-which-solve-problems)
-5. [Lunarvim - An IDE Layer with Sane Defaults](#lunarvim---an-ide-layer-with-sane-defaults)
+5. [LunarVim - An IDE Layer with Sane Defaults](#lunarvim---an-ide-layer-with-sane-defaults)
 6. [Adding Support for New Programming Languages](#adding-support-for-new-programming-languages)
 7. [Keeping Everything Up-To-Date](#keeping-everything-up-to-date)
 8. [Conclusion](#conclusion)
@@ -103,7 +103,7 @@ If the above doesn't make a lot of sense, don't worry. Instead of trying to mana
 this stuff ourselves we can lean on one of the available community maintained systems
 that has all of these preconfigured and wired up...
 
-## [Lunarvim - An IDE Layer with Sane Defaults](#lunarvim---an-ide-layer-with-sane-defaults)
+## [LunarVim - An IDE Layer with Sane Defaults](#lunarvim---an-ide-layer-with-sane-defaults)
 
 LunarVim is described as "An IDE layer for Neovim with sane defaults. Completely free
 and community driven.". LunarVIM adds a good set of default plugins to NeoVIM with
@@ -111,9 +111,9 @@ configurations that will suit most people, and more importantly, it comes with a
 essentials pre-configured - but also allows customisation
 (enabling/disabling/configuration), and extension using additional plugins.
 
-If you'd like to know a bit more about what Lunarvim includes, you can read the default plugin list which can be found [here](https://www.lunarvim.org/docs/plugins/core-plugins-list), along with a list of extra plugins [here](https://www.lunarvim.org/docs/plugins/extra-plugins), and also the default settings which can be found [here](https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua).
+If you'd like to know a bit more about what LunarVim includes, you can read the default plugin list which can be found [here](https://www.lunarvim.org/docs/plugins/core-plugins-list), along with a list of extra plugins [here](https://www.lunarvim.org/docs/plugins/extra-plugins), and also the default settings which can be found [here](https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/config/settings.lua).
 
-Start by installing Lunarvim following the instructions[here](https://www.lunarvim.org/docs/installation).
+Start by installing LunarVim following the instructions [here](https://www.lunarvim.org/docs/installation).
 
 Next we'll create some aliases for convenience and that by default allows us to open up multiple files in tabs:
 
@@ -122,7 +122,7 @@ alias vi="lvim -p"
 alias vim=vi
 ```
 
-All of the plugins in the above section are included in Lunarvim, apart from `mason-null-ls`,
+All of the plugins in the above section are included in LunarVim, apart from `mason-null-ls`,
 lets add it to `~/.config/lvim/config.lua`:
 
 ```lua
@@ -143,13 +143,13 @@ lvim.plugins = {
 }
 ```
 
-Lunarvim is an excellent base system but in-order to really have a good experience we
+LunarVim is an excellent base system but in-order to really have a good experience we
 need to understand how to customize it, configure it, and extend it, read on to find out
 how.
 
 ## [Adding Support for New Programming Languages](#adding-support-for-new-programming-languages)
 
-Although we're going to leverage Lunarvim, it's still necessary to do some configuration
+Although we're going to leverage LunarVim, it's still necessary to do some configuration
 when we want to add support for a new language. The next sections explain how to add
 language support to the various different systems Neovim utilises to add language
 functions to the editor.
@@ -307,7 +307,7 @@ formatters have been installed by checking the `Installed` list in `:Mason`.
 
 ## [Keeping Everything Up-To-Date](#keeping-everything-up-to-date)
 
-To update Lunarvim itself:
+To update LunarVim itself:
 ```
 :LvimUpdate
 ```
@@ -334,4 +334,4 @@ Hopefully this article has helped explain how to establish a solid base system f
 Neovim along with how to the core components work together along with how to extend it
 to support new languages that you'd like to work with and keep everything up-to-date!
 
-You can check out my Neovim/Lunarvim config [here](https://github.com/roobert/dotfiles/blob/master/.config/lvim/config.lua) and my theme [here](https://github.com/roobert/nightshift.vim).
+You can check out my Neovim/LunarVim config [here](https://github.com/roobert/dotfiles/blob/master/.config/lvim/config.lua) and my theme [here](https://github.com/roobert/nightshift.vim).
