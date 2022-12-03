@@ -13,7 +13,7 @@ type:       post
 
 To make the most of Neovim it's useful to understand the technologies it can leverage,
 how the various plugins that manage these technologies relate to one another, and how
-they can be installed and configured. In this article we'll attempt to untangle the
+they can be installed and configured. In this article, I will attempt to untangle the
 Neovim plugin spaghetti that turns Neovim into a more featureful modern editor.
 
 This article is broken up into the following sections:
@@ -29,21 +29,21 @@ This article is broken up into the following sections:
 
 ## [Understanding the Technologies](#understanding-the-technologies)
 
-First lets understand the technologies that we want to leverage..
+First lets understand the technologies that we want to leverage.
 
 ### [LSP - the Language Server Protocol](#lsp---the-language-server-protocol)
 
-The Language Server Protocol was introduced to improve editor performance. Prior to LSP
+The Language Server Protocol was introduced to improve editor performance. Prior to LSP,
 editors would have to execute binaries to do things like linting and formatting. With
-the advent of the LSP editors can get real-time feedback to the editor from a process
+the advent of the LSP, editors can get real-time feedback to the editor from a process
 which runs in the background.
 
 NeoVIM added LSP support in version `0.5.0` and describes it as follows:
 > LSP facilitates features like go-to-definition, find-references, hover, completion,
 > rename, format, refactor, etc., using semantic whole-project analysis (unlike ctags).
 
-For each filetype opened if configured correctly, Neovims LSP client will connect to an
-LSP server and depending on the server, a number of features become available, for
+For each filetype opened if configured correctly, Neovim's LSP client will connect to an
+LSP server. Depending on the server, a number of features become available, for
 example:
 * completion
 * linting
