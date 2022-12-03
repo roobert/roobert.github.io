@@ -319,7 +319,7 @@ To update Neovim plugins
 
 To update Treesitter parsers
 ```
-:tSUpdate
+:TSUpdate
 ```
 
 To update formatters/linters/LSPs, etc.:
