@@ -1,9 +1,8 @@
 ---
 layout:     post
 title:      Neovim Spaghetti - LSP Servers, Linters, Formatters, and Treesitter
-date:       2022-11-28 13:20
+date:       2022-12-03 13:20
 type:       post
-draft:      true
 ---
 
 <p align="center">
