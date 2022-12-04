@@ -12,14 +12,6 @@ draft:      true
 
 ## Abstract
 
-``` mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->A;
-```
-
 Here are a few tips for learning Neovim.
 
 * Ensure keybindings are discoverable, logically grouped, and don't conflict
