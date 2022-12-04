@@ -14,13 +14,16 @@ draft:      true
 
 Here are a few tips for learning Neovim.
 
+* Ensure keybindings are discoverable, logically grouped, and don't conflict
+* Create a cheatsheet to remind us of the things that are not often used or those that can help us whilst learning
+
 ## Plugins
 
 The main way to customise Neovim is with plugins, either build your own configuration or
 a good idea to begin with is to use a pre-packaged collection such as [Lunarvim](https://github.com/lunarvim/lunarvim).
 
 Also, see my article on
-[extending Neovim](https://roobert.github.io/2022/11/28/Extending-Neovim/).
+[extending Neovim](https://roobert.github.io/2022/12/03/Extending-Neovim/).
 
 ## Default Keybindings
 
@@ -31,10 +34,14 @@ to try and learn movement with `hjkl`.
 
 Keep a copy of the keyboard cheatsheet handy for reference.
 
+<img width="871" alt="Screenshot 2022-12-04 at 20 00 59" src="https://user-images.githubusercontent.com/226654/205512709-d60460e4-690b-4ef7-b4c0-45f706c4fed2.png">
+
 ## Vim Tutor
 
 Run `:Tutor` to go through a set of lessons that'll introduce you to the most common
 features of Neovim.
+
+<img width="571" alt="Screenshot 2022-12-04 at 20 07 21" src="https://user-images.githubusercontent.com/226654/205512989-27d3ed1e-d6a7-41b5-b948-74f29939178f.png">
 
 ## Discoverability with the Which-Key Plugin
 
@@ -47,6 +54,11 @@ lvim.builtin.which_key.mappings["-"] = { "<Plug>(toggle-lsp-diag-vtext)", "Toggl
 lvim.builtin.which_key.mappings["+"] = { "<CMD>Copilot toggle<CR>", "Toggle Copilot" }
 ```
 
+The following screenshot shows the output of `which-key` when a key is pressed and a
+time has elapsed:
+<img width="566" alt="Screenshot 2022-12-04 at 20 08 33" src="https://user-images.githubusercontent.com/226654/205513140-e7b72e17-261f-45f1-ad4d-8b1c2dbb5b78.png">
+
+
 ## Improving with the Cheatsheet Plugin
 
 The cheatsheet plugin (not to be confused with the keyboard shortcuts cheatsheet) is a
@@ -54,10 +66,10 @@ great way to keep and refer to notes and reminders that you can use to improve y
 knowledge.
 
 Install the plugin by updating `~/.config/lvim/config.lua`:
-```
+```lua
 lvim.plugins = {
   -- place to store reminders and rarely used but useful stuff
-  { 'sudormrfbin/cheatsheet.nvim',
+{ 'sudormrfbin/cheatsheet.nvim',
     requires = {
       { 'nvim-telescope/telescope.nvim' },
       { 'nvim-lua/popup.nvim' },
@@ -118,7 +130,6 @@ Prev/next buffer             | <shift>-h <shift>-l
 Close buffer                 | <leader>-c
 Fuzzy switch between buffers | <leader>-f
 Switch buffers               | <ctrl>-j <ctrl>-k
-
 ```
 
 Open the cheat sheet viewer by pressing `<leader>-?`, in Lunarvim `<leader>` is spacebar.
@@ -146,13 +157,13 @@ dt' = delete to '
 df[ = delete forwards to and including [
 ```
 
-With the xyz plugin, you can jump inside objects further in the sentence, e.g:
+With the [andymass/vim-matchup](https://github.com/andymass/vim-matchup) plugin, you can jump inside objects further in the sentence, e.g:
 
 ```
 ci" = change inside "
 ```
 
-With the zxy plugin you can modify and change syntax around code, e.g:
+With the [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround) plugin you can modify and change syntax around code, e.g:
 
 ```
 ysaw" = you surround around word "'s
