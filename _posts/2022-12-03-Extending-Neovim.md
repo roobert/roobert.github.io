@@ -168,7 +168,7 @@ LunarVIM adds a good set of default plugins to NeoVIM with configurations that w
 most people, and more importantly, it comes with all the essentials pre-configured - but
 also allows customisation (enabling/disabling/configuration), and extension using
 additional plugins. Equally, if preferred, it is possible to manually configure the
-aforementioned plugins, however, the rest of thie article assumes that LunarVim is used.
+aforementioned plugins, however the rest of thie article assumes that LunarVim is used.
 
 To read more about what LunarVim includes, the default
 plugin list can be found
