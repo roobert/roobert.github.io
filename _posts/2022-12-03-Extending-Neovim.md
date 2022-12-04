@@ -112,17 +112,47 @@ need to understand what the core plugins are and how they relate to one-another:
 
 * [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) - configs to connect
   the built-in lsp client to lsp servers
+* [jose-elias-alvarez/null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) - allow hooking standalone applications into Neovim via an LSP server proxy - this is
+  used to, for example, hook programmes that are not LSP servers thmselves into the
+  LSP client such as formatters, linters, etc.
+* [jayp0521/mason-null-ls.nvim](https://github.com/jayp0521/mason-null-ls.nvim) - automatically
+  install formatters/linters to be used by null-ls
 * [williamboman/mason](https://github.com/williamboman/mason) - a plugin which can be
   used to install and manage LSP servers, DAP servers, linters, and formatters
 * [williamboman/mason-lspconfig](https://github.com/williamboman/mason-lspconfig) - This
   bridges the gap between nvim-lspconfig and mason - registering
   LSP configs with neovim so the LSP client can connect to the servers
-* [jose-elias-alvarez/null-ls](https://github.com/jose-elias-alvarez/null-ls) - allow
-  hooking standalone applications into Neovim via an LSP server proxy - this is
-  used to, for example, hook programmes that are not LSP servers thmselves into the LSP
-  client such as formatters, linters, etc.
-* [jayp0521/mason-null-ls](https://github.com/jayp0521/mason-null-ls) - automatically
-  install formatters/linters to be used by null-ls
+
+```mermaid
+flowchart LR
+    subgraph Userland
+    c1(shfmt)
+    c2(pylint)
+    c3(...)
+    end
+
+    subgraph server [LSP Servers]
+    b1(pylsp)
+    b2(...)
+    b3(null-ls)-- execute -->c1
+    b3(null-ls)-- execute -->c2
+    end
+
+    subgraph Neovim
+    a1(LSP client)-- read -->server
+    a2(nvim-lspconfig)-- configure -->a1
+    a4(mason-lspconfig)-- register -->a2
+    a5(mason-null-ls)-- read client list -->b3
+    a3(Mason)-- register -->a4
+
+    a3(Mason)-->a5
+    a3(Mason)-- install -->b1
+    a3(Mason)-- install -->b2
+    a3(Mason)-- install -->c1
+    a3(Mason)-- install -->c2
+    a3(Mason)-- install -->c3
+    end
+```
 
 If this seems complicated and doesn't make a lot of sense, don't worry. Instead of
 trying to manage all of these plugins ourselves we can lean on one of the available
