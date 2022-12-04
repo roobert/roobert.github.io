@@ -8,6 +8,7 @@ url:         "http://roobert.github.io"
 
 gems:
   - jekyll-paginate
+  - jekyll-mermaid
 
 # Google analytics
 google_analytics: UA-56391015-1
@@ -26,6 +27,9 @@ linkedin_username:
 bitcoin_url:
 paypal_url:
 flattr_button:
+
+mermaid:
+  src: 'mermaid.min.js'
 
 # Build settings
 markdown:     kramdown
