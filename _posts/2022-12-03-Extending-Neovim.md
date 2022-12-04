@@ -347,6 +347,8 @@ To update formatters/linters/LSPs, etc.:
 :Mason
 ```
 
+<img width="926" alt="Screenshot 2022-12-04 at 16 55 13" src="https://user-images.githubusercontent.com/226654/205504410-61069540-629c-47d0-b714-71d01acd69d9.png">
+
 ## [Conclusion](#conclusion)
 
 Hopefully this article has helped explain how to establish a solid base system for
