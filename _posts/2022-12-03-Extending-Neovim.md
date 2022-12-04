@@ -155,9 +155,9 @@ flowchart LR
 ```
 
 If this seems complicated and doesn't make a lot of sense, don't worry. Instead of
-trying to manage all of these plugins ourselves we can lean on one of the available
-community maintained systems that has all of these preconfigured and wired up out of the
-box..
+trying to manage all of these plugins and applications ourselves we can lean on one of
+the available community maintained systems that has all of these preconfigured and wired
+up out of the box..
 
 ## [LunarVim - An IDE Layer with Sane Defaults](#lunarvim---an-ide-layer-with-sane-defaults)
 
