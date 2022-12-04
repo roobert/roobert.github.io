@@ -12,6 +12,14 @@ draft:      true
 
 ## Abstract
 
+``` mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->A;
+```
+
 Here are a few tips for learning Neovim.
 
 * Ensure keybindings are discoverable, logically grouped, and don't conflict
@@ -22,8 +30,7 @@ Here are a few tips for learning Neovim.
 The main way to customise Neovim is with plugins, either build your own configuration or
 a good idea to begin with is to use a pre-packaged collection such as [Lunarvim](https://github.com/lunarvim/lunarvim).
 
-Also, see my article on
-[extending Neovim](https://roobert.github.io/2022/12/03/Extending-Neovim/).
+Also, see my article on [Extending Neovim](https://roobert.github.io/2022/12/03/Extending-Neovim/).
 
 ## Default Keybindings
 
