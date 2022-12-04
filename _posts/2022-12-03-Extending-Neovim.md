@@ -162,7 +162,7 @@ up out of the box..
 ## [LunarVim - An IDE Layer with Sane Defaults](#lunarvim---an-ide-layer-with-sane-defaults)
 
 LunarVim is described as <em>An IDE layer for Neovim with sane defaults. Completely free
-and community driven.</em>. LunarVIM adds a good set of default plugins to NeoVIM with
+and community driven</em>. LunarVIM adds a good set of default plugins to NeoVIM with
 configurations that will suit most people, and more importantly, it comes with all the
 essentials pre-configured - but also allows customisation
 (enabling/disabling/configuration), and extension using additional plugins. Equally, if
