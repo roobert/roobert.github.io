@@ -179,7 +179,7 @@ default settings which can be found
 
 To continue, start by installing LunarVim following the instructions [here](https://www.lunarvim.org/docs/installation).
 
-Next we'll create some aliases for convenience and that by default allow us to open up multiple files in tabs:
+Next we'll create some aliases for convenience and that by default allow us to open up multiple files in buffers (tabs):
 
 ```
 alias vim="lvim -p"
