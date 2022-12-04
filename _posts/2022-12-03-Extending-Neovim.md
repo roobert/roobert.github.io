@@ -124,6 +124,14 @@ need to understand what the core plugins are and how they relate to one-another:
 * [jayp0521/mason-null-ls](https://github.com/jayp0521/mason-null-ls) - automatically
   install formatters/linters to be used by null-ls
 
+``` mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
 If this seems complicated and doesn't make a lot of sense, don't worry. Instead of
 trying to manage all of these plugins ourselves we can lean on one of the available
 community maintained systems that has all of these preconfigured and wired up out of the
