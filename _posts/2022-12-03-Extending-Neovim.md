@@ -37,6 +37,11 @@ the language-specific features of Neovim.
 Treesitter builds an internal graph representation of your code which can be used by
 plugins authors to write plugins and for better than normal syntax highlighting.
 
+The following screenshot shows syntax highlighting for a Terraform HCL file with and
+without treesitter support.
+<img width="1087" alt="Screenshot 2022-12-04 at 17 02 30" src="https://user-images.githubusercontent.com/226654/205504728-0cb5fca1-9151-48d5-8fe3-ccabe8008e9d.png">
+
+
 ### [Linters](#linters)
 
 Linters check code for common problems and provide hints on how to correct any detected
