@@ -42,10 +42,16 @@ plugins authors to write plugins and for better than normal syntax highlighting.
 Linters check code for common problems and provide hints on how to correct any detected
 issues.
 
+This screenshot shows diagnostics/linting tips delivered via pylsp.
+<img width="926" alt="Screenshot 2022-12-04 at 16 41 30" src="https://user-images.githubusercontent.com/226654/205504013-47feb0cb-4bf7-4680-8b22-357d315f7a96.png">
+
 ### [Formatters](#formatters)
 
 Formatters format code to conform to a specific coding style, typically these run when
 save-file is run.
+
+This screenshot shows the previous code after formatting with the `black` formatter.
+<img width="926" alt="Screenshot 2022-12-04 at 16 43 55" src="https://user-images.githubusercontent.com/226654/205504015-8ac9eb39-5b71-49a7-a9c9-e664dd87231d.png">
 
 ### [LSP](#lsp)
 
@@ -116,7 +122,9 @@ LunarVim is described as "An IDE layer for Neovim with sane defaults. Completely
 and community driven.". LunarVIM adds a good set of default plugins to NeoVIM with
 configurations that will suit most people, and more importantly, it comes with all the
 essentials pre-configured - but also allows customisation
-(enabling/disabling/configuration), and extension using additional plugins.
+(enabling/disabling/configuration), and extension using additional plugins. If you'd
+prefer, you can manually configure the aforementioned plugins but the rest of this
+article assumes that you'll be using LunarVim.
 
 If you'd like to know a bit more about what LunarVim includes, you can read the default
 plugin list which can be found
