@@ -42,7 +42,6 @@ The following screenshot shows syntax highlighting for a Terraform HCL file with
 without treesitter support.
 <img width="1087" alt="Screenshot 2022-12-04 at 17 02 30" src="https://user-images.githubusercontent.com/226654/205504728-0cb5fca1-9151-48d5-8fe3-ccabe8008e9d.png">
 
-
 ### [Linters](#linters)
 
 Linters check code for common problems and provide hints on how to correct any detected
@@ -73,6 +72,7 @@ NeoVIM added LSP support in version `0.5.0` and describes it as follows:
 For each filetype opened, if configured correctly, Neovim's LSP client will connect to an
 LSP server. Depending on the server, a number of features become available, for
 example:
+
 * completion
 * linting
 * formatting
@@ -195,16 +195,16 @@ lvim.plugins = {
   -- config options:
   -- * linters.setup
   -- * formatters.setup
-  { "jayp0521/mason-null-ls.nvim",
-    config = function()
-      require "mason-null-ls".setup({
-        automatic_installation = false,
-        automatic_setup = true,
-        ensure_installed = nil
-      })
-    end
-  },
-}
+ { "jayp0521/mason-null-ls.nvim",
+  config = function()
+   require("mason-null-ls").setup({
+    automatic_installation = false,
+    automatic_setup = true,
+    ensure_installed = nil,
+   })
+   require("mason-null-ls").setup_handlers()
+  end,
+ },
 ```
 
 LunarVim is an excellent base system but in-order to really have a good experience we
@@ -223,6 +223,7 @@ functions to the editor.
 To see a list of available LSP servers, run `:help lspconfig-all`.
 
 Update `~/.config/lvim/config.lua` with a list of desired LSP Servers to install:
+
 ```lua
 require("mason-lspconfig").setup({
   ensure_installed = {
@@ -252,6 +253,7 @@ require("mason-lspconfig").setup({
 ```
 
 It's also possible to use an interactive method:
+
 ```
 # Show available language servers
 :LspInstall <lsp-server>
@@ -260,6 +262,7 @@ It's also possible to use an interactive method:
 ```
 
 To check the state of the LSP client:
+
 ```
 # Inspect which formatters and linters are attached to the buffer
 :LspInfo
@@ -268,6 +271,7 @@ To check the state of the LSP client:
 ```
 
 To see the features of the LSP server, run: `:lua print(vim.inspect(vim.lsp.protocol.make_client_capabilities()))`
+
 ```
 {
   callHierarchy = {
@@ -289,11 +293,13 @@ To see the features of the LSP server, run: `:lua print(vim.inspect(vim.lsp.prot
 ### [Treesitter](#treesitter-1)
 
 To see a list of available languages:
+
 ```
 :TSInstallInfo
 ```
 
 Add any languages to include Treesitter support for in `~/.config/lvim/config.lua`:
+
 ```lua
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
@@ -317,6 +323,7 @@ lvim.builtin.treesitter.ensure_installed = {
 Once updated, run `:PackerCompile` and restart the editor.
 
 Or interactively:
+
 ```
 :TSInstall <filetype>
 ```
@@ -330,6 +337,7 @@ via the `null-ls` plugin.
 To see supported formatters, run: `:NullLsInfo`.
 
 Optionally configure additional formatters in `~/.config/lvim/config.lua`:
+
 ```lua
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
@@ -354,6 +362,7 @@ then it's possible to configure an external program to perform the linting via t
 To see supported linters (diagnostics), run: `:NullLsInfo`.
 
 Optionally configure additional linters in `~/.config/lvim/config.lua`:
+
 ```lua
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
@@ -369,21 +378,25 @@ which formatters have been installed by running `:Mason`.
 ## [Keeping Everything Up-To-Date](#keeping-everything-up-to-date)
 
 To update LunarVim itself:
+
 ```
 :LvimUpdate
 ```
 
 To update Neovim plugins
+
 ```
 :PackerSync
 ```
 
 To update Treesitter parsers
+
 ```
 :TSUpdate
 ```
 
 To update formatters/linters/LSPs, etc.:
+
 ```
 # followed by "U" to Update All
 :Mason
