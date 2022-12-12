@@ -117,7 +117,7 @@ need to understand what the core plugins are and how they relate to one-another:
   LSP client such as formatters, linters, etc.
 * [jayp0521/mason-null-ls.nvim](https://github.com/jayp0521/mason-null-ls.nvim) - automatically
   install formatters/linters to be used by null-ls
-* [williamboman/mason](https://github.com/williamboman/mason) - a plugin which can be
+* [williamboman/mason](https://github.com/williamboman/mason.nvim) - a plugin which can be
   used to install and manage LSP servers, DAP servers, linters, and formatters
 * [williamboman/mason-lspconfig](https://github.com/williamboman/mason-lspconfig) - This
   bridges the gap between nvim-lspconfig and mason - registering
