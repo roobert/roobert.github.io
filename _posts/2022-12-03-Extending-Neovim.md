@@ -179,13 +179,6 @@ default settings which can be found
 
 To continue, start by installing LunarVim following the instructions [here](https://www.lunarvim.org/docs/installation).
 
-Next we'll create some aliases for convenience and that by default allow us to open up multiple files in buffers (tabs):
-
-```
-alias vim="lvim -p"
-alias vi=vim
-```
-
 All of the plugins in the above section are included in LunarVim, apart from `mason-null-ls`,
 lets extend our configuration by adding it to `~/.config/lvim/config.lua`:
 
